@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import MainLayout from './layouts/MainLayout/MainLayout';
-import AuthLayout from './layouts/AuthLayout/AuthLayout';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import ReadingPage from './pages/ReadingPage/ReadingPage';
-import MyLibraryPage from './pages/MyLibraryPage/MyLibraryPage';
-import RecommendedPage from './pages/RecommendedPage/RecommendedPage';
-import WelcomePage from './pages/Welcome page/WelcomePage';
+import MainLayout from './layouts/MainLayout/MainLayout.js';
+import AuthLayout from './layouts/AuthLayout/AuthLayout.js';
+import RegisterPage from './pages/RegisterPage/RegisterPage.js';
+import LoginPage from './pages/LoginPage/LoginPage.js';
+import ReadingPage from './pages/ReadingPage/ReadingPage.js';
+import MyLibraryPage from './pages/MyLibraryPage/MyLibraryPage.js';
+import RecommendedPage from './pages/RecommendedPage/RecommendedPage.js';
+import WelcomePage from './pages/Welcome page/WelcomePage.js';
 
 function App() {
   return (
