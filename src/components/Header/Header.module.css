@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 4px;
+
+  font-weight: 700;
+  font-size: 18px;
+
+  line-height: 18px;
+  /* line-height: 1; */
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #f9f9f9;
+}
+
+.userBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 16px;
+}
