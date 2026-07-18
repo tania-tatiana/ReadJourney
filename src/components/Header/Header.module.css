@@ -3,6 +3,10 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 16px;
+  background: #1f1f1f;
+  border-radius: 15px;
+  max-width: 1216px;
+  max-height: 74px;
 }
 
 .logo {
@@ -20,6 +24,8 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #f9f9f9;
+
+  text-decoration: none;
 }
 
 .userBar {
@@ -28,4 +34,21 @@
   justify-content: space-between;
   flex-direction: row;
   gap: 16px;
+}
+
+.button {
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 12px 28px;
+  width: 100%;
+  /* max-width: 114px; */
+  height: 42px;
+
+  font-weight: 700;
+  font-size: 16px;
+
+  line-height: 18px;
+  /* line-height: 1.125; */
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
 }

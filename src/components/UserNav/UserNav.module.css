@@ -1,7 +1,36 @@
 .nav {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
   gap: 40px;
+}
+
+.navLink {
+  font-weight: 500;
+  font-size: 16px;
+
+  line-height: 18px;
+  /* line-height: 1.125; */
+  letter-spacing: -0.02em;
+  color: #686868;
+
+  text-decoration: none;
+}
+
+.active {
+  display: inline-flex;
+  color: #f9f9f9;
+  border-bottom: #4f92f7;
+  position: relative;
+}
+
+.active::after {
+  position: absolute;
+  content: '';
+  border-radius: 8px;
+  height: 3px;
+  width: 100%;
+  background-color: #4f92f7;
+  top: 26px;
 }

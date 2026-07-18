@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import UserNav from '../UserNav/UserNav';
-import UserBar from '../UserBar/UserBar';
 import css from './Header.module.css';
+import UserBar from '../UserBar/UserBar.js';
+import UserNav from '../UserNav/UserNav.js';
 
 export default function Header() {
   return (
@@ -13,7 +13,7 @@ export default function Header() {
       <UserNav />
       <div className={css.userBar}>
         <UserBar />
-        <button>Log out</button>
+        <button className={css.button}>Log out</button>
       </div>
     </header>
   );
