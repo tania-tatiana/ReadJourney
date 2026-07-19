@@ -64,7 +64,13 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 32px;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  #root {
+    padding: 32px;
+  }
 }
 
 h1,

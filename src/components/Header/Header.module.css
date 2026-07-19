@@ -2,11 +2,40 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 16px;
+  padding: 10px 20px;
   background: #1f1f1f;
   border-radius: 15px;
-  max-width: 1216px;
-  max-height: 74px;
+  max-width: 335px;
+  max-height: 57px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 16px;
+    max-width: 1216px;
+    max-height: 74px;
+  }
+}
+
+.logoAndNav {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .logoAndNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 223px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .logoAndNav {
+    gap: 334px;
+  }
 }
 
 .logo {
@@ -15,17 +44,30 @@
   justify-content: center;
   flex-direction: row;
   gap: 4px;
-
-  font-weight: 700;
-  font-size: 18px;
-
-  line-height: 18px;
-  /* line-height: 1; */
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: #f9f9f9;
-
   text-decoration: none;
+}
+
+.pictureLogo {
+  display: flex;
+  justify-content: center;
+}
+
+.textLogo {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .textLogo {
+    display: flex;
+    font-weight: 700;
+    font-size: 18px;
+
+    line-height: 18px;
+    /* line-height: 1; */
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #f9f9f9;
+  }
 }
 
 .userBar {
@@ -37,18 +79,38 @@
 }
 
 .button {
-  border: 1px solid rgba(249, 249, 249, 0.2);
-  border-radius: 30px;
-  padding: 12px 28px;
-  width: 100%;
-  /* max-width: 114px; */
-  height: 42px;
+  display: none;
+}
 
-  font-weight: 700;
-  font-size: 16px;
+@media (min-width: 768px) {
+  .button {
+    display: block;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    padding: 12px 28px;
+    width: 100%;
+    /* max-width: 114px; */
+    height: 42px;
+    background-color: #1f1f1f;
 
-  line-height: 18px;
-  /* line-height: 1.125; */
-  letter-spacing: 0.02em;
-  color: #f9f9f9;
+    font-weight: 700;
+    font-size: 16px;
+
+    line-height: 18px;
+    /* line-height: 1.125; */
+    letter-spacing: 0.02em;
+    color: #f9f9f9;
+  }
+}
+
+@media (max-width: 366px) {
+  .burger {
+    color: #f9f9f9;
+  }
+}
+
+@media (min-width: 768px) {
+  .burger {
+    display: none;
+  }
 }

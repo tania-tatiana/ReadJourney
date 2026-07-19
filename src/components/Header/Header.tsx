@@ -6,14 +6,25 @@ import UserNav from '../UserNav/UserNav.js';
 export default function Header() {
   return (
     <header className={css.wrapper}>
-      <Link to="/recommended" className={css.logo}>
-        <img src="../../../public/logo.svg" alt="logo" />
-        read journey
-      </Link>
-      <UserNav />
+      <div className={css.logoAndNav}>
+        <Link to="/recommended" className={css.logo}>
+          <img
+            src="../../../public/logo.svg"
+            alt="logo"
+            className={css.pictureLogo}
+          />
+          <p className={css.textLogo}>read journey</p>
+        </Link>
+        <UserNav />
+      </div>
       <div className={css.userBar}>
         <UserBar />
         <button className={css.button}>Log out</button>
+        <img
+          src="../../../public/burger.svg"
+          alt="Burger"
+          className={css.burger}
+        />
       </div>
     </header>
   );
