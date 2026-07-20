@@ -26,9 +26,10 @@
   .logoAndNav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: 223px;
+    justify-content: space-between;
   }
 }
 
@@ -45,11 +46,6 @@
   flex-direction: row;
   gap: 4px;
   text-decoration: none;
-}
-
-.pictureLogo {
-  display: flex;
-  justify-content: center;
 }
 
 .textLogo {
@@ -88,7 +84,6 @@
     border: 1px solid rgba(249, 249, 249, 0.2);
     border-radius: 30px;
     padding: 12px 28px;
-    width: 100%;
     /* max-width: 114px; */
     height: 42px;
     background-color: #1f1f1f;
@@ -99,12 +94,6 @@
     line-height: 18px;
     /* line-height: 1.125; */
     letter-spacing: 0.02em;
-    color: #f9f9f9;
-  }
-}
-
-@media (max-width: 366px) {
-  .burger {
     color: #f9f9f9;
   }
 }
