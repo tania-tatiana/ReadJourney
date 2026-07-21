@@ -10,6 +10,13 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .wrapper {
+    flex-direction: row;
+    gap: 16px;
+  }
+}
+
 .content {
   border-radius: 30px;
   max-width: 335px;
@@ -27,6 +34,13 @@
   }
 }
 
+@media (min-width: 1280px) {
+  .content {
+    max-width: 600px;
+    height: 736px;
+  }
+}
+
 .logo {
   display: flex;
   flex-direction: row;
@@ -38,6 +52,12 @@
 @media (min-width: 768px) {
   .logo {
     margin-bottom: 157px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .logo {
+    margin-bottom: 107px;
   }
 }
 
@@ -116,6 +136,9 @@
 @media (min-width: 1280px) {
   .imageBlock {
     display: flex;
+    width: 600px;
+    height: 736px;
+    padding: 80px 97px 0px;
   }
 }
 .mobile {
