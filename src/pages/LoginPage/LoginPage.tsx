@@ -1,11 +1,15 @@
 import LoginForm from '../../components/LoginForm/LoginForm.js';
 import css from './LoginPage.module.css';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <div className={css.wrapper}>
       <div className={css.content}>
-        <img src="/logo.svg" className={css.logo} />
+        <div className={css.logo}>
+          <img src="/logo.svg" className={css.logoImage} />
+          <span className={css.textLogo}>read journey</span>
+        </div>
+
         <div className={css.titleForm}>
           <h2 className={css.title}>
             Expand your mind, reading <span className={css.span}>a book</span>
