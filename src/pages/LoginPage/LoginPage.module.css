@@ -127,7 +127,7 @@
   max-width: 335px;
   max-height: 351px;
   background-color: #1f1f1f;
-  padding: 20px 40px 0px 20px;
+  padding: 20px 40px 0px 40px;
 }
 
 @media (min-width: 768px) {
@@ -139,11 +139,20 @@
 @media (min-width: 1280px) {
   .imageBlock {
     display: flex;
-    width: 600px;
-    height: 736px;
+    max-width: 600px;
+    max-height: 736px;
     padding: 80px 97px 0px;
   }
 }
+
 .mobile {
   margin: 0;
+  display: block;
+}
+
+@media (min-width: 1280px) {
+  .mobile {
+    width: 405px;
+    height: 656px;
+  }
 }
