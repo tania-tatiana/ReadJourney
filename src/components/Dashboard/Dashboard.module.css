@@ -1,0 +1,77 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+
+  border-radius: 30px;
+  width: 353px;
+  height: 651px;
+}
+
+.wrapperDescr {
+  border-radius: 12px;
+  width: 313px;
+  height: 272px;
+  background: #262626;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+
+  /* line-height: 20px; */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #f9f9f9;
+}
+
+.text {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+}
+
+.marker {
+  color: #686868;
+}
+
+.linkBlock {
+}
+
+.link {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #686868;
+}
+
+.textQuotes {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+
+.markerQuotes {
+  color: #f9f9f9;
+}
+
+.wrapperQuotes {
+  border-radius: 12px;
+  width: 313px;
+  height: 83px;
+
+  background: #262626;
+}
