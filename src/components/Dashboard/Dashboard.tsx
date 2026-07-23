@@ -11,12 +11,11 @@ export default function Dashboard() {
       <div className={css.wrapperDescr}>
         <h3 className={css.title}>Start your workout</h3>
         <p className={css.text}>
-          <span className={css.marker}>Create a personal library:</span>
-          add the books you intend to read to it. Create your first workout:
-          define a goal, choose a period, start training.
+          <span className={css.marker}>Create a personal library: </span>
+          add the books you intend to read to it.
         </p>
         <p className={css.text}>
-          <span className={css.marker}>Create your first workout:</span>
+          <span className={css.marker}>Create your first workout: </span>
           define a goal, choose a period, start training.
         </p>
         <div className={css.linkBlock}>

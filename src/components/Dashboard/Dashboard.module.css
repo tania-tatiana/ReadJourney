@@ -30,10 +30,14 @@
 }
 
 .wrapperDescr {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   border-radius: 12px;
   width: 313px;
-  height: 272px;
+  max-height: 272px;
   background: #262626;
+  padding: 20px;
 }
 
 .title {
@@ -45,23 +49,29 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: #f9f9f9;
+  margin: 0;
+  text-align: start;
 }
 
 .text {
+  text-align: start;
   font-weight: 500;
   font-size: 14px;
 
   /* line-height: 18px; */
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
-}
-
-.marker {
   color: #686868;
 }
 
+.marker {
+  color: #f9f9f9;
+}
+
 .linkBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .link {
