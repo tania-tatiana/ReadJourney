@@ -17,6 +17,15 @@
   color: #f9f9f9;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -36,6 +45,19 @@
   height: 44px;
 
   background-color: #262626;
+}
+
+@media (min-width: 768px) {
+  .field {
+    padding: 16px 14px;
+    height: 50px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .field {
+    width: 313px;
+  }
 }
 
 .label {
@@ -77,4 +99,17 @@
   background-color: transparent;
 
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .button {
+    font-size: 16px;
+
+    /* line-height: 18px; */
+    line-height: 1.125;
+
+    padding: 12px 26px;
+    width: 122px;
+    height: 42px;
+  }
 }

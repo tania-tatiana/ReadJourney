@@ -1,3 +1,5 @@
+import css from './RecommendedBooks.module.css';
+
 export default function RecommendedBooks() {
-  return <div></div>;
+  return <div className={css.wrapper}></div>;
 }

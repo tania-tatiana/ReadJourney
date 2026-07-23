@@ -4,12 +4,29 @@
   gap: 20px;
 
   border-radius: 30px;
-  max-width: 353px;
-  max-height: 651px;
+  /* max-width: 353px; */
+  /* max-height: 651px; */
   padding: 20px;
-  margin-top: 10px;
 
   background: #1f1f1f;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    flex-direction: row;
+    gap: 32px;
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .wrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    padding-top: 40px;
+    max-width: 353px;
+  }
 }
 
 .wrapperDescr {

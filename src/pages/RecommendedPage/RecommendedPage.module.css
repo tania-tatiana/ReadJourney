@@ -1,2 +1,12 @@
 .wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    margin-top: 16px;
+  }
 }
