@@ -1,18 +1,24 @@
 import css from './Filters.module.css';
 
-export default function () {
+export default function Filters() {
   return (
-    <div>
+    <div className={css.wrapper}>
       <p className={css.title}>Filters:</p>
-      <form>
-        <label htmlFor="">
-          <input type="text" />
-        </label>
-        <label htmlFor="">
-          <input type="text" />
-        </label>
+      <form className={css.form}>
+        <div className={css.inputs}>
+          <label className={css.field}>
+            <span className={css.label}>Book title:</span>
+            <input type="text" className={css.input} />
+          </label>
+          <label className={css.field}>
+            <span className={css.label}>The author:</span>
+            <input type="text" className={css.input} />
+          </label>
+        </div>
 
-        <button type="submit" className={css.button}></button>
+        <button type="submit" className={css.button}>
+          To apply
+        </button>
       </form>
     </div>
   );

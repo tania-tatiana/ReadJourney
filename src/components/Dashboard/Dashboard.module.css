@@ -1,10 +1,15 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   gap: 20px;
 
   border-radius: 30px;
-  width: 353px;
-  height: 651px;
+  max-width: 353px;
+  max-height: 651px;
+  padding: 20px;
+  margin-top: 10px;
+
+  background: #1f1f1f;
 }
 
 .wrapperDescr {
@@ -69,9 +74,15 @@
 }
 
 .wrapperQuotes {
-  border-radius: 12px;
-  width: 313px;
-  height: 83px;
+  display: none;
+}
 
-  background: #262626;
+@media (min-width: 768px) {
+  .wrapperQuotes {
+    border-radius: 12px;
+    width: 313px;
+    height: 83px;
+
+    background: #262626;
+  }
 }
