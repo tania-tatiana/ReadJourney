@@ -34,14 +34,6 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* <p className={css.text}>
-          <span className={css.marker}>Create a personal library: </span>
-          add the books you intend to read to it.
-        </p>
-        <p className={css.text}>
-          <span className={css.marker}>Create your first workout: </span>
-          define a goal, choose a period, start training.
-        </p> */}
         <div className={css.linkBlock}>
           <Link to="/library" className={css.link}>
             My library
