@@ -10,7 +10,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .wrapper {
     flex-direction: row;
     gap: 16px;
@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 30px;
+  width: 100%;
   max-width: 335px;
   height: 411px;
   padding: 20px 20px 40px 20px;
@@ -36,7 +37,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .content {
     max-width: 600px;
     height: 736px;
@@ -57,15 +58,9 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .logo {
     margin-bottom: 107px;
-  }
-}
-
-@media (max-width: 767px) {
-  .textLogo {
-    display: none;
   }
 }
 
@@ -78,6 +73,12 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #f9f9f9;
+}
+
+@media (max-width: 767px) {
+  .textLogo {
+    display: none;
+  }
 }
 
 .titleForm {
@@ -106,7 +107,8 @@
 
   text-align: start;
 
-  width: 295px;
+  width: 100%;
+  max-width: 295px;
 }
 
 @media (min-width: 768px) {
@@ -124,7 +126,9 @@
 
 .imageBlock {
   border-radius: 30px;
+  width: 100%;
   max-width: 335px;
+  height: 100%;
   max-height: 351px;
   background-color: #1f1f1f;
   padding: 20px 40px 0px 40px;
@@ -136,7 +140,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .imageBlock {
     display: flex;
     max-width: 600px;
@@ -150,7 +154,7 @@
   display: block;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .mobile {
     width: 405px;
     height: 656px;

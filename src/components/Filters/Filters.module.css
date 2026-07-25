@@ -41,7 +41,8 @@
 .field {
   border-radius: 12px;
   padding: 14px;
-  width: 295px;
+  width: 100%;
+  max-width: 295px;
   height: 44px;
 
   background-color: #262626;
@@ -54,7 +55,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .field {
     width: 313px;
   }
@@ -86,7 +87,8 @@
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
   padding: 10px 18px;
-  width: 98px;
+  width: 100%;
+  max-width: 98px;
   height: 38px;
 
   font-weight: 700;

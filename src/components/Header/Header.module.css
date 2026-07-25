@@ -5,6 +5,7 @@
   padding: 10px 20px;
   background: #1f1f1f;
   border-radius: 15px;
+  width: 100%;
   max-width: 335px;
   max-height: 57px;
 }
@@ -33,7 +34,7 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1440px) {
   .logoAndNav {
     gap: 334px;
   }
