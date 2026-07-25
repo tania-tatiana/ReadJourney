@@ -20,9 +20,13 @@ export default function RegisterPage() {
       </div>
       <div className={css.imageBlock}>
         <picture>
-          <source media="(min-width: 1280px)" srcSet="/iPhone-desktop.png" />
+          <source
+            media="(min-width: 1440px)"
+            srcSet="/iPhone-desktop.webp 1x, /iPhone-desktop@2x.webp 2x"
+          />
           <img
-            src="/iPhone-mobile.png"
+            src="/iPhone-mobile.webp"
+            srcSet="/iPhone-mobile.webp 1x, /iPhone-mobile@2x.webp 2x"
             alt="Mobile application"
             className={css.mobile}
           />

@@ -1,7 +1,7 @@
 import LoginForm from '../../components/LoginForm/LoginForm.js';
 import css from './LoginPage.module.css';
 
-export default function RegisterPage() {
+export default function LoginPage() {
   return (
     <div className={css.wrapper}>
       <div className={css.content}>
@@ -20,10 +20,14 @@ export default function RegisterPage() {
       <div className={css.imageBlock}>
         <picture>
           <source
-            media="(min-width: 1280px)"
-            srcSet="/public/iPhone-desktop.png"
+            media="(min-width: 1440px)"
+            srcSet="/iPhone-desktop.webp 1x, /iPhone-desktop@2x.webp 2x"
           />
-          <img src="/public/iPhone-mobile.png" className={css.mobile} />
+          <img
+            src="/iPhone-mobile.webp"
+            srcSet="/iPhone-mobile.webp 1x, /iPhone-mobile@2x.webp 2x"
+            className={css.mobile}
+          />
         </picture>
       </div>
     </div>

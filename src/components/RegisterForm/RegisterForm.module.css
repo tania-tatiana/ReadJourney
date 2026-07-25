@@ -113,7 +113,7 @@
 @media (min-width: 768px) {
   .button {
     padding: 16px 54px;
-    width: 225px;
+    max-width: 225px;
     height: 52px;
   }
 }
