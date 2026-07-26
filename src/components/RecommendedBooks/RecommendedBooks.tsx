@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import BookCard from '../BookCard/BookCard.js';
 import css from './RecommendedBooks.module.css';
 
@@ -64,10 +65,29 @@ export default function RecommendedBooks() {
       image: '/recommended_book10.jpg',
     },
   ];
+
+  const [booksPerPage, setBooksPerPage] = useState(2);
+
+  useEffect(() => {
+    const updateBooksCount = () => {
+      if (window.innerWidth >= 1440) {
+        setBooksPerPage(10);
+      } else if (window.innerWidth >= 768) {
+        setBooksPerPage(8);
+      } else {
+        setBooksPerPage(2);
+      }
+    };
+
+    updateBooksCount();
+    window.addEventListener('resize', updateBooksCount);
+
+    return () => window.removeEventListener('resize', updateBooksCount);
+  }, []);
   return (
     <div className={css.wrapper}>
       <h2>Recommended</h2>
-      {books.map((book) => (
+      {books.slice(0, booksPerPage).map((book) => (
         <BookCard key={book.id} {...book} />
       ))}
     </div>
