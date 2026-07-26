@@ -26,6 +26,7 @@
     padding: 20px;
     padding-top: 40px;
     max-width: 353px;
+    max-height: 651px;
   }
 }
 
@@ -39,6 +40,28 @@
   max-height: 272px;
   background: #262626;
   padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .wrapperDescr {
+    width: 100%;
+    max-width: 313px;
+    gap: 26px;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
 }
 
 .title {
@@ -125,6 +148,11 @@
   color: #686868;
 }
 
+.books {
+  width: 40px;
+  height: 40px;
+}
+
 .textQuotes {
   font-weight: 500;
   font-size: 14px;
@@ -133,6 +161,10 @@
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: #686868;
+
+  text-align: start;
+
+  max-width: 219px;
 }
 
 .markerQuotes {
@@ -143,11 +175,16 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1440px) {
   .wrapperQuotes {
+    display: flex;
     border-radius: 12px;
-    width: 313px;
+    width: 100%;
+    max-width: 313px;
     height: 83px;
+    padding: 15px 20px;
+    gap: 14px;
+    align-items: center;
 
     background: #262626;
   }

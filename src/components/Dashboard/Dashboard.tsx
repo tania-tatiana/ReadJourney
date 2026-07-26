@@ -21,17 +21,19 @@ export default function Dashboard() {
     <div className={css.wrapper}>
       <Filters />
       <div className={css.wrapperDescr}>
-        <h3 className={css.title}>Start your workout</h3>
-        <div className={css.steps}>
-          {steps.map(({ id, title, text }) => (
-            <div key={id} className={css.step}>
-              <div className={css.number}>{id}</div>
-              <p className={css.text}>
-                <span className={css.marker}>{title}</span>
-                {text}
-              </p>
-            </div>
-          ))}
+        <div className={css.top}>
+          <h3 className={css.title}>Start your workout</h3>
+          <div className={css.steps}>
+            {steps.map(({ id, title, text }) => (
+              <div key={id} className={css.step}>
+                <div className={css.number}>{id}</div>
+                <p className={css.text}>
+                  <span className={css.marker}>{title}</span>
+                  {text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className={css.linkBlock}>
@@ -42,7 +44,7 @@ export default function Dashboard() {
         </div>
       </div>
       <div className={css.wrapperQuotes}>
-        <img src="/public/books.png" alt="BooksQuotes" />
+        <img src="/public/books.png" alt="BooksQuotes" className={css.books} />
         <p className={css.textQuotes}>
           "Books are <span className={css.markerQuotes}>windows</span> to the
           world, and reading is a journey into the unknown."
