@@ -4,8 +4,15 @@
   gap: 8px;
 }
 
+@media (min-width: 768px) {
+  .bookCard {
+    flex-basis: calc((100% - 3 * 25px) / 4);
+  }
+}
+
 .image {
   border-radius: 8px;
+  width: 100%;
   max-width: 137px;
   max-height: 208px;
 }
@@ -20,6 +27,8 @@
 .title {
   font-weight: 700;
   font-size: 14px;
+
+  text-align: start;
 
   /* line-height: 18px; */
   line-height: 1.28571;

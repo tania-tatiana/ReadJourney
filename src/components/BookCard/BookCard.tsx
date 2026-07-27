@@ -1,7 +1,6 @@
 import css from './BookCard.module.css';
 
 type BookCardType = {
-  id: number;
   title: string;
   author: string;
   image: string;
