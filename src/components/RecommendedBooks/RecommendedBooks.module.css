@@ -13,11 +13,17 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    width: 100%;
     max-width: 704px;
 
     padding: 40px;
     gap: 28px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
+    max-width: 847px;
+    padding-bottom: 28px;
   }
 }
 
@@ -48,12 +54,23 @@
 .books {
   display: flex;
   flex-direction: row;
-  gap: 21px;
+  /* gap: 21px; */
+  column-gap: 21px;
+  row-gap: 21px;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .books {
-    gap: 25px;
+    column-gap: 25px;
+    row-gap: 27px;
     flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 1440px) {
+  .books {
+    column-gap: 20px;
+    row-gap: 27px;
   }
 }
