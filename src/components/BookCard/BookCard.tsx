@@ -9,10 +9,12 @@ type BookCardType = {
 
 export default function BookCard({ title, author, image }: BookCardType) {
   return (
-    <div>
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{author}</p>
+    <div className={css.bookCard}>
+      <img src={image} alt={title} className={css.image} />
+      <div className={css.textBlock}>
+        <h3 className={css.title}>{title}</h3>
+        <p className={css.author}>{author}</p>
+      </div>
     </div>
   );
 }

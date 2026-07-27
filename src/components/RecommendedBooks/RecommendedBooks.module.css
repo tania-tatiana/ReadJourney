@@ -1,8 +1,33 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   border-radius: 30px;
   width: 100%;
   max-width: 847px;
-  height: 651px;
+  height: 100%;
+  max-height: 651px;
+  padding: 40px 20px;
+  gap: 34px;
 
   background-color: #1f1f1f;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+
+  text-align: start;
+
+  /* line-height: 20px; */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+
+  margin: 0;
+}
+
+.books {
+  display: flex;
+  flex-direction: row;
+  gap: 21px;
 }

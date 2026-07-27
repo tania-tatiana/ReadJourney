@@ -86,10 +86,12 @@ export default function RecommendedBooks() {
   }, []);
   return (
     <div className={css.wrapper}>
-      <h2>Recommended</h2>
-      {books.slice(0, booksPerPage).map((book) => (
-        <BookCard key={book.id} {...book} />
-      ))}
+      <h2 className={css.title}>Recommended</h2>
+      <div className={css.books}>
+        {books.slice(0, booksPerPage).map((book) => (
+          <BookCard key={book.id} {...book} />
+        ))}
+      </div>
     </div>
   );
 }
