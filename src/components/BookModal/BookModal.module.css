@@ -19,10 +19,18 @@
   background-color: #1f1f1f;
 }
 
+@media (min-width: 768px) {
+  .modal {
+    width: 500px;
+    height: 483px;
+    padding: 50px 169px;
+  }
+}
+
 .closeButton {
   position: absolute;
-  width: 22;
-  height: 22;
+  width: 22px;
+  height: 22px;
   top: 16px;
   right: 16px;
 
@@ -36,6 +44,13 @@
   border-radius: 8px;
   width: 140px;
   height: 213px;
+}
+
+@media (min-width: 768px) {
+  .cover {
+    width: 153px;
+    height: 233px;
+  }
 }
 
 .titleAndAuthor {
@@ -56,6 +71,15 @@
   color: #f9f9f9;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
+}
+
 .author {
   font-weight: 500;
   font-size: 12px;
@@ -64,6 +88,15 @@
   line-height: 1.16667;
   letter-spacing: -0.02em;
   color: #686868;
+}
+
+@media (min-width: 768px) {
+  .author {
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+  }
 }
 
 .totalPages {
@@ -77,4 +110,10 @@
   color: #f9f9f9;
 
   margin-bottom: 20px;
+}
+
+@media (min-width: 1440px) {
+  .totalPages {
+    margin-bottom: 32px;
+  }
 }
