@@ -1,0 +1,61 @@
+.backdrop {
+  display: flex;
+  justify-content: end;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.6);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  height: 100%;
+  max-height: 812px;
+  background-color: #262626;
+  padding: 280px 54px 40px;
+}
+
+.closeButton {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  top: 34px;
+  right: 40px;
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.contentOfBurger {
+  display: flex;
+  flex-direction: column;
+  gap: 394px;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: start;
+}
+
+.button {
+  display: block;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 10px 18px;
+  /* max-width: 114px; */
+  height: 38px;
+  background-color: #1f1f1f;
+
+  font-weight: 700;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
+}

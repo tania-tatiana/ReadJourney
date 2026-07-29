@@ -104,3 +104,9 @@
     display: none;
   }
 }
+
+.burgerButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
