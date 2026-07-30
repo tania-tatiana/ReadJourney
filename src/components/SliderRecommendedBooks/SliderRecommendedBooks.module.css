@@ -1,7 +1,7 @@
 .wrapperDescr {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 17px;
   border-radius: 12px;
   width: 100%;
   max-width: 295px;
@@ -14,21 +14,21 @@
   .wrapperDescr {
     width: 100%;
     max-width: 313px;
-    gap: 26px;
+    gap: 20px;
   }
 }
 
 .top {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 @media (min-width: 768px) {
   .top {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
   }
 }
 
@@ -45,12 +45,27 @@
   text-align: start;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
+}
+
 .books {
   display: flex;
   flex-direction: row;
   gap: 20px;
   width: 100%;
   max-width: 255px;
+}
+
+@media (min-width: 768px) {
+  .books {
+    max-width: 253px;
+  }
 }
 
 .bookCard {
@@ -108,43 +123,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.number {
-  display: flex;
-  width: 100%;
-  max-width: 40px;
-  height: 40px;
-
-  font-weight: 700;
-  font-size: 18px;
-
-  /* line-height: 18px; */
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: #1f1f1f;
-  background-color: #f9f9f9;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-}
-
-.text {
-  text-align: start;
-  font-weight: 500;
-  font-size: 14px;
-
-  /* line-height: 18px; */
-  line-height: 1.28571;
-  letter-spacing: -0.02em;
-  color: #686868;
-  width: 100%;
-  max-width: 203px;
-}
-
-.marker {
-  color: #f9f9f9;
 }
 
 .linkBlock {
