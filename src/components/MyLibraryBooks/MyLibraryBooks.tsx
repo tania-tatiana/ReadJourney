@@ -10,7 +10,7 @@ export default function MyLibraryBooks() {
       </div>
       <div className={css.pictureAndText}>
         <div className={css.circle}>
-          <img src="./bigBooks.png" alt="" />
+          <img src="./bigBooks.png" alt="" className={css.image} />
         </div>
         <p className={css.marker}>
           <span className={css.text}>To start training, add</span> some of your

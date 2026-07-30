@@ -8,7 +8,7 @@ export default function MyLibraryPage() {
   return (
     <>
       <div className={css.wrapper}>
-        <Dashboard>
+        <Dashboard classname={css.dashboard}>
           <AddBook />
           <SliderRecommendedBooks />
         </Dashboard>

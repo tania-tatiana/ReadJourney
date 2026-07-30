@@ -3,7 +3,7 @@ import css from './AddBook.module.css';
 export default function AddBook() {
   return (
     <div className={css.wrapper}>
-      <p className={css.title}>Filters:</p>
+      <p className={css.title}>Create your library:</p>
       <form className={css.form}>
         <div className={css.inputs}>
           <label className={css.field}>

@@ -58,7 +58,8 @@
 
 @media (min-width: 1440px) {
   .field {
-    width: 313px;
+    width: 100%;
+    max-width: 313px;
   }
 }
 

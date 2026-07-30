@@ -20,6 +20,14 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .wrapper {
+    max-width: 847px;
+    padding: 40px 40px 232px;
+    gap: 147px;
+  }
+}
+
 .titleAndFilters {
   display: flex;
   flex-direction: row;
@@ -56,12 +64,14 @@
   max-width: 197px;
   max-height: 164px;
   margin: 0 auto;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
   .pictureAndText {
-    max-width: 296px;
+    max-width: 274px;
     max-height: 186px;
+    gap: 20px;
   }
 }
 
@@ -82,6 +92,18 @@
   }
 }
 
+.image {
+  width: 50;
+  height: 50;
+}
+
+@media (min-width: 768px) {
+  .image {
+    width: 70;
+    height: 70;
+  }
+}
+
 .text {
   font-weight: 500;
   font-size: 14px;
@@ -94,6 +116,12 @@
 }
 
 .marker {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
   text-align: center;
   color: #686868;
 }
