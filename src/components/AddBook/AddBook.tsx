@@ -21,7 +21,7 @@ export default function AddBook() {
         </div>
 
         <button type="submit" className={css.button}>
-          To apply
+          Add book
         </button>
       </form>
     </div>

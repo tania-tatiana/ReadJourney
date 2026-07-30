@@ -13,9 +13,8 @@ export default function MyLibraryBooks() {
           <img src="./bigBooks.png" alt="" />
         </div>
         <p className={css.marker}>
-          <span className={css.text}>To start training, add</span>
-          some of your books{' '}
-          <span className={css.text}>or from the recommended ones</span>
+          <span className={css.text}>To start training, add</span> some of your
+          books <span className={css.text}>or from the recommended ones</span>
         </p>
       </div>
     </div>
