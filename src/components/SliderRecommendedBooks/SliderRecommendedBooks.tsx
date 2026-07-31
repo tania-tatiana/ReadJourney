@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import css from './SliderRecommendedBooks.module.css';
 import { FaArrowRight } from 'react-icons/fa';
+import AddBookModal from '../AddBookModal/AddBookModal.js';
+import { useState } from 'react';
 
 export default function SliderRecommendedBooks() {
   const books = [
@@ -27,8 +29,13 @@ export default function SliderRecommendedBooks() {
     },
   ];
 
+  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
+
   return (
-    <div className={css.wrapperDescr}>
+    <div
+      className={css.wrapperDescr}
+      onClick={() => setIsAddBookModalOpen(true)}
+    >
       <div className={css.top}>
         <h3 className={css.title}>Recommended books</h3>
         <div className={css.books}>
@@ -50,6 +57,11 @@ export default function SliderRecommendedBooks() {
         </Link>
         <FaArrowRight />
       </div>
+
+      <AddBookModal
+        isOpen={!!isAddBookModalOpen}
+        onClose={() => setIsAddBookModalOpen(false)}
+      />
     </div>
   );
 }

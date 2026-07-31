@@ -1,5 +1,6 @@
-import AddBook from '../AddBook/AddBook.js';
+import { useState } from 'react';
 import css from './BookModal.module.css';
+import AddBookModal from '../AddBookModal/AddBookModal.js';
 
 type BookModalProps = {
   isOpen: boolean;
@@ -18,6 +19,7 @@ export default function BookModal({
   image,
   totalPages,
 }: BookModalProps) {
+  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
   if (!isOpen) return null;
   return (
     <>
@@ -32,9 +34,19 @@ export default function BookModal({
             <p className={css.author}>{author}</p>
           </div>
           <p className={css.totalPages}>{totalPages} pages</p>
-          <AddBook />
+          <button
+            type="submit"
+            className={css.button}
+            onClick={() => setIsAddBookModalOpen(true)}
+          >
+            Add book
+          </button>
         </div>
       </div>
+      <AddBookModal
+        isOpen={!!isAddBookModalOpen}
+        onClose={() => setIsAddBookModalOpen(false)}
+      />
     </>
   );
 }

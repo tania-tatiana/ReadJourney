@@ -117,3 +117,40 @@
     margin-bottom: 32px;
   }
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  padding: 12px 22px;
+  width: 100%;
+  max-width: 141px;
+  max-height: 42px;
+
+  font-weight: 700;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
+
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .button {
+    max-width: 162px;
+    max-height: 46px;
+
+    font-size: 16px;
+    /* line-height: 18px; */
+    line-height: 1.125;
+
+    padding: 14px 25px;
+  }
+}

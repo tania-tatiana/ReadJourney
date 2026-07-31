@@ -1,6 +1,9 @@
+import { useState } from 'react';
+import AddBookModal from '../AddBookModal/AddBookModal.js';
 import css from './AddBook.module.css';
 
 export default function AddBook() {
+  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
   return (
     <div className={css.wrapper}>
       <p className={css.title}>Create your library:</p>
@@ -20,10 +23,18 @@ export default function AddBook() {
           </label>
         </div>
 
-        <button type="submit" className={css.button}>
+        <button
+          type="submit"
+          className={css.button}
+          onClick={() => setIsAddBookModalOpen(true)}
+        >
           Add book
         </button>
       </form>
+      <AddBookModal
+        isOpen={!!isAddBookModalOpen}
+        onClose={() => setIsAddBookModalOpen(false)}
+      />
     </div>
   );
 }
