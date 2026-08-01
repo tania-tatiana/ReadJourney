@@ -1,4 +1,4 @@
-import Select from '../Select/Select.js';
+import Select from '../LibrarySelect/LibrarySelect.js';
 import css from './MyLibraryBooks.module.css';
 
 export default function MyLibraryBooks() {
