@@ -11,6 +11,12 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .wrapper {
+    padding: 190px 40px;
+  }
+}
+
 .title {
   font-weight: 700;
   font-size: 32px;
@@ -48,7 +54,7 @@
     display: flex;
     align-self: center;
     justify-self: center;
-    max-width: 400px;
+    max-width: 730px;
   }
 }
 
@@ -58,6 +64,18 @@
   gap: 30px;
   justify-content: center;
   align-items: center;
+}
+
+@media (min-width: 1440px) {
+  .actions {
+    align-self: center;
+
+    flex-direction: row;
+    gap: 40px;
+
+    width: 100%;
+    max-width: 530px;
+  }
 }
 
 .loginButton,
