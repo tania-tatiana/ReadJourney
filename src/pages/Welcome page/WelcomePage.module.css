@@ -5,6 +5,12 @@
   gap: 40px;
 }
 
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 214px 40px;
+  }
+}
+
 .title {
   font-weight: 700;
   font-size: 32px;
@@ -17,6 +23,15 @@
   margin: 0;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 64px;
+
+    /* line-height: 60px; */
+    line-height: 0.9375;
+  }
+}
+
 .text {
   font-weight: 500;
   font-size: 14px;
@@ -25,6 +40,16 @@
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .text {
+    font-size: 32px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    max-width: 400px;
+  }
 }
 
 .actions {
@@ -37,6 +62,10 @@
 
 .loginButton,
 .registerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-weight: 700;
   font-size: 14px;
 
@@ -53,4 +82,17 @@
 
   background-color: #f9f9f9;
   text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .loginButton,
+  .registerButton {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+
+    max-width: 245px;
+    height: 52px;
+  }
 }
