@@ -47,7 +47,7 @@ export default function SliderRecommendedBooks() {
         <h3 className={css.title}>Recommended books</h3>
         <div className={css.books}>
           {books.map((book) => (
-            <div className={css.bookCard}>
+            <div key={book.id} className={css.bookCard}>
               <img
                 src={book.image}
                 alt={book.title}
