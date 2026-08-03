@@ -6,14 +6,12 @@ import css from './MyLibraryPage.module.css';
 
 export default function MyLibraryPage() {
   return (
-    <>
-      <div className={css.wrapper}>
-        <Dashboard classname={css.dashboard}>
-          <AddBook />
-          <SliderRecommendedBooks />
-        </Dashboard>
-        <MyLibraryBooks />
-      </div>
-    </>
+    <div className={css.wrapper}>
+      <Dashboard classname={css.dashboard}>
+        <AddBook />
+        <SliderRecommendedBooks />
+      </Dashboard>
+      <MyLibraryBooks />
+    </div>
   );
 }

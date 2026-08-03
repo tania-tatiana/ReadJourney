@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
+    flex-direction: row;
+  }
+}
