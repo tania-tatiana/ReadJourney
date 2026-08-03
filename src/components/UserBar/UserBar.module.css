@@ -17,10 +17,8 @@
   align-items: center;
   justify-content: center;
 
-  width: 100%;
-  max-width: 35px;
-  height: 100%;
-  max-height: 35px;
+  width: 35px;
+  height: 35px;
 
   font-weight: 700;
   font-size: 16px;
