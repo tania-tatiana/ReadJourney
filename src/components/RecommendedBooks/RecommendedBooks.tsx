@@ -105,6 +105,7 @@ export default function RecommendedBooks() {
 
     return () => window.removeEventListener('resize', updateBooksCount);
   }, []);
+
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Recommended</h2>

@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import css from './SliderRecommendedBooks.module.css';
 import { FaArrowRight } from 'react-icons/fa';
-import AddBookModal from '../AddBookModal/AddBookModal.js';
 import { useState } from 'react';
+import BookModal from '../BookModal/BookModal.js';
+
+type Book = {
+  id: number;
+  title: string;
+  author: string;
+  image: string;
+  totalPages: number;
+};
 
 export default function SliderRecommendedBooks() {
   const books = [
@@ -29,19 +37,23 @@ export default function SliderRecommendedBooks() {
     },
   ];
 
-  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
+  const [booksPerPage, setBooksPerPage] = useState(2);
+
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   return (
-    <div
-      className={css.wrapperDescr}
-      onClick={() => setIsAddBookModalOpen(true)}
-    >
+    <div className={css.wrapperDescr}>
       <div className={css.top}>
         <h3 className={css.title}>Recommended books</h3>
         <div className={css.books}>
           {books.map((book) => (
             <div className={css.bookCard}>
-              <img src={book.image} alt={book.title} className={css.image} />
+              <img
+                src={book.image}
+                alt={book.title}
+                className={css.image}
+                onClick={() => setSelectedBook(book)}
+              />
               <div className={css.textBlock}>
                 <h3 className={css.titleOfBook}>{book.title}</h3>
                 <p className={css.author}>{book.author}</p>
@@ -58,9 +70,13 @@ export default function SliderRecommendedBooks() {
         <FaArrowRight />
       </div>
 
-      <AddBookModal
-        isOpen={!!isAddBookModalOpen}
-        onClose={() => setIsAddBookModalOpen(false)}
+      <BookModal
+        isOpen={!!selectedBook}
+        onClose={() => setSelectedBook(null)}
+        title={selectedBook?.title ?? ''}
+        author={selectedBook?.author ?? ''}
+        image={selectedBook?.image ?? ''}
+        totalPages={selectedBook?.totalPages ?? 0}
       />
     </div>
   );
