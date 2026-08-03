@@ -1,4 +1,4 @@
-import Select from '../LibrarySelect/LibrarySelect.js';
+import LibrarySelect from '../LibrarySelect/LibrarySelect.js';
 import css from './MyLibraryBooks.module.css';
 
 export default function MyLibraryBooks() {
@@ -6,7 +6,7 @@ export default function MyLibraryBooks() {
     <div className={css.wrapper}>
       <div className={css.titleAndFilters}>
         <h2 className={css.title}>My library</h2>
-        <Select />
+        <LibrarySelect />
       </div>
       <div className={css.pictureAndText}>
         <div className={css.circle}>
