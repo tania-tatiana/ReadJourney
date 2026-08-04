@@ -1,8 +1,11 @@
-import { useState } from 'react';
 import css from './MyBook.module.css';
 
-export default function MyBook() {
-  const [isReading, setIsReading] = useState(false);
+type MyBookType = {
+  isReading: boolean;
+  setIsReading: (value: boolean) => void;
+};
+
+export default function MyBook({ isReading, setIsReading }: MyBookType) {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>My reading</h2>

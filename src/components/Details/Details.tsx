@@ -1,18 +1,9 @@
-import css from './Details.module.css';
+import Descr from '../Descr/Descr.js';
+import Diary from '../Diary/Diary.js';
+type DetailsType = {
+  isReading: boolean;
+};
 
-export default function Details() {
-  return (
-    <div className={css.wrapper}>
-      <div className={css.wrapperOfTitleAndText}>
-        <h3 className={css.title}>Progress</h3>
-        <p className={css.text}>
-          Here you will see when and how much you read. To record, click on the
-          red button above.
-        </p>
-      </div>
-      <div className={css.wrapperOfStar}>
-        <img src="/star.png" alt="Star" />
-      </div>
-    </div>
-  );
+export default function Details({ isReading }: DetailsType) {
+  return !isReading ? <Descr /> : <Diary />;
 }

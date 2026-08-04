@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapperOfTitleAndText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+
+  /* line-height: 18px; */
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+
+  margin: 0;
+}
+
+.text {
+  text-align: start;
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #686868;
+
+  width: 100%;
+  max-width: 295px;
+}
+
+.wrapperOfStar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background-color: #262626;
+}
