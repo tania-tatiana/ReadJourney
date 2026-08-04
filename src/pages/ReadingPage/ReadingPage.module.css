@@ -17,3 +17,8 @@
     flex-direction: row;
   }
 }
+
+.readingDashboard {
+  gap: 40px;
+  padding-bottom: 40px;
+}

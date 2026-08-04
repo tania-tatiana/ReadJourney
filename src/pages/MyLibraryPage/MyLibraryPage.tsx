@@ -7,7 +7,7 @@ import css from './MyLibraryPage.module.css';
 export default function MyLibraryPage() {
   return (
     <div className={css.wrapper}>
-      <Dashboard classname={css.dashboard}>
+      <Dashboard className={css.dashboard}>
         <AddBook />
         <SliderRecommendedBooks />
       </Dashboard>

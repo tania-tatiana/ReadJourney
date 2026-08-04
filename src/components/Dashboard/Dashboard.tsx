@@ -3,9 +3,9 @@ import css from './Dashboard.module.css';
 
 type DashboardProps = {
   children: React.ReactNode;
-  classname?: string | undefined;
+  className?: string | undefined;
 };
 
-export default function Dashboard({ children, classname }: DashboardProps) {
-  return <div className={clsx(css.wrapper, classname)}>{children}</div>;
+export default function Dashboard({ children, className }: DashboardProps) {
+  return <div className={clsx(css.wrapper, className)}>{children}</div>;
 }
