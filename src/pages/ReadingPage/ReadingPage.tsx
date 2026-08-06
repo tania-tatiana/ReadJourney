@@ -7,6 +7,7 @@ import css from './ReadingPage.module.css';
 
 export default function ReadingPage() {
   const [isReading, setIsReading] = useState(false);
+
   return (
     <div className={css.wrapper}>
       <Dashboard className={css.readingDashboard}>

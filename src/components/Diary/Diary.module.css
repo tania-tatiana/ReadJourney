@@ -1,10 +1,13 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
 }
 
 .firstLine {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -15,6 +18,21 @@
   line-height: 1;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.buttonSVG {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 .content {
