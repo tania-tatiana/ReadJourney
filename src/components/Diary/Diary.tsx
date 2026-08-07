@@ -1,9 +1,34 @@
-import { Link } from 'react-router-dom';
 import css from './Diary.module.css';
 
 type DiaryType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
 };
+
+const totalPages = 400;
+
+const diary = [
+  {
+    finishPage: 45,
+    startPage: 3,
+    speed: 45,
+    status: 'inactive',
+
+    createdAt: '2023-10-21',
+
+    time: 29,
+  },
+
+  {
+    finishPage: 87,
+    startPage: 46,
+    speed: 50,
+    status: 'inactive',
+
+    createdAt: '2023-10-19',
+
+    time: 40,
+  },
+];
 
 export default function Diary({ setActiveButton }: DiaryType) {
   return (
@@ -75,7 +100,86 @@ export default function Diary({ setActiveButton }: DiaryType) {
           </button>
         </div>
       </div>
-      <div className={css.content}></div>
+      <div className={css.content}>
+        <ul className={css.list}>
+          {diary.map((item) => (
+            <li className={css.item}>
+              <div className={css.dairyFirstLine}>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect width="16" height="16" rx="4" fill="#686868" />
+                  <rect
+                    x="4"
+                    y="4"
+                    width="8"
+                    height="8"
+                    rx="2"
+                    fill="#1F1F1F"
+                  />
+                </svg>
+                <p className={css.date}>{item.createdAt}</p>
+                <p className={css.pages}>
+                  {item.finishPage - item.startPage} pages
+                </p>
+              </div>
+              <div className={css.dairySecondLine}>
+                <div>
+                  <p>
+                    {(
+                      ((item.finishPage - item.startPage) / totalPages) *
+                      100
+                    ).toFixed(1)}
+                    %
+                  </p>
+                  <p>{item.time}</p>
+                </div>
+                <div>
+                  <p></p>
+                </div>
+                <button className={css.deleteButton}>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.75 3.5H2.91667H12.25"
+                      stroke="#686868"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11.0837 3.50002V11.6667C11.0837 11.9761 10.9607 12.2729 10.742 12.4916C10.5232 12.7104 10.2264 12.8334 9.91699 12.8334H4.08366C3.77424 12.8334 3.47749 12.7104 3.2587 12.4916C3.03991 12.2729 2.91699 11.9761 2.91699 11.6667V3.50002M4.66699 3.50002V2.33335C4.66699 2.02393 4.78991 1.72719 5.0087 1.5084C5.22749 1.2896 5.52424 1.16669 5.83366 1.16669H8.16699C8.47641 1.16669 8.77316 1.2896 8.99195 1.5084C9.21074 1.72719 9.33366 2.02393 9.33366 2.33335V3.50002"
+                      stroke="#686868"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M5.83301 6.41669V9.91669"
+                      stroke="#686868"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M8.16699 6.41669V9.91669"
+                      stroke="#686868"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
