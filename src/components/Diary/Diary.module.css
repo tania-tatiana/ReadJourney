@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 22px;
 }
 
 .firstLine {
@@ -38,7 +39,7 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 16px;
 
   width: 100%;
   max-width: 295px;
@@ -46,6 +47,7 @@
   max-height: 211px;
   border-radius: 12px;
   background-color: #262626;
+  padding: 16px;
 
   overflow-y: auto;
   max-height: 211px;
@@ -53,28 +55,122 @@
 }
 
 .list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  gap: 17px;
+  margin: 0;
 }
 
 .item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .dairyFirstLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dat {
+.dateLine {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  align-items: center;
+}
+
+.date {
+  font-weight: 700;
+  font-size: 12px;
+
+  /* line-height: 16px; */
+  line-height: 1.33333;
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
 }
 
 .pages {
+  font-weight: 500;
+  font-size: 12px;
+
+  /* line-height: 16px; */
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
+
+  margin-right: 20px;
 }
 
 .dairySecondLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.percentAndTime {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .percent {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
 }
 
 .time {
+  font-weight: 500;
+  font-size: 10px;
+
+  /* line-height: 12px; */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
+}
+
+.scheduleAndSpeedAndButton {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
+.scheduleAndSpeed {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 7px;
+}
+
+.speed {
+  font-weight: 500;
+  font-size: 10px;
+
+  /* line-height: 12px; */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
+
+  width: 100%;
+  max-width: 43px;
 }
 
 .deleteButton {
+  display: flex;
+  border: none;
+  background: none;
+  padding: 0;
+  align-items: start;
 }
