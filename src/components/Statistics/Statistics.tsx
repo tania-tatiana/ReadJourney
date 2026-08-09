@@ -75,7 +75,17 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
           </button>
         </div>
       </div>
-      <div className={css.content}></div>
+      <div className={css.content}>
+        <div className={css.percents}>100%</div>
+        <div className={css.wrapperSecondLine}>
+          <div className={css.point}></div>
+          <div className={css.textWrapper}>
+            <p className={css.percent}>19.14%</p>
+
+            <p className={css.readBook}>171 pages read</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

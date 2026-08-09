@@ -43,4 +43,66 @@
   max-height: 211px;
   border-radius: 12px;
   background-color: #262626;
+  padding: 20px 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.percents {
+  font-weight: 700;
+  font-size: 18px;
+
+  /* line-height: 20px; */
+  line-height: 1.11111;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+}
+
+.wrapperSecondLine {
+  width: 100%;
+  max-width: 95px;
+  height: 34px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+  margin-left: 11px;
+}
+
+.point {
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+
+  background-color: #30b94d;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: start;
+  align-items: start;
+}
+
+.percent {
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+}
+
+.readBook {
+  font-weight: 500;
+  font-size: 10px;
+
+  /* line-height: 12px; */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
 }
