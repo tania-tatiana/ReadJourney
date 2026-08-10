@@ -6,6 +6,10 @@ type StatisticsType = {
 };
 
 export default function Statistics({ setActiveButton }: StatisticsType) {
+  const progress = 19.14;
+  const radius = 49;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference * (1 - progress / 100);
   return (
     <div className={css.wrapper}>
       <div className={css.firstLine}>
@@ -76,7 +80,33 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
         </div>
       </div>
       <div className={css.content}>
-        <div className={css.percents}>100%</div>
+        <div className={css.progressCircle}>
+          <svg
+            className={css.progressSvg}
+            width="116"
+            height="116"
+            viewBox="0 0 116 116"
+          >
+            <circle
+              className={css.progressBackground}
+              cx="58"
+              cy="58"
+              r={radius}
+            />
+
+            <circle
+              className={css.progressValue}
+              cx="58"
+              cy="58"
+              r={radius}
+              style={{
+                strokeDasharray: circumference,
+                strokeDashoffset: offset,
+              }}
+            />
+          </svg>
+          <div className={css.percents}>100%</div>
+        </div>
         <div className={css.wrapperSecondLine}>
           <div className={css.point}></div>
           <div className={css.textWrapper}>

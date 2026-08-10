@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 22px;
 }
 
 .firstLine {
@@ -49,7 +50,43 @@
   gap: 21px;
 }
 
+.progressCircle {
+  width: 116px;
+  height: 116px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progressSvg {
+  position: absolute;
+  inset: 0;
+
+  transform: rotate(-90deg);
+}
+
+.progressBackground {
+  fill: none;
+  stroke: #1f1f1f;
+  stroke-width: 12.2px;
+}
+
+.progressValue {
+  fill: none;
+  stroke: #30b94d;
+  stroke-width: 12.2px;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
 .percents {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
   font-weight: 700;
   font-size: 18px;
 
