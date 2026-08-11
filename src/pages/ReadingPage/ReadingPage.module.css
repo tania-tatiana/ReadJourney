@@ -22,3 +22,11 @@
   gap: 40px;
   padding-bottom: 40px;
 }
+
+@media (min-width: 768px) {
+  .readingDashboard {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 84px;
+  }
+}

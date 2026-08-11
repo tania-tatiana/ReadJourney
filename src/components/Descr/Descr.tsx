@@ -11,7 +11,7 @@ export default function Descr() {
         </p>
       </div>
       <div className={css.wrapperOfStar}>
-        <img src="/star.png" alt="Star" />
+        <img src="/star.png" alt="Star" className={css.image} />
       </div>
     </div>
   );
