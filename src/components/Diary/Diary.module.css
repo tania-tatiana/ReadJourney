@@ -4,6 +4,14 @@
   gap: 22px;
 }
 
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 16px;
+    width: 100%;
+    max-width: 321px;
+  }
+}
+
 .firstLine {
   display: flex;
   flex-direction: row;
@@ -23,9 +31,24 @@
   margin: 0;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
+}
+
 .buttons {
   display: flex;
   gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .buttons {
+    margin-right: 16px;
+  }
 }
 
 .buttonSVG {
@@ -50,8 +73,15 @@
   padding: 16px;
 
   overflow-y: auto;
-  max-height: 211px;
   scrollbar-width: thin;
+}
+
+@media (min-width: 768px) {
+  .content {
+    max-width: 321px;
+    max-height: 252px;
+    padding-bottom: 31px;
+  }
 }
 
 .list {
@@ -61,6 +91,12 @@
   padding: 0;
   gap: 17px;
   margin: 0;
+}
+
+@media (min-width: 768px) {
+  .list {
+    gap: 14px;
+  }
 }
 
 .item {
@@ -83,6 +119,12 @@
   align-items: center;
 }
 
+@media (min-width: 768px) {
+  .dateline {
+    gap: 10px;
+  }
+}
+
 .date {
   font-weight: 700;
   font-size: 12px;
@@ -91,6 +133,15 @@
   line-height: 1.33333;
   letter-spacing: 0.02em;
   color: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .date {
+    font-size: 16px;
+
+    /* line-height: 18px; */
+    line-height: 1.125;
+  }
 }
 
 .pages {
@@ -106,6 +157,17 @@
   margin-right: 20px;
 }
 
+@media (min-width: 768px) {
+  .pages {
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+
+    margin-right: 22px;
+  }
+}
+
 .dairySecondLine {
   display: flex;
   flex-direction: row;
@@ -119,6 +181,12 @@
   gap: 4px;
 }
 
+@media (min-width: 768px) {
+  .percentAndTime {
+    gap: 8px;
+  }
+}
+
 .percent {
   font-weight: 500;
   font-size: 14px;
@@ -127,6 +195,15 @@
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .percent {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
 }
 
 .time {
@@ -140,10 +217,25 @@
   color: #686868;
 }
 
+@media (min-width: 768px) {
+  .time {
+    font-size: 12px;
+
+    /* line-height: 14px; */
+    line-height: 1.16667;
+  }
+}
+
 .scheduleAndSpeedAndButton {
   display: flex;
   flex-direction: row;
   gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .scheduleAndSpeedAndButton {
+    gap: 8px;
+  }
 }
 
 .scheduleAndSpeed {
@@ -165,6 +257,17 @@
 
   width: 100%;
   max-width: 43px;
+}
+
+@media (min-width: 768px) {
+  .speed {
+    font-size: 12px;
+
+    /* line-height: 14px; */
+    line-height: 1.16667;
+
+    max-width: 55px;
+  }
 }
 
 .deleteButton {
