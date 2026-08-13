@@ -4,6 +4,12 @@
   gap: 22px;
 }
 
+@media (min-width: 768px) {
+  .wrapper {
+    gap: 16px;
+  }
+}
+
 .firstLine {
   display: flex;
   flex-direction: row;
@@ -23,9 +29,24 @@
   margin: 0;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
+}
+
 .buttons {
   display: flex;
   gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .buttons {
+    margin-right: 16px;
+  }
 }
 
 .buttonSVG {
@@ -43,11 +64,23 @@
   height: 100%;
   max-height: 211px;
   border-radius: 12px;
+  align-items: center;
+  justify-content: center;
   background-color: #262626;
   padding: 20px 90px;
   display: flex;
   flex-direction: column;
   gap: 21px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .content {
+    max-width: 321px;
+    max-height: 252px;
+    padding: 28px 91px;
+    gap: 16px;
+  }
 }
 
 .progressCircle {
@@ -60,9 +93,18 @@
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .progressCircle {
+    width: 138px;
+    height: 138px;
+  }
+}
+
 .progressSvg {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
 
   transform: rotate(-90deg);
 }
@@ -107,6 +149,14 @@
   margin-left: 11px;
 }
 
+@media (min-width: 768px) {
+  .wrapperSecondLine {
+    max-width: 108px;
+    height: 42px;
+    margin-left: 15px;
+  }
+}
+
 .point {
   border-radius: 4px;
   width: 14px;
@@ -123,6 +173,12 @@
   align-items: start;
 }
 
+@media (min-width: 768px) {
+  .textWrapper {
+    gap: 8px;
+  }
+}
+
 .percent {
   font-weight: 500;
   font-size: 14px;
@@ -131,6 +187,15 @@
   line-height: 1.28571;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .percent {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
 }
 
 .readBook {
@@ -142,4 +207,13 @@
   letter-spacing: -0.02em;
   text-align: center;
   color: #686868;
+}
+
+@media (min-width: 768px) {
+  .readBook {
+    font-size: 12px;
+
+    /* line-height: 14px; */
+    line-height: 1.16667;
+  }
 }

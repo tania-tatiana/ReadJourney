@@ -81,12 +81,7 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
       </div>
       <div className={css.content}>
         <div className={css.progressCircle}>
-          <svg
-            className={css.progressSvg}
-            width="116"
-            height="116"
-            viewBox="0 0 116 116"
-          >
+          <svg className={css.progressSvg} viewBox="0 0 116 116">
             <circle
               className={css.progressBackground}
               cx="58"
