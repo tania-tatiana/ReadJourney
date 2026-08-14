@@ -28,6 +28,14 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .wrapper {
+    gap: 44px;
+    max-width: 847px;
+    max-height: 651px;
+  }
+}
+
 .title {
   display: flex;
   align-self: start;

@@ -20,6 +20,12 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .wrapperOfTitleAndText {
+    margin-bottom: 60px;
+  }
+}
+
 .title {
   font-weight: 700;
   font-size: 18px;
