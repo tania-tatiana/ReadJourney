@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding: 20px;
   padding-bottom: 0;
 }
 
@@ -19,6 +18,15 @@
   margin-bottom: 8px;
 }
 
+@media (min-width: 768px) {
+  .title {
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -26,6 +34,8 @@
 }
 
 .field {
+  display: flex;
+  align-items: center;
   border-radius: 12px;
   padding: 14px;
   width: 100%;
@@ -33,12 +43,23 @@
   height: 44px;
 
   background-color: #262626;
+
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .field {
+    max-width: 313px;
+    max-height: 50px;
+  }
 }
 
 .label {
   display: flex;
   align-items: center;
   margin-right: 10px;
+
+  width: 100%;
 
   font-weight: 500;
   font-size: 12px;
