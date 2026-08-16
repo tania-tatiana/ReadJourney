@@ -10,6 +10,12 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .wrapper {
+    gap: 20px;
+  }
+}
+
 .firstLine {
   display: flex;
   flex-direction: row;
@@ -49,6 +55,12 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .buttons {
+    margin-right: 0px;
+  }
+}
+
 .buttonSVG {
   border: none;
   outline: none;
@@ -83,6 +95,37 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .content {
+    max-width: 313px;
+    max-height: 281px;
+    padding: 20px 62px;
+    gap: 10px;
+  }
+}
+
+.description {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .description {
+    display: flex;
+    font-weight: 500;
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    color: #686868;
+
+    text-align: start;
+
+    width: 100%;
+    max-width: 293px;
+  }
+}
+
 .progressCircle {
   width: 116px;
   height: 116px;
@@ -97,6 +140,13 @@
   .progressCircle {
     width: 138px;
     height: 138px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .progressCircle {
+    width: 189px;
+    height: 189px;
   }
 }
 
@@ -136,6 +186,15 @@
   line-height: 1.11111;
   letter-spacing: -0.02em;
   color: #f9f9f9;
+}
+
+@media (min-width: 768px) {
+  .percents {
+    font-size: 20px;
+
+    /* line-height: 20px; */
+    line-height: 1;
+  }
 }
 
 .wrapperSecondLine {

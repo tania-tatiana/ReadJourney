@@ -79,6 +79,13 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
           </button>
         </div>
       </div>
+      {window.innerWidth >= 1440 && (
+        <p className={css.description}>
+          Each page, each chapter is a new round of knowledge, a new step
+          towards understanding. By rewriting statistics, we create our own
+          reading history.
+        </p>
+      )}
       <div className={css.content}>
         <div className={css.progressCircle}>
           <svg className={css.progressSvg} viewBox="0 0 116 116">
