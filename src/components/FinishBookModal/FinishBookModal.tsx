@@ -15,18 +15,19 @@ export default function FinishBookModal({ onClose }: FinishBookModalProps) {
           onClick={onClose}
           aria-label="Close"
         >
-          X
+          ×
         </button>
 
         <img src="/books.png" alt="Books" className={css.image} />
+        <div className={css.textContent}>
+          <h2 className={css.title}>The book is read</h2>
 
-        <h2 className={css.title}>The book is read</h2>
-
-        <p className={css.text}>
-          It was an <span className={css.textMarker}>exciting journey</span>,
-          where each page revealed new horizons, and the characters became
-          inseparable friends.
-        </p>
+          <p className={css.text}>
+            It was an <span className={css.textMarker}>exciting journey</span>,
+            where each page revealed new horizons, and the characters became
+            inseparable friends.
+          </p>
+        </div>
       </div>
     </div>
   );
