@@ -6,8 +6,9 @@ import { useForm } from 'react-hook-form';
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm<SignUpData>();
 
-  const onSubmit = (data: SignUpData) => {
-    signUp(data);
+  const onSubmit = async (data: SignUpData) => {
+    const result = await signUp(data);
+    console.log(result);
   };
 
   return (
