@@ -19,7 +19,10 @@ export default async function signUp(data: SignUpData) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
   const result = (await response.json()) as AuthResponse;
 
   return result;

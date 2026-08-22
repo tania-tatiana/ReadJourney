@@ -7,8 +7,12 @@ export default function RegisterForm() {
   const { register, handleSubmit } = useForm<SignUpData>();
 
   const onSubmit = async (data: SignUpData) => {
-    const result = await signUp(data);
-    console.log(result);
+    try {
+      const result = await signUp(data);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
