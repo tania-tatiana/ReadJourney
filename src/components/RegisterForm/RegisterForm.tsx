@@ -2,11 +2,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import signUp, { type SignUpData } from '../../services/api.js';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm<SignUpData>();
 
   const navigate = useNavigate();
+
+  const schema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().email('/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/').required(),
+    password: yup
+      .string()
+      .min(7, 'Password must be at least 6 characters')
+      .required(),
+  });
 
   const onSubmit = async (data: SignUpData) => {
     try {
