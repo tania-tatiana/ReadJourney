@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import css from './RegisterForm.module.css';
 import signUp, { type SignUpData } from '../../services/api.js';
 import { useForm } from 'react-hook-form';
@@ -6,10 +6,16 @@ import { useForm } from 'react-hook-form';
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm<SignUpData>();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data: SignUpData) => {
     try {
       const result = await signUp(data);
-      console.log(result);
+      const token = result.token;
+      const refreshToken = result.refreshToken;
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', refreshToken);
+      navigate('/recommended');
     } catch (error) {
       console.log(error);
     }
