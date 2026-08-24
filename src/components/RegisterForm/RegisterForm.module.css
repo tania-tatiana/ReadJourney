@@ -23,13 +23,15 @@
 }
 
 .field {
+  position: relative;
   display: flex;
   align-items: center;
 
   padding: 14px;
   width: 100%;
   max-width: 295px;
-  height: 44px;
+  min-height: 44px;
+  height: auto;
 
   background-color: #262626;
   border-radius: 12px;
@@ -39,7 +41,7 @@
   .field {
     padding: 16px 14px;
     width: 472px;
-    height: 50px;
+    min-height: 50px;
   }
 }
 
@@ -70,6 +72,14 @@
   outline: none;
 
   background: transparent;
+}
+
+.error {
+  position: absolute;
+  z-index: 100;
+  top: 45px;
+  left: 5px;
+  white-space: nowrap;
 }
 
 .buttons {

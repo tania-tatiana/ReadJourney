@@ -9,18 +9,22 @@ export default function RegisterForm() {
   const navigate = useNavigate();
 
   const schema = yup.object({
-    name: yup.string().required(),
+    name: yup.string().required('Name is a required field'),
     email: yup
       .string()
-      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
-      .required(),
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Incorrect email')
+      .required('Email is a required field'),
     password: yup
       .string()
       .min(7, 'Password must be at least 7 characters')
-      .required(),
+      .required('Password is a required field'),
   });
 
-  const { register, handleSubmit } = useForm<SignUpData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpData>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   });
@@ -44,10 +48,12 @@ export default function RegisterForm() {
         <label className={css.field}>
           <span className={css.label}>Name:</span>
           <input type="text" className={css.input} {...register('name')} />
+          {errors.name && <p className={css.error}>{errors.name.message}</p>}
         </label>
         <label className={css.field}>
           <span className={css.label}>Mail:</span>
           <input type="email" className={css.input} {...register('email')} />
+          {errors.email && <p className={css.error}>{errors.email.message}</p>}
         </label>
         <label className={css.field}>
           <span className={css.label}>Password:</span>
@@ -56,6 +62,9 @@ export default function RegisterForm() {
             className={css.input}
             {...register('password')}
           />
+          {errors.password && (
+            <p className={css.error}>{errors.password.message}</p>
+          )}
         </label>
       </div>
 
