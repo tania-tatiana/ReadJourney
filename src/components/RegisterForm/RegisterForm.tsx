@@ -10,7 +10,10 @@ export default function RegisterForm() {
 
   const schema = yup.object({
     name: yup.string().required(),
-    email: yup.string().email('/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/').required(),
+    email: yup
+      .string()
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+      .required(),
     password: yup
       .string()
       .min(7, 'Password must be at least 7 characters')
