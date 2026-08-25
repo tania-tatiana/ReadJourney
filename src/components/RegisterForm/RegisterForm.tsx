@@ -4,9 +4,12 @@ import signUp, { type SignUpData } from '../../services/api.js';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   const schema = yup.object({
     name: yup.string().required('Name is a required field'),
@@ -30,6 +33,7 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data: SignUpData) => {
+    setErrorMessage('');
     try {
       const result = await signUp(data);
       const token = result.token;
@@ -38,7 +42,9 @@ export default function RegisterForm() {
       localStorage.setItem('refreshToken', refreshToken);
       navigate('/recommended');
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
     }
   };
 
