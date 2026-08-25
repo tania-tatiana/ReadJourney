@@ -4,12 +4,10 @@ import signUp, { type SignUpData } from '../../services/api.js';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
-
-  const [errorMessage, setErrorMessage] = useState('');
 
   const schema = yup.object({
     name: yup.string().required('Name is a required field'),
@@ -33,7 +31,6 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data: SignUpData) => {
-    setErrorMessage('');
     try {
       const result = await signUp(data);
       const token = result.token;
@@ -43,45 +40,49 @@ export default function RegisterForm() {
       navigate('/recommended');
     } catch (error) {
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        toast.error(error.message);
       }
     }
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={css.inputs}>
-        <label className={css.field}>
-          <span className={css.label}>Name:</span>
-          <input type="text" className={css.input} {...register('name')} />
-          {errors.name && <p className={css.error}>{errors.name.message}</p>}
-        </label>
-        <label className={css.field}>
-          <span className={css.label}>Mail:</span>
-          <input type="email" className={css.input} {...register('email')} />
-          {errors.email && <p className={css.error}>{errors.email.message}</p>}
-        </label>
-        <label className={css.field}>
-          <span className={css.label}>Password:</span>
-          <input
-            type="password"
-            className={css.input}
-            {...register('password')}
-          />
-          {errors.password && (
-            <p className={css.error}>{errors.password.message}</p>
-          )}
-        </label>
-      </div>
+    <>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={css.inputs}>
+          <label className={css.field}>
+            <span className={css.label}>Name:</span>
+            <input type="text" className={css.input} {...register('name')} />
+            {errors.name && <p className={css.error}>{errors.name.message}</p>}
+          </label>
+          <label className={css.field}>
+            <span className={css.label}>Mail:</span>
+            <input type="email" className={css.input} {...register('email')} />
+            {errors.email && (
+              <p className={css.error}>{errors.email.message}</p>
+            )}
+          </label>
+          <label className={css.field}>
+            <span className={css.label}>Password:</span>
+            <input
+              type="password"
+              className={css.input}
+              {...register('password')}
+            />
+            {errors.password && (
+              <p className={css.error}>{errors.password.message}</p>
+            )}
+          </label>
+        </div>
 
-      <div className={css.buttons}>
-        <button type="submit" className={css.button}>
-          Registration
-        </button>
-        <Link to="/login" className={css.link}>
-          Already have an account?
-        </Link>
-      </div>
-    </form>
+        <div className={css.buttons}>
+          <button type="submit" className={css.button}>
+            Registration
+          </button>
+          <Link to="/login" className={css.link}>
+            Already have an account?
+          </Link>
+        </div>
+      </form>
+    </>
   );
 }

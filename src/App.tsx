@@ -8,10 +8,12 @@ import ReadingPage from './pages/ReadingPage/ReadingPage.js';
 import MyLibraryPage from './pages/MyLibraryPage/MyLibraryPage.js';
 import RecommendedPage from './pages/RecommendedPage/RecommendedPage.js';
 import WelcomePage from './pages/Welcome page/WelcomePage.js';
+import Notification from './components/Notification/Notification.js';
 
 function App() {
   return (
     <>
+      <Notification />
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path="/register" element={<RegisterPage />} />
