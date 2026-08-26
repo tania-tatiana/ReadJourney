@@ -9,6 +9,7 @@ import MyLibraryPage from './pages/MyLibraryPage/MyLibraryPage.js';
 import RecommendedPage from './pages/RecommendedPage/RecommendedPage.js';
 import WelcomePage from './pages/Welcome page/WelcomePage.js';
 import Notification from './components/Notification/Notification.js';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.js';
 
 function App() {
   return (
@@ -20,10 +21,12 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Route>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/recommended" element={<RecommendedPage />} />
-          <Route path="/library" element={<MyLibraryPage />} />
-          <Route path="/reading" element={<ReadingPage />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/recommended" element={<RecommendedPage />} />
+            <Route path="/library" element={<MyLibraryPage />} />
+            <Route path="/reading" element={<ReadingPage />} />
+          </Route>
         </Route>
       </Routes>
     </>
