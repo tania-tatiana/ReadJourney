@@ -4,6 +4,11 @@ export type SignUpData = {
   password: string;
 };
 
+export type SignInData = {
+  email: string;
+  password: string;
+};
+
 export type AuthResponse = {
   email: string;
   name: string;
@@ -15,6 +20,21 @@ const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
   const response = await fetch(`${baseURL}/users/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+  const result = (await response.json()) as AuthResponse;
+
+  return result;
+}
+
+export async function signIn(data: SignInData) {
+  const response = await fetch(`${baseURL}/users/signin`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
