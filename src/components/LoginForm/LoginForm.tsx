@@ -50,11 +50,15 @@ export default function LoginForm() {
         <div className={css.inputs}>
           <label className={css.field}>
             <span className={css.label}>Mail:</span>
-            <input type="email" className={css.input} />
+            <input type="email" className={css.input} {...register('email')} />
           </label>
           <label className={css.field}>
             <span className={css.label}>Password:</span>
-            <input type="password" className={css.input} />
+            <input
+              type="password"
+              className={css.input}
+              {...register('password')}
+            />
           </label>
         </div>
 
