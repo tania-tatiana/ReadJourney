@@ -72,6 +72,14 @@
   background: transparent;
 }
 
+.error {
+  position: absolute;
+  z-index: 100;
+  top: 45px;
+  left: 5px;
+  white-space: nowrap;
+}
+
 .buttons {
   display: flex;
   flex-direction: row;

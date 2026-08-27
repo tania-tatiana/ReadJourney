@@ -51,6 +51,9 @@ export default function LoginForm() {
           <label className={css.field}>
             <span className={css.label}>Mail:</span>
             <input type="email" className={css.input} {...register('email')} />
+            {errors.email && (
+              <p className={css.error}>{errors.email.message}</p>
+            )}
           </label>
           <label className={css.field}>
             <span className={css.label}>Password:</span>
@@ -59,6 +62,9 @@ export default function LoginForm() {
               className={css.input}
               {...register('password')}
             />
+            {errors.password && (
+              <p className={css.error}>{errors.password.message}</p>
+            )}
           </label>
         </div>
 
