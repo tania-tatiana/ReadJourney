@@ -44,13 +44,9 @@ export default function LoginForm() {
     }
   };
 
-  const onError = (errors: any) => {
-    console.log('VALIDATION ERRORS:', errors);
-  };
-
   return (
     <>
-      <form className={css.form} onSubmit={handleSubmit(onSubmit, onError)}>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputs}>
           <label className={css.field}>
             <span className={css.label}>Mail:</span>
@@ -74,7 +70,7 @@ export default function LoginForm() {
 
         <div className={css.buttons}>
           <button type="submit" className={css.button}>
-            Log in
+            Log In
           </button>
           <Link to="/register" className={css.link}>
             Don’t have an account?
