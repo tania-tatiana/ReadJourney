@@ -9,6 +9,10 @@ export type SignInData = {
   password: string;
 };
 
+export type SignOutData = {
+  message: string;
+};
+
 export type AuthResponse = {
   email: string;
   name: string;
@@ -45,5 +49,22 @@ export async function signIn(data: SignInData) {
   }
   const result = (await response.json()) as AuthResponse;
 
+  return result;
+}
+
+export async function signOut(data: SignOutData) {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/users/signout`, {
+    method: 'POST',
+    headers: { Authorazation: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as AuthResponse;
   return result;
 }
