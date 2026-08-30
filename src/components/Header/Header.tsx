@@ -16,9 +16,6 @@ export default function Header() {
     try {
       await signOut();
 
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
-
       navigate('/');
     } catch (error) {
       if (error instanceof Error) {

@@ -57,7 +57,7 @@ export async function signOut() {
 
   const response = await fetch(`${baseURL}/users/signout`, {
     method: 'POST',
-    headers: { Authorazation: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   if (!response.ok) {
@@ -65,6 +65,6 @@ export async function signOut() {
     throw Error(error.message);
   }
 
-  const result = (await response.json()) as AuthResponse;
+  const result = (await response.json()) as SignOutData;
   return result;
 }
