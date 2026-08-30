@@ -1,12 +1,34 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import css from './Header.module.css';
 import UserBar from '../UserBar/UserBar.js';
 import UserNav from '../UserNav/UserNav.js';
 import { useState } from 'react';
 import BurgerMenu from '../BurgerMenu/BurgerMenu.js';
+import { toast } from 'react-hot-toast';
+import { signOut } from '../../services/api.js';
 
 export default function Header() {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const onClick = async () => {
+    try {
+      await signOut();
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
+
+      navigate('/');
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    } finally {
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
+    }
+  };
 
   return (
     <header className={css.wrapper}>
@@ -19,7 +41,9 @@ export default function Header() {
       </div>
       <div className={css.userBar}>
         <UserBar />
-        <button className={css.button}>Log out</button>
+        <button className={css.button} onClick={onClick}>
+          Log out
+        </button>
         <button
           className={css.burgerButton}
           onClick={() => setIsBurgerOpen(true)}

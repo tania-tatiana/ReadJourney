@@ -52,7 +52,7 @@ export async function signIn(data: SignInData) {
   return result;
 }
 
-export async function signOut(data: SignOutData) {
+export async function signOut() {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/users/signout`, {
