@@ -13,6 +13,14 @@ export type SignOutData = {
   message: string;
 };
 
+export type GetCurrentUser = {
+  _id: string;
+  name: string;
+  email: string;
+  token: string;
+  refreshToken: string;
+};
+
 export type AuthResponse = {
   email: string;
   name: string;
@@ -66,5 +74,22 @@ export async function signOut() {
   }
 
   const result = (await response.json()) as SignOutData;
+  return result;
+}
+
+export async function getCurrentUser() {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/users/current`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as GetCurrentUser;
   return result;
 }
