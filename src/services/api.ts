@@ -28,6 +28,15 @@ export type AuthResponse = {
   refreshToken: string;
 };
 
+export type GetBook = {
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  recommend: boolean;
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
@@ -91,5 +100,22 @@ export async function getCurrentUser() {
   }
 
   const result = (await response.json()) as GetCurrentUser;
+  return result;
+}
+
+export async function getBook() {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/books/recommend`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as GetBook;
   return result;
 }
