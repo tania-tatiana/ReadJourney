@@ -2,12 +2,22 @@ import { useEffect, useState } from 'react';
 import BookCard from '../BookCard/BookCard.js';
 import css from './RecommendedBooks.module.css';
 import BookModal from '../BookModal/BookModal.js';
-import { getBook, type GetBook } from '../../services/api.js';
+import { getBooks, type GetBook } from '../../services/api.js';
 
 export default function RecommendedBooks() {
   const [booksPerPage, setBooksPerPage] = useState(2);
 
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
+
+  const [books, setBooks] = useState<GetBook[]>([]);
+
+  useEffect(() => {
+    async function getRecommendedBooks() {
+      const result = await getBooks();
+      setBooks(result.results);
+    }
+    getRecommendedBooks();
+  }, []);
 
   useEffect(() => {
     const updateBooksCount = () => {
@@ -32,7 +42,7 @@ export default function RecommendedBooks() {
       <div className={css.books}>
         {books.slice(0, booksPerPage).map((book) => (
           <BookCard
-            key={book.id}
+            key={book._id}
             {...book}
             onClick={() => setSelectedBook(book)}
           />
@@ -43,7 +53,7 @@ export default function RecommendedBooks() {
         onClose={() => setSelectedBook(null)}
         title={selectedBook?.title ?? ''}
         author={selectedBook?.author ?? ''}
-        image={selectedBook?.image ?? ''}
+        image={selectedBook?.imageUrl ?? ''}
         totalPages={selectedBook?.totalPages ?? 0}
       />
     </div>

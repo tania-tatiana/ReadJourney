@@ -37,6 +37,13 @@ export type GetBook = {
   recommend: boolean;
 };
 
+export type GetBooksResponse = {
+  results: GetBook[];
+  totalPages: number;
+  page: number;
+  perPage: number;
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
@@ -103,7 +110,7 @@ export async function getCurrentUser() {
   return result;
 }
 
-export async function getBook() {
+export async function getBooks() {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/books/recommend`, {
@@ -116,6 +123,6 @@ export async function getBook() {
     throw Error(error.message);
   }
 
-  const result = (await response.json()) as GetBook;
+  const result = (await response.json()) as GetBooksResponse;
   return result;
 }
