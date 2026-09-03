@@ -4,13 +4,6 @@
   padding-bottom: 0;
 }
 
-@media (min-width: 1440px) {
-  .wrapper {
-    height: 100%;
-    max-height: 651px;
-  }
-}
-
 .title {
   display: flex;
   font-weight: 500;
@@ -67,6 +60,7 @@
   margin-right: 10px;
 
   width: 100%;
+  max-width: 87px;
 
   font-weight: 500;
   font-size: 12px;
@@ -78,6 +72,15 @@
   color: #686868;
 
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .label {
+    font-size: 14px;
+
+    /* line-height: 18px; */
+    line-height: 1.28571;
+  }
 }
 
 .input {

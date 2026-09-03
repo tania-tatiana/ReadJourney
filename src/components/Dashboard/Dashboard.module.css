@@ -25,7 +25,7 @@
 @media (min-width: 1440px) {
   .wrapper {
     flex-direction: column;
-    gap: 78px;
+    gap: 20px;
     padding: 20px;
     padding-top: 40px;
     width: 100%;

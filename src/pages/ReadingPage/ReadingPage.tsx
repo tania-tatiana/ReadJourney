@@ -19,7 +19,7 @@ export default function ReadingPage() {
       <MyBook isReading={isReading} setIsReading={setIsReading} />
 
       {!isBookFinished && (
-        <FinishBookModal onClose={() => setIsBookFinished(false)} />
+        <FinishBookModal onClose={() => setIsBookFinished(true)} />
       )}
     </div>
   );

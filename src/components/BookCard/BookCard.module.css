@@ -56,14 +56,10 @@
   color: #f9f9f9;
 
   margin: 0;
-}
 
-@media (min-width: 1440px) {
-  .title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .author {
