@@ -11,7 +11,7 @@ export default function UserNav({ className, onClick }: UserNavProps) {
   return (
     <nav className={clsx(css.nav, className)}>
       <NavLink
-        to="/"
+        to="/recommended"
         className={({ isActive }) => clsx(isActive && css.active, css.navLink)}
         onClick={onClick}
       >
