@@ -44,6 +44,13 @@ export type GetBooksResponse = {
   perPage: number;
 };
 
+export type Filter = {
+  title: string;
+  author: string;
+  page: number;
+  limit: number;
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
@@ -110,8 +117,13 @@ export async function getCurrentUser() {
   return result;
 }
 
-export async function getBooks() {
+export async function getBooks(data: Filter) {
   const token = localStorage.getItem('token');
+
+  const params = new URLSearchParams();
+
+  params.set('title', data.title);
+  params.set('author', data.author);
 
   const response = await fetch(`${baseURL}/books/recommend`, {
     method: 'GET',
