@@ -122,13 +122,20 @@ export async function getBooks(data: Filter) {
 
   const params = new URLSearchParams();
 
-  params.set('title', data.title);
-  params.set('author', data.author);
+  if (data.title) {
+    params.set('title', data.title);
+  }
+  if (data.author) {
+    params.set('author', data.author);
+  }
 
-  const response = await fetch(`${baseURL}/books/recommend`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  const response = await fetch(
+    `${baseURL}/books/recommend?${params.toString()}`,
+    {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    },
+  );
 
   if (!response.ok) {
     const error = await response.json();
