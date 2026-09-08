@@ -2,9 +2,17 @@ import { useEffect, useState } from 'react';
 import BookCard from '../BookCard/BookCard.js';
 import css from './RecommendedBooks.module.css';
 import BookModal from '../BookModal/BookModal.js';
-import { getBooks, type GetBook } from '../../services/api.js';
+import {
+  getBooks,
+  type GetBook,
+  type GetBooksParams,
+} from '../../services/api.js';
 
-export default function RecommendedBooks() {
+type RecommendedBooksProps = {
+  filters: GetBooksParams;
+};
+
+export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   const [booksPerPage, setBooksPerPage] = useState(2);
 
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
@@ -13,11 +21,11 @@ export default function RecommendedBooks() {
 
   useEffect(() => {
     async function getRecommendedBooks() {
-      const result = await getBooks();
+      const result = await getBooks(filters);
       setBooks(result.results);
     }
     getRecommendedBooks();
-  }, []);
+  }, [filters]);
 
   useEffect(() => {
     const updateBooksCount = () => {

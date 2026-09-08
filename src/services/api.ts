@@ -44,11 +44,9 @@ export type GetBooksResponse = {
   perPage: number;
 };
 
-export type Filter = {
+export type GetBooksParams = {
   title: string;
   author: string;
-  page: number;
-  limit: number;
 };
 
 const baseURL = 'https://readjourney.b.goit.study/api';
@@ -117,7 +115,7 @@ export async function getCurrentUser() {
   return result;
 }
 
-export async function getBooks(data: Filter) {
+export async function getBooks(data: GetBooksParams) {
   const token = localStorage.getItem('token');
 
   const params = new URLSearchParams();
