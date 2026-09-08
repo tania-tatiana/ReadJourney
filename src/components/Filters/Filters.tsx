@@ -1,6 +1,30 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import css from './Filters.module.css';
+import type { GetBooksParams } from '../../services/api.js';
+import { useForm } from 'react-hook-form';
 
 export default function Filters() {
+  const schema = yup.object({
+    title: yup
+      .string()
+      .matches(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/, 'Incorrect email')
+      .required('Email is a required field'),
+    author: yup
+      .string()
+      .min(7, 'Password must be at least 7 characters')
+      .required('Password is a required field'),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<GetBooksParams>({
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+  });
+
   return (
     <div className={css.wrapper}>
       <p className={css.title}>Filters:</p>
