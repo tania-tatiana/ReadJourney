@@ -23,10 +23,14 @@ export default function Filters({ onSearch }: FiltersProps) {
     resolver: yupResolver(schema),
   });
 
+  const onSubmit = (data: GetBooksParams) => {
+    onSearch(data);
+  };
+
   return (
     <div className={css.wrapper}>
       <p className={css.title}>Filters:</p>
-      <form className={css.form}>
+      <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputs}>
           <label className={css.field}>
             <span className={css.label}>Book title:</span>
