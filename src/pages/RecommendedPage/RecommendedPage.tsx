@@ -8,10 +8,14 @@ import css from './RecommendedPage.module.css';
 
 export default function RecommendedPage() {
   const [filters, setFilters] = useState({ title: '', author: '' });
+
+  const handleSearch = (data: { title: string; author: string }) => {
+    setFilters(data);
+  };
   return (
     <div className={css.wrapper}>
       <Dashboard>
-        <Filters />
+        <Filters onSearch={handleSearch} />
         <Workout />
         <Quote />
       </Dashboard>

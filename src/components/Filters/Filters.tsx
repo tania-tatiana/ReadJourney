@@ -10,15 +10,11 @@ type FiltersProps = {
 
 export default function Filters({ onSearch }: FiltersProps) {
   const schema = yup.object({
-    title: yup.string().required('Title is a required field'),
-    author: yup.string().required('Author is a required field'),
+    title: yup.string().defined(),
+    author: yup.string().defined(),
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<GetBooksParams>({
+  const { register, handleSubmit } = useForm<GetBooksParams>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   });
