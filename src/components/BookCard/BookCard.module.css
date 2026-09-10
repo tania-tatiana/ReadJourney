@@ -1,14 +1,22 @@
 .bookCard {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  height: auto;
+  flex-shrink: 0; */
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 137px;
   height: 248px;
+  flex: 0 0 137px;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .bookCard {
-    flex-shrink: 0;
+    width: 137px;
   }
 }
 
@@ -22,12 +30,18 @@
   .bookCard {
     flex-basis: calc((100% - 4 * 20px) / 5);
   }
-}
+} */
 
 .image {
-  display: block;
+  /* display: block;
   width: 100%;
   aspect-ratio: 137 / 208;
+  border-radius: 8px;
+  object-fit: cover; */
+
+  display: block;
+  width: 137px;
+  height: 208px;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -63,6 +77,8 @@
 }
 
 .author {
+  margin: 0;
+
   font-weight: 500;
   font-size: 10px;
 
