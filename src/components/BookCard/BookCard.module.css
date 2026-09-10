@@ -3,11 +3,11 @@
   flex-direction: column;
   gap: 8px;
   min-width: 0;
+  height: 248px;
 }
 
 @media (max-width: 767px) {
   .bookCard {
-    width: 137px;
     flex-shrink: 0;
   }
 }
@@ -25,11 +25,11 @@
 }
 
 .image {
-  border-radius: 8px;
+  display: block;
   width: 100%;
-  max-width: 137px;
-  height: 100%;
-  max-height: 208px;
+  aspect-ratio: 137 / 208;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .textBlock {
