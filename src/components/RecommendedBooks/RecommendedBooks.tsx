@@ -15,6 +15,8 @@ type RecommendedBooksProps = {
 export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   const [booksPerPage, setBooksPerPage] = useState(2);
 
+  const [currentPage, setCurrentPage] = useState<Number>(1);
+
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
 
   const [books, setBooks] = useState<GetBook[]>([]);
