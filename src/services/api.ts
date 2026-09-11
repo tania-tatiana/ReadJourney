@@ -47,6 +47,8 @@ export type GetBooksResponse = {
 export type GetBooksParams = {
   title: string;
   author: string;
+  page: number;
+  limit: number;
 };
 
 const baseURL = 'https://readjourney.b.goit.study/api';
@@ -126,6 +128,10 @@ export async function getBooks(data: GetBooksParams) {
   if (data.author) {
     params.set('author', data.author);
   }
+
+  params.set('page', data.page.toString());
+
+  params.set('limit', data.limit.toString());
 
   const response = await fetch(
     `${baseURL}/books/recommend?${params.toString()}`,
