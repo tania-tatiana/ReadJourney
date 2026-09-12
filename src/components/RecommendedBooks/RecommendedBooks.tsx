@@ -5,17 +5,17 @@ import BookModal from '../BookModal/BookModal.js';
 import {
   getBooks,
   type GetBook,
-  type GetBooksParams,
+  type GetBooksFilters,
 } from '../../services/api.js';
 
 type RecommendedBooksProps = {
-  filters: GetBooksParams;
+  filters: GetBooksFilters;
 };
 
 export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   const [booksPerPage, setBooksPerPage] = useState(2);
 
-  const [currentPage, setCurrentPage] = useState<Number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
 
@@ -23,11 +23,12 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
 
   useEffect(() => {
     async function getRecommendedBooks() {
-      const result = await getBooks(filters);
+      const params = { ...filters, page: currentPage, limit: booksPerPage };
+      const result = await getBooks(params);
       setBooks(result.results);
     }
     getRecommendedBooks();
-  }, [filters]);
+  }, [filters, currentPage, booksPerPage]);
 
   useEffect(() => {
     const updateBooksCount = () => {
@@ -50,7 +51,7 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
     <div className={css.wrapper}>
       <h2 className={css.title}>Recommended</h2>
       <div className={css.books}>
-        {books.slice(0, booksPerPage).map((book) => (
+        {books.map((book) => (
           <BookCard
             key={book._id}
             {...book}

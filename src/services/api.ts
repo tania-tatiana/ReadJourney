@@ -44,9 +44,12 @@ export type GetBooksResponse = {
   perPage: number;
 };
 
-export type GetBooksParams = {
+export type GetBooksFilters = {
   title: string;
   author: string;
+};
+
+export type GetBooksParams = GetBooksFilters & {
   page: number;
   limit: number;
 };
