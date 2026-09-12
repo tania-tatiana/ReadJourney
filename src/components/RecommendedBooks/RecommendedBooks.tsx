@@ -19,6 +19,8 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  const [totalPages, setTotalPages] = useState<number>(1);
+
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
 
   const [books, setBooks] = useState<GetBook[]>([]);
@@ -28,6 +30,7 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
       const params = { ...filters, page: currentPage, limit: booksPerPage };
       const result = await getBooks(params);
       setBooks(result.results);
+      setTotalPages(result.totalPages);
     }
     getRecommendedBooks();
   }, [filters, currentPage, booksPerPage]);
@@ -53,12 +56,20 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
     <div className={css.wrapper}>
       <h2 className={css.title}>Recommended</h2>
       <div className={css.arrows}>
-        <div className={css.arrow}>
+        <button
+          className={css.arrow}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+          disabled={currentPage === 1}
+        >
           <IoIosArrowBack />
-        </div>
-        <div className={css.arrow}>
+        </button>
+        <button
+          className={css.arrow}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+          disabled={currentPage === totalPages}
+        >
           <IoIosArrowForward />
-        </div>
+        </button>
       </div>
       <div className={css.books}>
         {books.map((book) => (

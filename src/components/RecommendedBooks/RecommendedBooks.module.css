@@ -61,14 +61,31 @@
   gap: 8px;
 }
 
+@media (min-width: 768px) {
+  .arrows {
+    right: 40px;
+  }
+}
+
 .arrow {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: none;
   border-radius: 100%;
   border: 1px solid rgba(249, 249, 249, 0.2);
   width: 32px;
   height: 32px;
+
+  color: #f9f9f9;
+
+  cursor: pointer;
+}
+
+.arrow:disabled {
+  cursor: default;
+  color: rgba(249, 249, 249, 0.2);
 }
 
 @media (min-width: 768px) {
