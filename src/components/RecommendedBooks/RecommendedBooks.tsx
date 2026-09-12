@@ -7,6 +7,8 @@ import {
   type GetBook,
   type GetBooksFilters,
 } from '../../services/api.js';
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
 
 type RecommendedBooksProps = {
   filters: GetBooksFilters;
@@ -50,6 +52,14 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Recommended</h2>
+      <div className={css.arrows}>
+        <div className={css.arrow}>
+          <IoIosArrowBack />
+        </div>
+        <div className={css.arrow}>
+          <IoIosArrowForward />
+        </div>
+      </div>
       <div className={css.books}>
         {books.map((book) => (
           <BookCard
