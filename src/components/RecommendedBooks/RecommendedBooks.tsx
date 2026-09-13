@@ -26,6 +26,10 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   const [books, setBooks] = useState<GetBook[]>([]);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
+
+  useEffect(() => {
     async function getRecommendedBooks() {
       const params = { ...filters, page: currentPage, limit: booksPerPage };
       const result = await getBooks(params);
