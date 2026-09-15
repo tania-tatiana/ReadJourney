@@ -9,6 +9,7 @@ import {
 } from '../../services/api.js';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
+import AddBookModal from '../AddBookModal/AddBookModal.js';
 
 type RecommendedBooksProps = {
   filters: GetBooksFilters;
@@ -22,6 +23,8 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
   const [totalPages, setTotalPages] = useState<number>(1);
 
   const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
+
+  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
 
   const [books, setBooks] = useState<GetBook[]>([]);
 
@@ -87,10 +90,16 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
       <BookModal
         isOpen={!!selectedBook}
         onClose={() => setSelectedBook(null)}
+        onBookAdded={() => setIsAddBookModalOpen(true)}
+        id={selectedBook?._id ?? ''}
         title={selectedBook?.title ?? ''}
         author={selectedBook?.author ?? ''}
         image={selectedBook?.imageUrl ?? ''}
         totalPages={selectedBook?.totalPages ?? 0}
+      />
+      <AddBookModal
+        isOpen={isAddBookModalOpen}
+        onClose={() => setIsAddBookModalOpen(false)}
       />
     </div>
   );

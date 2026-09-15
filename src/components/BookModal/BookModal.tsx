@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import css from './BookModal.module.css';
-import AddBookModal from '../AddBookModal/AddBookModal.js';
+import { addBook } from '../../services/api.js';
+import { toast } from 'react-hot-toast';
 
 type BookModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  onBookAdded: () => void;
+  id: string;
   title: string;
   author: string;
   image: string;
@@ -14,12 +17,27 @@ type BookModalProps = {
 export default function BookModal({
   isOpen,
   onClose,
+  onBookAdded,
+  id,
   title,
   author,
   image,
   totalPages,
 }: BookModalProps) {
-  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
+  async function handleAddBook() {
+    if (!id) {
+      return null;
+    }
+    try {
+      await addBook(id);
+      onClose();
+      onBookAdded();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
+  }
 
   useEffect(() => {
     if (!isOpen) {
@@ -49,19 +67,11 @@ export default function BookModal({
             <p className={css.author}>{author}</p>
           </div>
           <p className={css.totalPages}>{totalPages} pages</p>
-          <button
-            type="submit"
-            className={css.button}
-            onClick={() => setIsAddBookModalOpen(true)}
-          >
+          <button type="submit" className={css.button} onClick={handleAddBook}>
             Add book
           </button>
         </div>
       </div>
-      <AddBookModal
-        isOpen={!!isAddBookModalOpen}
-        onClose={() => setIsAddBookModalOpen(false)}
-      />
     </>
   );
 }
