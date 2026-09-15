@@ -68,6 +68,14 @@ export type AddBookResponse = {
   updatedAt: string;
 };
 
+export type LibraryBook = GetBook & {
+  status: string;
+  owner: string;
+  progress: object[];
+};
+
+export type LibraryBooks = LibraryBook[];
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
