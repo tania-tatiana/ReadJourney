@@ -192,3 +192,23 @@ export async function addBook(id: string) {
 
   return result;
 }
+
+export async function getLibraryBooks(status: string) {
+  const token = localStorage.getItem('token');
+
+  const params = new URLSearchParams();
+
+  params.set('status', status);
+
+  const response = await fetch(`${baseURL}/books/own?${params.toString()}`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+  const result = (await response.json()) as LibraryBooks;
+  return result;
+}
