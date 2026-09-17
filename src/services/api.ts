@@ -76,6 +76,12 @@ export type LibraryBook = GetBook & {
 
 export type LibraryBooks = LibraryBook[];
 
+export type AddBookData = {
+  title: string;
+  author: string;
+  totalPages: number;
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
