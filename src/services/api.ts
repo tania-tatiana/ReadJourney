@@ -82,6 +82,17 @@ export type AddBookData = {
   totalPages: number;
 };
 
+export type AddLibraryBookResponse = {
+  title: string;
+  author: string;
+  imageUrl: string | null;
+  totalPages: number;
+  status: string;
+  owner: string;
+  _id: string;
+  progress: unknown[];
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
@@ -216,5 +227,26 @@ export async function getLibraryBooks(status: string) {
     throw Error(error.message);
   }
   const result = (await response.json()) as LibraryBooks;
+  return result;
+}
+
+export async function addLibraryBook(data: AddBookData) {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/books/add`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as AddLibraryBookResponse;
   return result;
 }
