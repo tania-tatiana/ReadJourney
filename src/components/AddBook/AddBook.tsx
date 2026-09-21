@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import AddBookModal from '../AddBookModal/AddBookModal.js';
 import css from './AddBook.module.css';
+import { addLibraryBook } from '../../services/api.js';
 
 export default function AddBook() {
   const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    const title = formData.get('title') as string;
+    const author = formData.get('author') as string;
+    const totalPages = Number(formData.get('totalPages'));
+    const data = { title, author, totalPages };
+    await addLibraryBook(data);
   }
   return (
     <div className={css.wrapper}>
