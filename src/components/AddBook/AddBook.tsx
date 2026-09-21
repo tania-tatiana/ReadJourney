@@ -2,9 +2,17 @@ import { useState } from 'react';
 import AddBookModal from '../AddBookModal/AddBookModal.js';
 import css from './AddBook.module.css';
 import { addLibraryBook } from '../../services/api.js';
+import { toast } from 'react-hot-toast';
+import * as yup from 'yup';
 
 export default function AddBook() {
   const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
+
+  const schema = yup.object({
+    title: yup.string(),
+    author: yup.string(),
+    totalPages: yup.number().positive(),
+  });
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -13,7 +21,16 @@ export default function AddBook() {
     const author = formData.get('author') as string;
     const totalPages = Number(formData.get('totalPages'));
     const data = { title, author, totalPages };
-    await addLibraryBook(data);
+    setIsAddBookModalOpen(false);
+    try {
+      await schema.validate(data);
+      await addLibraryBook(data);
+      setIsAddBookModalOpen(true);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   }
   return (
     <div className={css.wrapper}>
