@@ -19,7 +19,15 @@ export default function AddBook() {
     const formData = new FormData(event.currentTarget);
     const title = formData.get('title') as string;
     const author = formData.get('author') as string;
-    const totalPages = Number(formData.get('totalPages'));
+    const pages = formData.get('totalPages') as string;
+    let totalPages: number | null;
+
+    if (pages === '') {
+      totalPages = null;
+    } else {
+      totalPages = Number(pages);
+    }
+
     const data = { title, author, totalPages };
     setIsAddBookModalOpen(false);
     try {

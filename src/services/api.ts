@@ -79,7 +79,7 @@ export type LibraryBooks = LibraryBook[];
 export type AddBookData = {
   title: string;
   author: string;
-  totalPages: number;
+  totalPages: number | null;
 };
 
 export type AddLibraryBookResponse = {
