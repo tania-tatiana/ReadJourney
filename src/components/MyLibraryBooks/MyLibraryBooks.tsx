@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import css from './MyLibraryBooks.module.css';
 import { getLibraryBooks, type LibraryBooks } from '../../services/api.js';
 import LibrarySelect from '../LibrarySelect/LibrarySelect.js';
+import LibraryBookCard from '../LibraryBookCard/LibraryBookCard.js';
 
 export default function MyLibraryBooks() {
   const [status, setStatus] = useState('All books');
@@ -18,7 +19,13 @@ export default function MyLibraryBooks() {
   return (
     <>
       {books.length > 0 ? (
-        'books'
+        books.map((book) => (
+          <LibraryBookCard
+            key={book._id}
+            {...book}
+            onClick={() => setSelectedBook(book)}
+          />
+        ))
       ) : (
         <div className={css.wrapper}>
           <div className={css.titleAndFilters}>
