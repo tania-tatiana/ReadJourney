@@ -11,7 +11,7 @@ export default function AddBook() {
   const schema = yup.object({
     title: yup.string(),
     author: yup.string(),
-    totalPages: yup.number().positive(),
+    totalPages: yup.number().positive().nullable(),
   });
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -20,13 +20,7 @@ export default function AddBook() {
     const title = formData.get('title') as string;
     const author = formData.get('author') as string;
     const pages = formData.get('totalPages') as string;
-    let totalPages: number | null;
-
-    if (pages === '') {
-      totalPages = null;
-    } else {
-      totalPages = Number(pages);
-    }
+    const totalPages = pages === '' ? null : Number(pages);
 
     const data = { title, author, totalPages };
     setIsAddBookModalOpen(false);
