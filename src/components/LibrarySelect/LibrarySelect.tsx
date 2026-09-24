@@ -7,8 +7,8 @@ import clsx from 'clsx';
 import type { Status } from '../../services/api.js';
 
 type LibraryProps = {
-  status: Status;
-  setStatus: (status: Status) => void;
+  status: Status | undefined;
+  setStatus: (status: Status | undefined) => void;
 };
 
 export default function LibrarySelect({ status, setStatus }: LibraryProps) {
@@ -26,11 +26,11 @@ export default function LibrarySelect({ status, setStatus }: LibraryProps) {
             <button
               className={clsx(
                 css.itemButton,
-                status === 'Unread' && css.active,
+                status === 'unread' && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setStatus('Unread');
+                setStatus('unread');
               }}
             >
               Unread
@@ -40,11 +40,11 @@ export default function LibrarySelect({ status, setStatus }: LibraryProps) {
             <button
               className={clsx(
                 css.itemButton,
-                status === 'In progress' && css.active,
+                status === 'in-progress' && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setStatus('In progress');
+                setStatus('in-progress');
               }}
             >
               In progress
@@ -52,10 +52,10 @@ export default function LibrarySelect({ status, setStatus }: LibraryProps) {
           </li>
           <li className={css.item}>
             <button
-              className={clsx(css.itemButton, status === 'Done' && css.active)}
+              className={clsx(css.itemButton, status === 'done' && css.active)}
               onClick={() => {
                 setIsOpen(false);
-                setStatus('Done');
+                setStatus('done');
               }}
             >
               Done
@@ -65,11 +65,11 @@ export default function LibrarySelect({ status, setStatus }: LibraryProps) {
             <button
               className={clsx(
                 css.itemButton,
-                status === 'All books' && css.active,
+                status === undefined && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setStatus('All books');
+                setStatus(undefined);
               }}
             >
               All books

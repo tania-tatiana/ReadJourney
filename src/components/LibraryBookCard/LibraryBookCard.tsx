@@ -14,14 +14,14 @@ export default function LibraryBookCard({
   onClick,
 }: LibraryBookType) {
   return (
-    <div>
-      <img src={imageUrl} alt={title} onClick={onClick} />
-      <div>
+    <div className={css.wrapper}>
+      <img src={imageUrl} alt={title} onClick={onClick} className={css.image} />
+      <div className={css.secondLine}>
         <div className={css.text}>
           <p className={css.title}>{title}</p>
           <p className={css.author}>{author}</p>
         </div>
-        <button></button>
+        <button type="button" className={css.deleteBuuton}></button>
       </div>
     </div>
   );

@@ -54,13 +54,15 @@ export type GetBooksParams = GetBooksFilters & {
   limit: number;
 };
 
+export type Status = 'unread' | 'in-progress' | 'done';
+
 export type AddBookResponse = {
   _id: string;
   title: string;
   author: string;
   imageUrl: string;
   totalPages: number;
-  status: string;
+  status: Status;
   recommend: boolean;
   owner: string;
   progress: unknown[];
@@ -69,7 +71,7 @@ export type AddBookResponse = {
 };
 
 export type LibraryBook = GetBook & {
-  status: string;
+  status: Status;
   owner: string;
   progress: object[];
 };
@@ -81,8 +83,6 @@ export type AddBookData = {
   author: string;
   totalPages: number | null;
 };
-
-export type Status = 'Unread' | 'In progress' | 'Done' | 'All books';
 
 export type AddLibraryBookResponse = {
   title: string;
@@ -212,12 +212,14 @@ export async function addBook(id: string) {
   return result;
 }
 
-export async function getLibraryBooks(status: string) {
+export async function getLibraryBooks(status?: Status) {
   const token = localStorage.getItem('token');
 
   const params = new URLSearchParams();
 
-  params.set('status', status);
+  if (status) {
+    params.set('status', status);
+  }
 
   const response = await fetch(`${baseURL}/books/own?${params.toString()}`, {
     method: 'GET',
