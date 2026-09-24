@@ -26,7 +26,7 @@ export default function MyLibraryBooks() {
       <div className={css.wrapper}>
         <div className={css.titleAndFilters}>
           <h2 className={css.title}>My library</h2>
-          <LibrarySelect />
+          <LibrarySelect status={status} setStatus={setStatus} />
         </div>
         {books.length > 0 ? (
           books.map((book) => (

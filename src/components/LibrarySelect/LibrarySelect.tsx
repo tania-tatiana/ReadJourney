@@ -5,13 +5,12 @@ import { IoIosArrowUp } from 'react-icons/io';
 import css from './LibrarySelect.module.css';
 import clsx from 'clsx';
 
-export default function LibrarySelect() {
+export default function LibrarySelect({ status, setStatus }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState('All books');
   return (
     <div className={css.select}>
       <button className={css.selectVariant} onClick={() => setIsOpen(!isOpen)}>
-        <span className={css.text}>{selected}</span>
+        <span className={css.text}>{status}</span>
         {isOpen ? <IoIosArrowUp size={16} /> : <IoIosArrowDown size={16} />}
       </button>
 
@@ -21,11 +20,11 @@ export default function LibrarySelect() {
             <button
               className={clsx(
                 css.itemButton,
-                selected === 'Unread' && css.active,
+                status === 'Unread' && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setSelected('Unread');
+                setStatus('Unread');
               }}
             >
               Unread
@@ -35,11 +34,11 @@ export default function LibrarySelect() {
             <button
               className={clsx(
                 css.itemButton,
-                selected === 'In progress' && css.active,
+                status === 'In progress' && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setSelected('In progress');
+                setStatus('In progress');
               }}
             >
               In progress
@@ -47,13 +46,10 @@ export default function LibrarySelect() {
           </li>
           <li className={css.item}>
             <button
-              className={clsx(
-                css.itemButton,
-                selected === 'Done' && css.active,
-              )}
+              className={clsx(css.itemButton, status === 'Done' && css.active)}
               onClick={() => {
                 setIsOpen(false);
-                setSelected('Done');
+                setStatus('Done');
               }}
             >
               Done
@@ -63,11 +59,11 @@ export default function LibrarySelect() {
             <button
               className={clsx(
                 css.itemButton,
-                selected === 'All books' && css.active,
+                status === 'All books' && css.active,
               )}
               onClick={() => {
                 setIsOpen(false);
-                setSelected('All books');
+                setStatus('All books');
               }}
             >
               All books

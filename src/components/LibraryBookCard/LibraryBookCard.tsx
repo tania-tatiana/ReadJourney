@@ -1,4 +1,3 @@
-import type { LibraryBook } from '../../services/api.js';
 import css from './LibraryBookCard.module.css';
 
 type LibraryBookType = {
