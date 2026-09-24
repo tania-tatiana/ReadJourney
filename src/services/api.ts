@@ -82,12 +82,14 @@ export type AddBookData = {
   totalPages: number | null;
 };
 
+export type Status = 'Unread' | 'In progress' | 'Done' | 'All books';
+
 export type AddLibraryBookResponse = {
   title: string;
   author: string;
   imageUrl: string | null;
   totalPages: number;
-  status: string;
+  status: Status;
   owner: string;
   _id: string;
   progress: unknown[];

@@ -4,8 +4,14 @@ import { IoIosArrowUp } from 'react-icons/io';
 
 import css from './LibrarySelect.module.css';
 import clsx from 'clsx';
+import type { Status } from '../../services/api.js';
 
-export default function LibrarySelect({ status, setStatus }) {
+type LibraryProps = {
+  status: Status;
+  setStatus: (status: Status) => void;
+};
+
+export default function LibrarySelect({ status, setStatus }: LibraryProps) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className={css.select}>

@@ -4,12 +4,13 @@ import {
   getLibraryBooks,
   type LibraryBook,
   type LibraryBooks,
+  type Status,
 } from '../../services/api.js';
 import LibrarySelect from '../LibrarySelect/LibrarySelect.js';
 import LibraryBookCard from '../LibraryBookCard/LibraryBookCard.js';
 
 export default function MyLibraryBooks() {
-  const [status, setStatus] = useState('All books');
+  const [status, setStatus] = useState<Status>('All books');
   const [books, setBooks] = useState<LibraryBooks>([]);
   const [selectedBook, setSelectedBook] = useState<LibraryBook | null>(null);
 
