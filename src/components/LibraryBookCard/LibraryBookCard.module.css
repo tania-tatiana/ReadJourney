@@ -4,17 +4,25 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
+  max-width: 137px;
+  height: 100%;
+  max-height: 248px;
 }
 
 .image {
   border-radius: 8px;
+  width: 100%;
   max-width: 137px;
+  height: auto;
   max-height: 208px;
 }
 
 .secondLine {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  min-width: 0;
 }
 
 .text {
@@ -23,6 +31,9 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
+  flex: 1;
+  max-width: 89px;
 }
 
 .title {
@@ -36,6 +47,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: #f9f9f9;
+
+  width: 100%;
 }
 
 .author {
@@ -58,4 +71,7 @@
   max-width: 28px;
   height: 100%;
   max-height: 28px;
+  border-radius: 100%;
+  background-color: rgba(232, 80, 80, 0.1);
+  border: 1px solid rgba(232, 80, 80, 0.2);
 }
