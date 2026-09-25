@@ -24,10 +24,19 @@ export default function BookModal({
   image,
   totalPages,
 }: BookModalProps) {
+  const [isAdding, setIsAdding] = useState(false);
+
   async function handleAddBook() {
+    if (isAdding) {
+      return;
+    }
+
     if (!id) {
       return null;
     }
+
+    setIsAdding(true);
+
     try {
       await addBook(id);
       onClose();
@@ -36,6 +45,8 @@ export default function BookModal({
       if (error instanceof Error) {
         toast.error(error.message);
       }
+    } finally {
+      setIsAdding(false);
     }
   }
 
@@ -67,7 +78,12 @@ export default function BookModal({
             <p className={css.author}>{author}</p>
           </div>
           <p className={css.totalPages}>{totalPages} pages</p>
-          <button type="submit" className={css.button} onClick={handleAddBook}>
+          <button
+            type="submit"
+            className={css.button}
+            onClick={handleAddBook}
+            disabled={isAdding}
+          >
             Add book
           </button>
         </div>
