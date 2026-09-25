@@ -8,7 +8,6 @@
   height: auto;
   max-height: 407px;
   padding: 40px 20px 100px;
-  gap: 63px;
 
   background-color: #1f1f1f;
 }
@@ -17,7 +16,7 @@
   .wrapper {
     max-width: 704px;
     padding: 40px 40px 160px;
-    gap: 86px;
+
     max-height: 518px;
   }
 }
@@ -26,7 +25,7 @@
   .wrapper {
     max-width: 847px;
     padding: 40px 40px 232px;
-    gap: 147px;
+
     max-height: 651px;
   }
 }
@@ -58,6 +57,13 @@
   }
 }
 
+.bookList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 34px;
+}
+
 .pictureAndText {
   display: flex;
   flex-direction: column;
@@ -68,6 +74,7 @@
   max-height: 164px;
   margin: 0 auto;
   gap: 10px;
+  margin-top: 63px;
 }
 
 @media (min-width: 768px) {
@@ -75,6 +82,13 @@
     max-width: 274px;
     max-height: 186px;
     gap: 20px;
+    margin-top: 86px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pictureAndText {
+    margin-top: 147px;
   }
 }
 

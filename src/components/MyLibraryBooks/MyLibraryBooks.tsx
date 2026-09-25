@@ -30,13 +30,15 @@ export default function MyLibraryBooks() {
           <LibrarySelect status={status} setStatus={setStatus} />
         </div>
         {books.length > 0 ? (
-          books.map((book) => (
-            <LibraryBookCard
-              key={book._id}
-              {...book}
-              onClick={() => setSelectedBook(book)}
-            />
-          ))
+          <div className={css.bookList}>
+            {books.map((book) => (
+              <LibraryBookCard
+                key={book._id}
+                {...book}
+                onClick={() => setSelectedBook(book)}
+              />
+            ))}
+          </div>
         ) : (
           <div className={css.pictureAndText}>
             <div className={css.circle}>
