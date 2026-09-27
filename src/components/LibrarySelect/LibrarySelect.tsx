@@ -13,10 +13,11 @@ type LibraryProps = {
 
 export default function LibrarySelect({ status, setStatus }: LibraryProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const displayStatus = status ?? 'All books';
   return (
     <div className={css.select}>
       <button className={css.selectVariant} onClick={() => setIsOpen(!isOpen)}>
-        <span className={css.text}>{status}</span>
+        <span className={css.text}>{displayStatus}</span>
         {isOpen ? <IoIosArrowUp size={16} /> : <IoIosArrowDown size={16} />}
       </button>
 
