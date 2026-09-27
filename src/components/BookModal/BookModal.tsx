@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import css from './BookModal.module.css';
-import { addBook } from '../../services/api.js';
+import { addBook, getLibraryBooks } from '../../services/api.js';
 import { toast } from 'react-hot-toast';
 
 type BookModalProps = {
@@ -38,6 +38,14 @@ export default function BookModal({
     setIsAdding(true);
 
     try {
+      const books = await getLibraryBooks();
+      const alreadyExists = books.some(
+        (book) => book.title === title && book.author === author,
+      );
+      if (alreadyExists) {
+        toast.error('Such book already exists');
+        return;
+      }
       await addBook(id);
       onClose();
       onBookAdded();
