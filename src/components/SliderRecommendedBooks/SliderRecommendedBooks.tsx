@@ -49,10 +49,12 @@ export default function SliderRecommendedBooks() {
       </div>
 
       <div className={css.linkBlock}>
-        <Link to="/" className={css.link}>
+        <Link to="/recommended" className={css.link}>
           Home
         </Link>
-        <FaArrowRight />
+        <Link to="/recommended" className={css.link}>
+          <FaArrowRight />
+        </Link>
       </div>
 
       <BookModal
