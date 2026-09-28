@@ -1,45 +1,30 @@
 import { Link } from 'react-router-dom';
 import css from './SliderRecommendedBooks.module.css';
 import { FaArrowRight } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookModal from '../BookModal/BookModal.js';
-
-type Book = {
-  id: number;
-  title: string;
-  author: string;
-  image: string;
-  totalPages: number;
-};
+import { type GetBook, getBooks } from '../../services/api.js';
+import AddBookModal from '../AddBookModal/AddBookModal.js';
 
 export default function SliderRecommendedBooks() {
-  const books = [
-    {
-      id: 1,
-      title: 'Six doors',
-      author: 'Irene Rozdobudko',
-      image: '/recommended_book5.jpg',
-      totalPages: 765,
-    },
-    {
-      id: 2,
-      title: 'The Orphanage',
-      author: 'Serhiy Zhadan',
-      image: '/recommended_book6.jpg',
-      totalPages: 947,
-    },
-    {
-      id: 3,
-      title: 'Red',
-      author: 'Andriy Kokotyukha',
-      image: '/recommended_book7.jpg',
-      totalPages: 678,
-    },
-  ];
+  const [books, setBooks] = useState<GetBook[]>([]);
 
-  const [booksPerPage, setBooksPerPage] = useState(2);
+  const [selectedBook, setSelectedBook] = useState<GetBook | null>(null);
 
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
+  const [isAddBookModalOpen, setIsAddBookModalOpen] = useState(false);
+
+  useEffect(() => {
+    async function fetchBooks() {
+      const result = await getBooks({
+        author: '',
+        title: '',
+        page: 1,
+        limit: 3,
+      });
+      setBooks(result.results);
+    }
+    fetchBooks();
+  }, []);
 
   return (
     <div className={css.wrapperDescr}>
@@ -47,9 +32,9 @@ export default function SliderRecommendedBooks() {
         <h3 className={css.title}>Recommended books</h3>
         <div className={css.books}>
           {books.map((book) => (
-            <div key={book.id} className={css.bookCard}>
+            <div key={book._id} className={css.bookCard}>
               <img
-                src={book.image}
+                src={book.imageUrl}
                 alt={book.title}
                 className={css.image}
                 onClick={() => setSelectedBook(book)}
@@ -73,10 +58,16 @@ export default function SliderRecommendedBooks() {
       <BookModal
         isOpen={!!selectedBook}
         onClose={() => setSelectedBook(null)}
+        onBookAdded={() => setIsAddBookModalOpen(true)}
+        id={selectedBook?._id ?? ''}
         title={selectedBook?.title ?? ''}
         author={selectedBook?.author ?? ''}
-        image={selectedBook?.image ?? ''}
+        image={selectedBook?.imageUrl ?? ''}
         totalPages={selectedBook?.totalPages ?? 0}
+      />
+      <AddBookModal
+        isOpen={isAddBookModalOpen}
+        onClose={() => setIsAddBookModalOpen(false)}
       />
     </div>
   );
