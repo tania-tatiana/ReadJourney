@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import css from './MyLibraryBooks.module.css';
 import {
+  deleteLibraryBook,
   getLibraryBooks,
   type LibraryBook,
   type LibraryBooks,
@@ -8,6 +9,7 @@ import {
 } from '../../services/api.js';
 import LibrarySelect from '../LibrarySelect/LibrarySelect.js';
 import LibraryBookCard from '../LibraryBookCard/LibraryBookCard.js';
+import { toast } from 'react-hot-toast';
 
 export default function MyLibraryBooks() {
   const [status, setStatus] = useState<Status | undefined>(undefined);
@@ -21,6 +23,18 @@ export default function MyLibraryBooks() {
     }
     fetchBooks();
   }, [status]);
+
+  async function handleDelete(id: string) {
+    try {
+      await deleteLibraryBook(id);
+      setBooks((prev) => prev.filter((book) => book._id !== id));
+      toast.success('Book deleted');
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
+  }
 
   return (
     <>
@@ -36,6 +50,7 @@ export default function MyLibraryBooks() {
                 key={book._id}
                 {...book}
                 onClick={() => setSelectedBook(book)}
+                onDelete={() => handleDelete(book._id)}
               />
             ))}
           </div>

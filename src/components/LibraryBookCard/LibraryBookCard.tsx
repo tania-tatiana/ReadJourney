@@ -10,7 +10,6 @@ type LibraryBookType = {
 };
 
 export default function LibraryBookCard({
-  _id,
   title,
   author,
   imageUrl,
