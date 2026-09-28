@@ -260,3 +260,19 @@ export async function addLibraryBook(data: AddBookData) {
   const result = (await response.json()) as AddLibraryBookResponse;
   return result;
 }
+
+export async function deleteLibraryBook(id: string) {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/books/remove/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  return await response.json();
+}
