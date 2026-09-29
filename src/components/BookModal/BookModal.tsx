@@ -92,7 +92,7 @@ export default function BookModal({
             onClick={handleAddBook}
             disabled={isAdding}
           >
-            Add book
+            Add to library
           </button>
         </div>
       </div>
