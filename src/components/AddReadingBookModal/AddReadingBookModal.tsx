@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import css from './BookModal.module.css';
-import { toast } from 'react-hot-toast';
+import css from './AddReadingBookModal.module.css';
 
 type AddReadingBookModalProps = {
   isOpen: boolean;
