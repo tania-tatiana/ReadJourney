@@ -276,3 +276,23 @@ export async function deleteLibraryBook(id: string) {
 
   return await response.json();
 }
+
+export async function startReading() {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(``, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, page }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  return await response.json();
+}
