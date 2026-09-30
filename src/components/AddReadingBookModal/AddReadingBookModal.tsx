@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import css from './BookModal.module.css';
 import { toast } from 'react-hot-toast';
 
-type BookModalProps = {
+type AddReadingBookModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onBookAdded: () => void;
+  onStartReading: () => void;
   id: string;
   title: string;
   author: string;
@@ -16,35 +16,14 @@ type BookModalProps = {
 export default function AddReadingBookModal({
   isOpen,
   onClose,
-  onBookAdded,
+  onStartReading,
   id,
   title,
   author,
   image,
   totalPages,
-}: BookModalProps) {
-  const [isAdding, setIsAdding] = useState(false);
-
-  async function handleAddBook() {
-    if (isAdding) {
-      return;
-    }
-
-    if (!id) {
-      return null;
-    }
-
-    setIsAdding(true);
-
-    try {
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      }
-    } finally {
-      setIsAdding(false);
-    }
-  }
+}: AddReadingBookModalProps) {
+  const [isStarting, setIsStarting] = useState(false);
 
   useEffect(() => {
     if (!isOpen) {
@@ -77,8 +56,8 @@ export default function AddReadingBookModal({
           <button
             type="submit"
             className={css.button}
-            onClick={handleAddBook}
-            disabled={isAdding}
+            onClick={onStartReading}
+            disabled={isStarting}
           >
             Start reading
           </button>

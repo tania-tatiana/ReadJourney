@@ -10,11 +10,14 @@ import {
 import LibrarySelect from '../LibrarySelect/LibrarySelect.js';
 import LibraryBookCard from '../LibraryBookCard/LibraryBookCard.js';
 import { toast } from 'react-hot-toast';
+import AddReadingBookModal from '../AddReadingBookModal/AddReadingBookModal.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyLibraryBooks() {
   const [status, setStatus] = useState<Status | undefined>(undefined);
   const [books, setBooks] = useState<LibraryBooks>([]);
   const [selectedBook, setSelectedBook] = useState<LibraryBook | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchBooks() {
@@ -34,6 +37,13 @@ export default function MyLibraryBooks() {
         toast.error(error.message);
       }
     }
+  }
+
+  function handleStartReading() {
+    if (!selectedBook) {
+      return;
+    }
+    navigate('/reading');
   }
 
   return (
@@ -67,6 +77,16 @@ export default function MyLibraryBooks() {
           </div>
         )}
       </div>
+      <AddReadingBookModal
+        isOpen={!!selectedBook}
+        onClose={() => setSelectedBook(null)}
+        onStartReading={handleStartReading}
+        id={selectedBook?._id ?? ''}
+        title={selectedBook?.title ?? ''}
+        author={selectedBook?.author ?? ''}
+        image={selectedBook?.imageUrl ?? ''}
+        totalPages={selectedBook?.totalPages ?? 0}
+      />
     </>
   );
 }
