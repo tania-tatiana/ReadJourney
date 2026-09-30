@@ -277,10 +277,10 @@ export async function deleteLibraryBook(id: string) {
   return await response.json();
 }
 
-export async function startReading() {
+export async function startReading(id: string, page: number) {
   const token = localStorage.getItem('token');
 
-  const response = await fetch(``, {
+  const response = await fetch(`${baseURL}/books/reading/start`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
