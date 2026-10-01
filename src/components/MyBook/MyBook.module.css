@@ -77,13 +77,11 @@
 
 .cover {
   border-radius: 8px;
-  width: 137px;
   height: 208px;
 }
 
 @media (min-width: 768px) {
   .cover {
-    width: 169px;
     height: 256px;
   }
 }
