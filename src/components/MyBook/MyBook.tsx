@@ -1,23 +1,21 @@
+import type { LibraryBook } from '../../services/api.js';
 import css from './MyBook.module.css';
 
 type MyBookType = {
   isReading: boolean;
   setIsReading: (value: boolean) => void;
+  book: LibraryBook;
 };
 
-export default function MyBook({ isReading, setIsReading }: MyBookType) {
+export default function MyBook({ isReading, setIsReading, book }: MyBookType) {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>My reading</h2>
       <div className={css.bookCard}>
-        <img
-          src="/recommended_book3.jpg"
-          alt="Galya without a head"
-          className={css.cover}
-        />
+        <img src={book.imageUrl} alt={book.title} className={css.cover} />
         <div className={css.titleAndAuthor}>
-          <h2 className={css.titleOfBook}>Galya without a head</h2>
-          <p className={css.author}>Lyuko Dashvar</p>
+          <h2 className={css.titleOfBook}>{book.title}</h2>
+          <p className={css.author}>{book.author}</p>
         </div>
       </div>
       <button className={css.button} onClick={() => setIsReading(!isReading)}>
