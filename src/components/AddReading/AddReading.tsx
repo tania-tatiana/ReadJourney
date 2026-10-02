@@ -2,13 +2,20 @@ import { useState } from 'react';
 import css from './AddReading.module.css';
 import { toast } from 'react-hot-toast';
 
-export default function AddReading() {
+type AddReadingProps = { totalPages: number | undefined };
+
+export default function AddReading({ totalPages }: AddReadingProps) {
   const [page, setPage] = useState('');
   function handleSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
     const pageNumber = Number(page);
     if (!Number.isInteger(pageNumber) || pageNumber < 1) {
       toast.error('Enter a valid page number');
+      return;
+    }
+
+    if (totalPages !== undefined && pageNumber > totalPages) {
+      toast.error(`The book has only ${totalPages} pages`);
       return;
     }
   }

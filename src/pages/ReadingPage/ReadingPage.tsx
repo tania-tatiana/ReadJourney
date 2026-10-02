@@ -16,7 +16,7 @@ export default function ReadingPage() {
   return (
     <div className={css.wrapper}>
       <Dashboard className={css.readingDashboard}>
-        <AddReading />
+        <AddReading totalPages={location?.state?.book.totalPages} />
         <Details isReading={isReading} />
       </Dashboard>
       <MyBook
