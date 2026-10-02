@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import css from './AddReading.module.css';
+import { toast } from 'react-hot-toast';
 
 export default function AddReading() {
   const [page, setPage] = useState('');
   function handleSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
-    console.log(page);
+    const pageNumber = Number(page);
+    if (!Number.isInteger(pageNumber) || pageNumber < 1) {
+      toast.error('Enter a valid page number');
+      return;
+    }
   }
   return (
     <div className={css.wrapper}>
