@@ -13,12 +13,18 @@ export default function ReadingPage() {
   const location = useLocation();
   console.log(location);
 
+  function handleReadingStarted() {
+    setIsReading(true);
+  }
+
   return (
     <div className={css.wrapper}>
       <Dashboard className={css.readingDashboard}>
         <AddReading
           totalPages={location?.state?.book.totalPages}
           bookId={location?.state?.book._id}
+          onReadingStarted={handleReadingStarted}
+          isReading={isReading}
         />
         <Details isReading={isReading} />
       </Dashboard>

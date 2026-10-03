@@ -6,9 +6,16 @@ import { startReading } from '../../services/api.js';
 type AddReadingProps = {
   totalPages: number | undefined;
   bookId: string | undefined;
+  onReadingStarted: () => void;
+  isReading: boolean;
 };
 
-export default function AddReading({ totalPages, bookId }: AddReadingProps) {
+export default function AddReading({
+  totalPages,
+  bookId,
+  onReadingStarted,
+  isReading,
+}: AddReadingProps) {
   const [page, setPage] = useState('');
   async function handleSubmit(event: React.FormEvent<HTMLElement>) {
     event.preventDefault();
@@ -30,6 +37,8 @@ export default function AddReading({ totalPages, bookId }: AddReadingProps) {
 
     try {
       await startReading(bookId, pageNumber);
+      onReadingStarted();
+      toast.success('Reading started!');
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -50,9 +59,15 @@ export default function AddReading({ totalPages, bookId }: AddReadingProps) {
           />
         </label>
 
-        <button type="submit" className={css.button}>
-          To start
-        </button>
+        {isReading ? (
+          <button type="submit" className={css.button}>
+            To stop
+          </button>
+        ) : (
+          <button type="submit" className={css.button}>
+            To start
+          </button>
+        )}
       </form>
     </div>
   );
