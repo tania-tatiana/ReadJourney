@@ -296,3 +296,22 @@ export async function startReading(id: string, page: number) {
 
   return await response.json();
 }
+
+export async function finishReading(id: string, page: number) {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/books/reading/finish`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id, page }),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+  return await response.json();
+}
