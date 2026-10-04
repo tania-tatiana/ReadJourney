@@ -38,7 +38,7 @@ export default function ReadingPage() {
         book={location.state?.book}
       />
 
-      {!isBookFinished && (
+      {isBookFinished && (
         <FinishBookModal onClose={() => setIsBookFinished(true)} />
       )}
     </div>
