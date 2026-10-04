@@ -11,10 +11,13 @@ export default function ReadingPage() {
   const [isReading, setIsReading] = useState(false);
   const [isBookFinished, setIsBookFinished] = useState(false);
   const location = useLocation();
-  console.log(location);
 
   function handleReadingStarted() {
     setIsReading(true);
+  }
+
+  function handleReadingFinished() {
+    setIsReading(false);
   }
 
   return (
@@ -24,6 +27,7 @@ export default function ReadingPage() {
           totalPages={location?.state?.book.totalPages}
           bookId={location?.state?.book._id}
           onReadingStarted={handleReadingStarted}
+          onReadingFinished={handleReadingFinished}
           isReading={isReading}
         />
         <Details isReading={isReading} />
