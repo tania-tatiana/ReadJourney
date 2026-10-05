@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddReading from '../../components/AddReading/AddReading.js';
 import Dashboard from '../../components/Dashboard/Dashboard.js';
 import Details from '../../components/Details/Details.js';
@@ -11,6 +11,10 @@ export default function ReadingPage() {
   const [isReading, setIsReading] = useState(false);
   const [isBookFinished, setIsBookFinished] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    console.log('isBookFinished changed:', isBookFinished);
+  }, [isBookFinished]);
 
   function handleReadingStarted() {
     setIsReading(true);
@@ -43,7 +47,11 @@ export default function ReadingPage() {
       />
 
       {isBookFinished && (
-        <FinishBookModal onClose={() => setIsBookFinished(true)} />
+        <FinishBookModal
+          onClose={() => {
+            setIsBookFinished(false);
+          }}
+        />
       )}
     </div>
   );
