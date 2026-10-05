@@ -202,18 +202,12 @@ export async function addBook(id: string) {
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  console.log('STATUS:', response.status);
-  console.log('OK:', response.ok);
-
   if (!response.ok) {
     const error = await response.json();
-    console.log('ADD BOOK ERROR:', error);
     throw Error(error.message);
   }
 
   const result = (await response.json()) as AddBookResponse;
-
-  console.log('ADD BOOK RESPONSE:', result);
 
   return result;
 }
