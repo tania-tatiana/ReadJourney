@@ -16,8 +16,12 @@ export default function ReadingPage() {
     setIsReading(true);
   }
 
-  function handleReadingFinished() {
+  function handleReadingFinished(isFinished: boolean) {
     setIsReading(false);
+
+    if (isFinished) {
+      setIsBookFinished(true);
+    }
   }
 
   return (

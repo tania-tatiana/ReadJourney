@@ -7,7 +7,7 @@ type AddReadingProps = {
   totalPages: number | undefined;
   bookId: string | undefined;
   onReadingStarted: () => void;
-  onReadingFinished: () => void;
+  onReadingFinished: (isFinished: boolean) => void;
   isReading: boolean;
 };
 
@@ -50,7 +50,7 @@ export default function AddReading({
     } else {
       try {
         await finishReading(bookId, pageNumber);
-        onReadingFinished();
+        onReadingFinished(pageNumber === totalPages);
         toast.success('Reading stopped!');
       } catch (error) {
         if (error instanceof Error) {
