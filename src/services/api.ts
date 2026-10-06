@@ -56,6 +56,15 @@ export type GetBooksParams = GetBooksFilters & {
 
 export type Status = 'unread' | 'in-progress' | 'done';
 
+export type ReadingProgress = {
+  startPage: number;
+  startReading: string;
+  finishPage: number;
+  finishReading: string;
+  speed: number;
+  status: string;
+};
+
 export type AddBookResponse = {
   _id: string;
   title: string;
@@ -65,7 +74,7 @@ export type AddBookResponse = {
   status: Status;
   recommend: boolean;
   owner: string;
-  progress: unknown[];
+  progress: ReadingProgress[];
   createdAt: string;
   updatedAt: string;
 };
@@ -73,7 +82,7 @@ export type AddBookResponse = {
 export type LibraryBook = GetBook & {
   status: Status;
   owner: string;
-  progress: object[];
+  progress: ReadingProgress[];
 };
 
 export type LibraryBooks = LibraryBook[];
@@ -92,7 +101,7 @@ export type AddLibraryBookResponse = {
   status: Status;
   owner: string;
   _id: string;
-  progress: unknown[];
+  progress: ReadingProgress[];
 };
 
 const baseURL = 'https://readjourney.b.goit.study/api';
