@@ -38,7 +38,7 @@ export default function ReadingPage() {
           onReadingFinished={handleReadingFinished}
           isReading={isReading}
         />
-        <Details isReading={isReading} />
+        <Details isReading={isReading} book={location.state?.book} />
       </Dashboard>
       <MyBook
         isReading={isReading}
