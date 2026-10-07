@@ -13,6 +13,17 @@ export default function ReadingPage() {
   const [isBookFinished, setIsBookFinished] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const book = location.state?.book;
+    if (!book) return;
+
+    const activeProgress = book.progress.some(
+      (item) => item.status === 'active',
+    );
+
+    setIsReading(activeProgress);
+  }, [location.state]);
+
   function handleReadingStarted() {
     setIsReading(true);
   }
@@ -21,13 +32,13 @@ export default function ReadingPage() {
     const book = location.state?.book;
     if (!book) return;
 
-    // const activeProgress = book.progress.find(
-    //   (item) => item.status === 'active',
-    // );
+    const activeProgress = book.progress.find(
+      (item) => item.status === 'active',
+    );
 
-    // if (activeProgress) {
-    //   return;
-    // }
+    if (activeProgress) {
+      return;
+    }
 
     const lastProgress = book.progress.at(-1);
     const startPage = lastProgress ? lastProgress.finishPage : 1;
