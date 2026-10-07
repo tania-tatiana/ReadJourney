@@ -17,7 +17,11 @@ export default function Details({ isReading, book }: DetailsType) {
     return <Descr />;
   }
   return activeButton === 'diary' ? (
-    <Diary setActiveButton={setActiveButton} />
+    <Diary
+      setActiveButton={setActiveButton}
+      progress={book.progress}
+      totalPages={book.totalPages}
+    />
   ) : (
     <Statistics setActiveButton={setActiveButton} />
   );

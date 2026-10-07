@@ -3,11 +3,11 @@ import css from './MyBook.module.css';
 
 type MyBookType = {
   isReading: boolean;
-  setIsReading: (value: boolean) => void;
+  onQuickStart: () => void;
   book: LibraryBook;
 };
 
-export default function MyBook({ isReading, setIsReading, book }: MyBookType) {
+export default function MyBook({ isReading, onQuickStart, book }: MyBookType) {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>My reading</h2>
@@ -18,7 +18,7 @@ export default function MyBook({ isReading, setIsReading, book }: MyBookType) {
           <p className={css.author}>{book.author}</p>
         </div>
       </div>
-      <button className={css.button} onClick={() => setIsReading(!isReading)}>
+      <button className={css.button} onClick={onQuickStart}>
         {isReading ? (
           <svg
             width="40"

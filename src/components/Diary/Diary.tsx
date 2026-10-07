@@ -1,36 +1,23 @@
+import { finishReading, type ReadingProgress } from '../../services/api.js';
 import css from './Diary.module.css';
 
 type DiaryType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
+  progress: ReadingProgress[];
+  totalPages: number;
 };
 
-const totalPages = 400;
+export default function Diary({
+  setActiveButton,
+  progress,
+  totalPages,
+}: DiaryType) {
+  const getReadingTime = (start: string, finish: string) => {
+    const startTime = new Date(start).getTime();
+    const finishTime = new Date(finish).getTime();
 
-const diary = [
-  {
-    finishPage: 45,
-    startPage: 3,
-    speed: 45,
-    status: 'inactive',
-
-    createdAt: '2023-10-21',
-
-    time: 29,
-  },
-
-  {
-    finishPage: 87,
-    startPage: 46,
-    speed: 50,
-    status: 'inactive',
-
-    createdAt: '2023-10-19',
-
-    time: 40,
-  },
-];
-
-export default function Diary({ setActiveButton }: DiaryType) {
+    return finishTime - startTime;
+  };
   return (
     <div className={css.wrapper}>
       <div className={css.firstLine}>
@@ -102,7 +89,7 @@ export default function Diary({ setActiveButton }: DiaryType) {
       </div>
       <div className={css.content}>
         <ul className={css.list}>
-          {diary.map((item) => (
+          {progress.map((item) => (
             <li className={css.item}>
               <div className={css.dairyFirstLine}>
                 <div className={css.dateLine}>
@@ -123,7 +110,7 @@ export default function Diary({ setActiveButton }: DiaryType) {
                       fill="#1F1F1F"
                     />
                   </svg>
-                  <p className={css.date}>{item.createdAt}</p>
+                  <p className={css.date}>{item.startReading}</p>
                 </div>
                 <p className={css.pages}>
                   {item.finishPage - item.startPage} pages
@@ -138,7 +125,13 @@ export default function Diary({ setActiveButton }: DiaryType) {
                     ).toFixed(1)}
                     %
                   </p>
-                  <p className={css.time}>{item.time} minutes</p>
+                  <p className={css.time}>
+                    {Math.round(
+                      getReadingTime(item.startReading, item.finishReading) /
+                        60000,
+                    )}{' '}
+                    minutes
+                  </p>
                 </div>
                 <div className={css.scheduleAndSpeedAndButton}>
                   <div className={css.scheduleAndSpeed}>
