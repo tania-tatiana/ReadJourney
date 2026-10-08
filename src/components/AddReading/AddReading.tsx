@@ -9,6 +9,7 @@ type AddReadingProps = {
   onReadingStarted: () => void;
   onReadingFinished: (isFinished: boolean) => void;
   isReading: boolean;
+  onPageChange: (page: string) => void;
 };
 
 export default function AddReading({
@@ -17,6 +18,7 @@ export default function AddReading({
   onReadingStarted,
   onReadingFinished,
   isReading,
+  onPageChange,
 }: AddReadingProps) {
   const [page, setPage] = useState('');
   async function handleSubmit(event: React.FormEvent<HTMLElement>) {
@@ -69,7 +71,10 @@ export default function AddReading({
             type="text"
             className={css.input}
             value={page}
-            onChange={(event) => setPage(event.target.value)}
+            onChange={(event) => {
+              setPage(event.target.value);
+              onPageChange(event.target.value);
+            }}
           />
         </label>
 

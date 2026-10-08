@@ -6,22 +6,27 @@ import MyBook from '../../components/MyBook/MyBook.js';
 import css from './ReadingPage.module.css';
 import FinishBookModal from '../../components/FinishBookModal/FinishBookModal.js';
 import { useLocation } from 'react-router-dom';
-import { startReading } from '../../services/api.js';
+import {
+  finishReading,
+  startReading,
+  type LibraryBook,
+} from '../../services/api.js';
 
 export default function ReadingPage() {
   const [isReading, setIsReading] = useState(false);
+  const [currentPage, setCurrentPage] = useState('');
   const [isBookFinished, setIsBookFinished] = useState(false);
   const location = useLocation();
+  const book = location.state?.book as LibraryBook | undefined;
 
   useEffect(() => {
-    const book = location.state?.book;
     if (!book) return;
 
-    const activeProgress = book.progress.some(
+    const hasActiveProgress = book.progress.some(
       (item) => item.status === 'active',
     );
 
-    setIsReading(activeProgress);
+    setIsReading(hasActiveProgress);
   }, [location.state]);
 
   function handleReadingStarted() {
@@ -29,14 +34,14 @@ export default function ReadingPage() {
   }
 
   async function handleQuickStart() {
-    const book = location.state?.book;
     if (!book) return;
 
-    const activeProgress = book.progress.find(
+    const hasActiveProgress = book.progress.find(
       (item) => item.status === 'active',
     );
 
-    if (activeProgress) {
+    if (hasActiveProgress) {
+      await finishReading(book._id, Number(currentPage));
       return;
     }
 
@@ -66,6 +71,7 @@ export default function ReadingPage() {
           onReadingStarted={handleReadingStarted}
           onReadingFinished={handleReadingFinished}
           isReading={isReading}
+          onPageChange={setCurrentPage}
         />
         <Details isReading={isReading} book={location.state?.book} />
       </Dashboard>
