@@ -11,6 +11,7 @@ import {
   startReading,
   type LibraryBook,
 } from '../../services/api.js';
+import { toast } from 'react-hot-toast';
 
 export default function ReadingPage() {
   const [isReading, setIsReading] = useState(false);
@@ -36,12 +37,38 @@ export default function ReadingPage() {
   async function handleQuickStart() {
     if (!book) return;
 
-    const hasActiveProgress = book.progress.find(
+    const pageNumber = Number(currentPage);
+
+    if (!Number.isInteger(pageNumber) || pageNumber < 1) {
+      toast.error('Enter a valid page number');
+      return;
+    }
+
+    if (pageNumber > book.totalPages) {
+      toast.error(`The book has only ${book.totalPages} pages`);
+      return;
+    }
+
+    const hasActiveProgress = book.progress.some(
       (item) => item.status === 'active',
     );
 
-    if (hasActiveProgress) {
-      await finishReading(book._id, Number(currentPage));
+    console.log('isReading:', isReading);
+    console.log('active progress:', hasActiveProgress);
+
+    if (isReading) {
+      try {
+        // await finishReading(book._id, pageNumber);
+        const result = await finishReading(book._id, pageNumber);
+        console.log('Finished reading response:', result);
+
+        handleReadingFinished(pageNumber === book.totalPages);
+        toast.success('Reading stopped!');
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message);
+        }
+      }
       return;
     }
 
