@@ -8,6 +8,7 @@ import FinishBookModal from '../../components/FinishBookModal/FinishBookModal.js
 import { useLocation } from 'react-router-dom';
 import {
   finishReading,
+  getLibraryBooks,
   startReading,
   type LibraryBook,
 } from '../../services/api.js';
@@ -37,6 +38,18 @@ export default function ReadingPage() {
   async function handleQuickStart() {
     if (!book) return;
 
+    const libraryBooks = await getLibraryBooks();
+
+    const currentBook = libraryBooks.find((item) => item._id === book._id);
+
+    if (!currentBook) {
+      toast.error('Book not found in your library');
+      return;
+    }
+
+    console.log('Актуальна книга:', currentBook);
+    console.log('Історія читання:', currentBook.progress);
+
     const pageNumber = Number(currentPage);
 
     if (!Number.isInteger(pageNumber) || pageNumber < 1) {
@@ -58,9 +71,9 @@ export default function ReadingPage() {
 
     if (isReading) {
       try {
-        // await finishReading(book._id, pageNumber);
-        const result = await finishReading(book._id, pageNumber);
-        console.log('Finished reading response:', result);
+        await finishReading(book._id, pageNumber);
+        // const result = await finishReading(book._id, pageNumber);
+        // console.log('Finished reading response:', result);
 
         handleReadingFinished(pageNumber === book.totalPages);
         toast.success('Reading stopped!');
@@ -72,12 +85,18 @@ export default function ReadingPage() {
       return;
     }
 
-    const lastProgress = book.progress.at(-1);
+    const lastProgress = currentBook.progress
+      .filter((item) => item.status !== 'active' && item.finishPage > 0)
+      .at(-1);
     const startPage = lastProgress ? lastProgress.finishPage : 1;
+
+    console.log('Останній запис:', lastProgress);
+    console.log('Сторінка для старту:', startPage);
 
     console.log('Quick start:', book.progress);
 
     await startReading(book._id, startPage);
+    console.log('Читання успішно розпочато');
     handleReadingStarted();
   }
 

@@ -10,6 +10,7 @@ type AddReadingProps = {
   onReadingFinished: (isFinished: boolean) => void;
   isReading: boolean;
   onPageChange: (page: string) => void;
+  onStartReading: (pageNumber: number) => Promise<void>;
 };
 
 export default function AddReading({
@@ -19,6 +20,7 @@ export default function AddReading({
   onReadingFinished,
   isReading,
   onPageChange,
+  onStartReading,
 }: AddReadingProps) {
   const [page, setPage] = useState('');
   async function handleSubmit(event: React.FormEvent<HTMLElement>) {
