@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import css from './AddReading.module.css';
 import { toast } from 'react-hot-toast';
-import { finishReading, startReading } from '../../services/api.js';
+import { finishReading } from '../../services/api.js';
 
 type AddReadingProps = {
   totalPages: number | undefined;
   bookId: string | undefined;
-  onReadingStarted: () => void;
+  onStartReading: (pageNumber: number) => Promise<void>;
   onReadingFinished: (isFinished: boolean) => void;
   isReading: boolean;
   onPageChange: (page: string) => void;
-  onStartReading: (pageNumber: number) => Promise<void>;
 };
 
 export default function AddReading({
   totalPages,
   bookId,
-  onReadingStarted,
   onReadingFinished,
   isReading,
   onPageChange,
@@ -42,15 +40,7 @@ export default function AddReading({
     }
 
     if (!isReading) {
-      try {
-        await startReading(bookId, pageNumber);
-        onReadingStarted();
-        toast.success('Reading started!');
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message);
-        }
-      }
+      await onStartReading(pageNumber);
     } else {
       try {
         await finishReading(bookId, pageNumber);

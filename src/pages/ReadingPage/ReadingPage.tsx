@@ -31,8 +31,19 @@ export default function ReadingPage() {
     setIsReading(hasActiveProgress);
   }, [location.state]);
 
-  function handleReadingStarted() {
-    setIsReading(true);
+  async function handleStartReading(pageNumber: number): Promise<void> {
+    if (!book) {
+      return;
+    }
+    try {
+      await startReading(book._id, pageNumber);
+      setIsReading(true);
+      toast.success('Reading started!');
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   }
 
   async function handleQuickStart() {
@@ -50,18 +61,6 @@ export default function ReadingPage() {
     console.log('Актуальна книга:', currentBook);
     console.log('Історія читання:', currentBook.progress);
 
-    const pageNumber = Number(currentPage);
-
-    if (!Number.isInteger(pageNumber) || pageNumber < 1) {
-      toast.error('Enter a valid page number');
-      return;
-    }
-
-    if (pageNumber > book.totalPages) {
-      toast.error(`The book has only ${book.totalPages} pages`);
-      return;
-    }
-
     const hasActiveProgress = book.progress.some(
       (item) => item.status === 'active',
     );
@@ -70,6 +69,17 @@ export default function ReadingPage() {
     console.log('active progress:', hasActiveProgress);
 
     if (isReading) {
+      const pageNumber = Number(currentPage);
+
+      if (!Number.isInteger(pageNumber) || pageNumber < 1) {
+        toast.error('Enter a valid page number');
+        return;
+      }
+
+      if (pageNumber > book.totalPages) {
+        toast.error(`The book has only ${book.totalPages} pages`);
+        return;
+      }
       try {
         await finishReading(book._id, pageNumber);
         // const result = await finishReading(book._id, pageNumber);
@@ -95,9 +105,7 @@ export default function ReadingPage() {
 
     console.log('Quick start:', book.progress);
 
-    await startReading(book._id, startPage);
-    console.log('Читання успішно розпочато');
-    handleReadingStarted();
+    await handleStartReading(startPage);
   }
 
   function handleReadingFinished(isFinished: boolean) {
@@ -114,7 +122,7 @@ export default function ReadingPage() {
         <AddReading
           totalPages={location?.state?.book.totalPages}
           bookId={location?.state?.book._id}
-          onReadingStarted={handleReadingStarted}
+          onStartReading={handleStartReading}
           onReadingFinished={handleReadingFinished}
           isReading={isReading}
           onPageChange={setCurrentPage}
