@@ -90,7 +90,7 @@ export default function Diary({
       <div className={css.content}>
         <ul className={css.list}>
           {progress.map((item) => (
-            <li className={css.item}>
+            <li className={css.item} key={item.speed}>
               <div className={css.dairyFirstLine}>
                 <div className={css.dateLine}>
                   <svg
@@ -145,7 +145,7 @@ export default function Diary({
                       <path
                         d="M43.5625 1L0.5625 6.96493V18H43.5625V1Z"
                         fill="#30B94D"
-                        fill-opacity="0.2"
+                        fillOpacity="0.2"
                       />
                       <rect
                         width="43.5143"
