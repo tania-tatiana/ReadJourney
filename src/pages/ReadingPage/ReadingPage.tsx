@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import AddReading from '../../components/AddReading/AddReading.js';
 import Dashboard from '../../components/Dashboard/Dashboard.js';
 import Details from '../../components/Details/Details.js';
 import MyBook from '../../components/MyBook/MyBook.js';
 import css from './ReadingPage.module.css';
 import FinishBookModal from '../../components/FinishBookModal/FinishBookModal.js';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {
   finishReading,
   getLibraryBooks,
@@ -15,27 +15,65 @@ import {
 import { toast } from 'react-hot-toast';
 
 export default function ReadingPage() {
-  const [isReading, setIsReading] = useState(false);
+  const location = useLocation();
+  const { bookId } = useParams();
+
+  const initialBook = location.state?.book as LibraryBook | undefined;
+
+  const [book, setBook] = useState<LibraryBook | undefined>(initialBook);
+
+  const [isReading, setIsReading] = useState(
+    () =>
+      initialBook?.progress.some((item) => item.status === 'active') ?? false,
+  );
   const [currentPage, setCurrentPage] = useState('');
   const [isBookFinished, setIsBookFinished] = useState(false);
-  const location = useLocation();
-  const book = location.state?.book as LibraryBook | undefined;
 
   useEffect(() => {
-    if (!book) return;
+    if (!bookId) return;
 
-    const hasActiveProgress = book.progress.some(
-      (item) => item.status === 'active',
-    );
+    let isCancelled = false;
 
-    setIsReading(hasActiveProgress);
-  }, [location.state]);
+    async function loadBook() {
+      try {
+        const libraryBooks = await getLibraryBooks();
+        const currentBook = libraryBooks.find((item) => item._id === bookId);
+
+        if (!currentBook) {
+          if (!isCancelled) {
+            setBook(undefined);
+            toast.error('Book not found in your library');
+          }
+          return;
+        }
+
+        if (isCancelled) return;
+
+        setBook(currentBook);
+        setIsReading(
+          currentBook.progress.some((item) => item.status == 'active'),
+        );
+      } catch (error) {
+        if (!isCancelled && error instanceof Error) {
+          toast.error(error.message);
+        }
+      }
+    }
+
+    void loadBook();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [bookId]);
 
   async function handleStartReading(pageNumber: number): Promise<void> {
     if (!book) return;
 
     try {
       const updatedBook = await startReading(book._id, pageNumber);
+
+      setBook(updatedBook);
 
       setIsReading(
         updatedBook.progress.some((item) => item.status === 'active'),
@@ -53,6 +91,9 @@ export default function ReadingPage() {
 
     try {
       const updatedBook = await finishReading(book._id, pageNumber);
+
+      setBook(updatedBook);
+
       setIsReading(
         updatedBook.progress.some((item) => item.status === 'active'),
       );
@@ -113,20 +154,22 @@ export default function ReadingPage() {
     <div className={css.wrapper}>
       <Dashboard className={css.readingDashboard}>
         <AddReading
-          totalPages={location?.state?.book.totalPages}
-          bookId={location?.state?.book._id}
+          totalPages={book?.totalPages}
+          bookId={book?._id}
           onStartReading={handleStartReading}
           onStopReading={handleStopReading}
           isReading={isReading}
           onPageChange={setCurrentPage}
         />
-        <Details isReading={isReading} book={location.state?.book} />
+        {book && <Details isReading={isReading} book={book} />}
       </Dashboard>
-      <MyBook
-        isReading={isReading}
-        onQuickStart={handleQuickStart}
-        book={location.state?.book}
-      />
+      {book && (
+        <MyBook
+          isReading={isReading}
+          onQuickStart={handleQuickStart}
+          book={book}
+        />
+      )}
 
       {isBookFinished && (
         <FinishBookModal

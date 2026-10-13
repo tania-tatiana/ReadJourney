@@ -43,7 +43,7 @@ export default function MyLibraryBooks() {
     if (!selectedBook) {
       return;
     }
-    navigate('/reading', { state: { book: selectedBook } });
+    navigate(`/reading/${selectedBook._id}`, { state: { book: selectedBook } });
   }
 
   return (
