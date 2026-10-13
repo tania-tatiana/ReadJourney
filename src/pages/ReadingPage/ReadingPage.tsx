@@ -56,7 +56,7 @@ export default function ReadingPage() {
       setIsReading(
         updatedBook.progress.some((item) => item.status === 'active'),
       );
-      // handleReadingFinished(pageNumber === book.totalPages);
+      handleReadingFinished(pageNumber === book.totalPages);
       toast.success('Reading stopped!');
     } catch (error) {
       if (error instanceof Error) {

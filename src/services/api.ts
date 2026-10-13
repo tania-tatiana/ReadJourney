@@ -280,7 +280,10 @@ export async function deleteLibraryBook(id: string) {
   return await response.json();
 }
 
-export async function startReading(id: string, page: number) {
+export async function startReading(
+  id: string,
+  page: number,
+): Promise<LibraryBook> {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/books/reading/start`, {
@@ -300,7 +303,10 @@ export async function startReading(id: string, page: number) {
   return await response.json();
 }
 
-export async function finishReading(id: string, page: number) {
+export async function finishReading(
+  id: string,
+  page: number,
+): Promise<LibraryBook> {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/books/reading/finish`, {
