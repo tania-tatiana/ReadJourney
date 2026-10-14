@@ -137,7 +137,7 @@ export default function ReadingPage() {
     const lastProgress = currentBook.progress
       .filter((item) => item.status !== 'active' && item.finishPage > 0)
       .at(-1);
-    const startPage = lastProgress ? lastProgress.finishPage : 1;
+    const startPage = lastProgress ? lastProgress.finishPage + 1 : 1;
 
     await handleStartReading(startPage);
   }

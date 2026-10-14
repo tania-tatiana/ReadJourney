@@ -23,6 +23,6 @@ export default function Details({ isReading, book }: DetailsType) {
       totalPages={book.totalPages}
     />
   ) : (
-    <Statistics setActiveButton={setActiveButton} />
+    <Statistics setActiveButton={setActiveButton} book={book} />
   );
 }

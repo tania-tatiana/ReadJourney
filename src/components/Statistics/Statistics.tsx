@@ -1,15 +1,38 @@
-import { Link } from 'react-router-dom';
 import css from './Statistics.module.css';
+import type { LibraryBook } from '../../services/api.js';
 
 type StatisticsType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
+  book: LibraryBook;
 };
 
-export default function Statistics({ setActiveButton }: StatisticsType) {
-  const progress = 19.14;
+export default function Statistics({ setActiveButton, book }: StatisticsType) {
+  console.table(
+    book.progress.map((item, index) => ({
+      index,
+      status: item.status,
+      startPage: item.startPage,
+      finishPage: item.finishPage,
+      countedPages:
+        item.status === 'active'
+          ? 0
+          : Math.max(0, item.finishPage - item.startPage + 1),
+    })),
+  );
+
+  const pageRead = book.progress.reduce((total, item) => {
+    if (item.status === 'active') {
+      return total;
+    }
+    return total + Math.max(0, item.finishPage - item.startPage + 1);
+  }, 0);
+
+  const progress =
+    book.totalPages > 0 ? Math.min((pageRead / book.totalPages) * 100, 100) : 0;
   const radius = 49;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
+
   return (
     <div className={css.wrapper}>
       <div className={css.firstLine}>
@@ -53,7 +76,7 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_18738_4815)">
+              <g clipPath="url(#clip0_18738_4815)">
                 <path
                   opacity="0.8"
                   d="M11.4663 9.33336C11.651 9.33336 11.7433 9.33336 11.8182 9.37436C11.8799 9.40819 11.9374 9.4717 11.9649 9.5365C11.9982 9.61506 11.9898 9.69865 11.973 9.86582C11.8861 10.7325 11.5878 11.5677 11.1008 12.2964C10.5148 13.1735 9.68186 13.857 8.70732 14.2607C7.73278 14.6644 6.66043 14.77 5.62586 14.5642C4.5913 14.3584 3.64099 13.8505 2.89511 13.1046C2.14923 12.3587 1.64128 11.4084 1.43549 10.3738C1.2297 9.33927 1.33532 8.26692 1.73899 7.29238C2.14265 6.31784 2.82624 5.48489 3.7033 4.89885C4.43205 4.41192 5.26718 4.11363 6.13388 4.02667C6.30105 4.00989 6.38464 4.00151 6.4632 4.03484C6.528 4.06233 6.59152 4.11979 6.62534 4.18152C6.66634 4.25636 6.66634 4.34869 6.66634 4.53336V8.80002C6.66634 8.98671 6.66634 9.08005 6.70268 9.15136C6.73463 9.21408 6.78563 9.26507 6.84835 9.29703C6.91965 9.33336 7.01299 9.33336 7.19968 9.33336H11.4663Z"
@@ -79,13 +102,11 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
           </button>
         </div>
       </div>
-      {window.innerWidth >= 1440 && (
-        <p className={css.description}>
-          Each page, each chapter is a new round of knowledge, a new step
-          towards understanding. By rewriting statistics, we create our own
-          reading history.
-        </p>
-      )}
+      <p className={css.description}>
+        Each page, each chapter is a new round of knowledge, a new step towards
+        understanding. By rewriting statistics, we create our own reading
+        history.
+      </p>
       <div className={css.content}>
         <div className={css.progressCircle}>
           <svg className={css.progressSvg} viewBox="0 0 116 116">
@@ -112,9 +133,9 @@ export default function Statistics({ setActiveButton }: StatisticsType) {
         <div className={css.wrapperSecondLine}>
           <div className={css.point}></div>
           <div className={css.textWrapper}>
-            <p className={css.percent}>19.14%</p>
+            <p className={css.percent}>{progress.toFixed(1)}%</p>
 
-            <p className={css.readBook}>171 pages read</p>
+            <p className={css.readBook}>{pageRead} pages read</p>
           </div>
         </div>
       </div>
