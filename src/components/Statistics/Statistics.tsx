@@ -20,15 +20,15 @@ export default function Statistics({ setActiveButton, book }: StatisticsType) {
     })),
   );
 
-  const pageRead = book.progress.reduce((total, item) => {
-    if (item.status === 'active') {
-      return total;
-    }
-    return total + Math.max(0, item.finishPage - item.startPage + 1);
-  }, 0);
+  const lastReadPage = Math.max(
+    0,
+    ...book.progress.map((item) => item.finishPage),
+  );
 
   const progress =
-    book.totalPages > 0 ? Math.min((pageRead / book.totalPages) * 100, 100) : 0;
+    book.totalPages > 0
+      ? Math.min((lastReadPage / book.totalPages) * 100, 100)
+      : 0;
   const radius = 49;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
@@ -135,7 +135,7 @@ export default function Statistics({ setActiveButton, book }: StatisticsType) {
           <div className={css.textWrapper}>
             <p className={css.percent}>{progress.toFixed(1)}%</p>
 
-            <p className={css.readBook}>{pageRead} pages read</p>
+            <p className={css.readBook}>{lastReadPage} pages read</p>
           </div>
         </div>
       </div>
