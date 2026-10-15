@@ -20,6 +20,14 @@ export default function Statistics({ setActiveButton, book }: StatisticsType) {
     })),
   );
 
+  // const pagesRead = book.progress.reduce((total, item) => {
+  //   if (item.status === 'active') {
+  //     return total;
+  //   }
+
+  //   return total + Math.max(0, item.finishPage - item.startPage + 1);
+  // }, 0);
+
   const lastReadPage = Math.max(
     0,
     ...book.progress.map((item) => item.finishPage),
