@@ -7,6 +7,7 @@ import css from './ReadingPage.module.css';
 import FinishBookModal from '../../components/FinishBookModal/FinishBookModal.js';
 import { useLocation, useParams } from 'react-router-dom';
 import {
+  deleteReading,
   finishReading,
   getLibraryBooks,
   startReading,
@@ -150,6 +151,28 @@ export default function ReadingPage() {
     }
   }
 
+  async function handleReadingDelete(readingId: string): Promise<void> {
+    if (!book) return;
+    try {
+      await deleteReading(book?._id, readingId);
+      setBook((currentBook) =>
+        currentBook
+          ? {
+              ...currentBook,
+              progress: currentBook.progress.filter(
+                (item) => item._id !== readingId,
+              ),
+            }
+          : currentBook,
+      );
+      toast.success('Reading record deleted!');
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
+  }
+
   return (
     <div className={css.wrapper}>
       <Dashboard className={css.readingDashboard}>
@@ -161,7 +184,13 @@ export default function ReadingPage() {
           isReading={isReading}
           onPageChange={setCurrentPage}
         />
-        {book && <Details isReading={isReading} book={book} />}
+        {book && (
+          <Details
+            isReading={isReading}
+            book={book}
+            onDeleteReading={handleReadingDelete}
+          />
+        )}
       </Dashboard>
       {book && (
         <MyBook

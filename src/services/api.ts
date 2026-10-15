@@ -57,6 +57,7 @@ export type GetBooksParams = GetBooksFilters & {
 export type Status = 'unread' | 'in-progress' | 'done';
 
 export type ReadingProgress = {
+  _id: string;
   startPage: number;
   startReading: string;
   finishPage: number;
@@ -323,4 +324,23 @@ export async function finishReading(
     throw Error(error.message);
   }
   return await response.json();
+}
+
+export async function deleteReading(
+  bookId: string,
+  readingId: string,
+): Promise<void> {
+  const token = localStorage.getItem('token');
+
+  const params = new URLSearchParams({ bookId, readingId });
+
+  const response = await fetch(
+    `${baseURL}/books/reading?${params.toString()}`,
+    { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } },
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
 }

@@ -1,16 +1,20 @@
-import { finishReading, type ReadingProgress } from '../../services/api.js';
+import { type ReadingProgress } from '../../services/api.js';
 import css from './Diary.module.css';
 
 type DiaryType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
   progress: ReadingProgress[];
   totalPages: number;
+  bookId: string;
+  onDeleteReading: (readingId: string) => Promise<void>;
 };
 
 export default function Diary({
   setActiveButton,
   progress,
   totalPages,
+  bookId,
+  onDeleteReading,
 }: DiaryType) {
   const getReadingTime = (start: string, finish: string) => {
     const startTime = new Date(start).getTime();
@@ -18,6 +22,7 @@ export default function Diary({
 
     return finishTime - startTime;
   };
+
   return (
     <div className={css.wrapper}>
       <div className={css.firstLine}>
@@ -90,7 +95,7 @@ export default function Diary({
       <div className={css.content}>
         <ul className={css.list}>
           {progress.map((item) => (
-            <li className={css.item} key={item.speed}>
+            <li className={css.item} key={item._id}>
               <div className={css.dairyFirstLine}>
                 <div className={css.dateLine}>
                   <svg
@@ -157,7 +162,10 @@ export default function Diary({
                     </svg>
                     <p className={css.speed}>{item.speed} pages per hour</p>
                   </div>
-                  <button className={css.deleteButton}>
+                  <button
+                    className={css.deleteButton}
+                    onClick={() => onDeleteReading(item._id)}
+                  >
                     <svg
                       width="14"
                       height="14"
