@@ -21,6 +21,21 @@ export default function Diary({
     return finishTime - startTime;
   };
 
+  const formDate = (dateString: string) => {
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) {
+      return dateString;
+    }
+
+    return date.toLocaleDateString('uk-UA', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: 'Europe/Kyiv',
+    });
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.firstLine}>
@@ -113,7 +128,7 @@ export default function Diary({
                       fill="#1F1F1F"
                     />
                   </svg>
-                  <p className={css.date}>{item.startReading}</p>
+                  <p className={css.date}>{formDate(item.startReading)}</p>
                 </div>
                 <p className={css.pages}>
                   {item.finishPage - item.startPage} pages
