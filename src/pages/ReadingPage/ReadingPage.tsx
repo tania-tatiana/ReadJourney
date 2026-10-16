@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddReading from '../../components/AddReading/AddReading.js';
 import Dashboard from '../../components/Dashboard/Dashboard.js';
 import Details from '../../components/Details/Details.js';
@@ -154,7 +154,7 @@ export default function ReadingPage() {
   async function handleReadingDelete(readingId: string): Promise<void> {
     if (!book) return;
     try {
-      await deleteReading(book?._id, readingId);
+      await deleteReading(book._id, readingId);
       setBook((currentBook) =>
         currentBook
           ? {

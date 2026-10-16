@@ -5,7 +5,6 @@ type DiaryType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
   progress: ReadingProgress[];
   totalPages: number;
-  bookId: string;
   onDeleteReading: (readingId: string) => Promise<void>;
 };
 
@@ -13,7 +12,6 @@ export default function Diary({
   setActiveButton,
   progress,
   totalPages,
-  bookId,
   onDeleteReading,
 }: DiaryType) {
   const getReadingTime = (start: string, finish: string) => {

@@ -26,7 +26,6 @@ export default function Details({
       setActiveButton={setActiveButton}
       progress={book.progress}
       totalPages={book.totalPages}
-      bookId={book._id}
       onDeleteReading={onDeleteReading}
     />
   ) : (
