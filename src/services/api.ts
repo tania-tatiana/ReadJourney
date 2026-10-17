@@ -344,3 +344,22 @@ export async function deleteReading(
     throw Error(error.message);
   }
 }
+
+export async function getBookId(id: string): Promise<LibraryBook> {
+  const token = localStorage.getItem('token');
+
+  const response = await fetch(`${baseURL}/books/${id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as LibraryBook;
+  return result;
+}
