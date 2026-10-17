@@ -363,3 +363,30 @@ export async function getBookId(id: string): Promise<LibraryBook> {
   const result = (await response.json()) as LibraryBook;
   return result;
 }
+
+export async function refreshTokens(): Promise<
+  Pick<AuthResponse, 'token' | 'refreshToken'>
+> {
+  const resfreshToken = localStorage.getItem('refreshToken');
+
+  if (!resfreshToken) {
+    throw Error('Refresh token not found');
+  }
+
+  const response = await fetch(`${baseURL}/users/current/refresh`, {
+    method: 'GET',
+    headers: { Autorization: `Bearer ${refreshTokens}` },
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw Error(error.message);
+  }
+
+  const result = (await response.json()) as Pick<
+    AuthResponse,
+    'token' | 'refreshToken'
+  >;
+
+  return result;
+}
