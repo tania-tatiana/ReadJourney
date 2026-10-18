@@ -1,9 +1,9 @@
 import css from './Statistics.module.css';
-import type { LibraryBook } from '../../services/api.js';
+import type { ReadingBook } from '../../services/api.js';
 
 type StatisticsType = {
   setActiveButton: (value: 'diary' | 'statistics') => void;
-  book: LibraryBook;
+  book: ReadingBook;
 };
 
 export default function Statistics({ setActiveButton, book }: StatisticsType) {

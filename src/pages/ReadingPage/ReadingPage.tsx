@@ -9,9 +9,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import {
   deleteReading,
   finishReading,
+  getBookById,
   getLibraryBooks,
   startReading,
-  type LibraryBook,
+  type ReadingBook,
 } from '../../services/api.js';
 import { toast } from 'react-hot-toast';
 
@@ -19,9 +20,9 @@ export default function ReadingPage() {
   const location = useLocation();
   const { bookId } = useParams();
 
-  const initialBook = location.state?.book as LibraryBook | undefined;
+  const initialBook = location.state?.book as ReadingBook | undefined;
 
-  const [book, setBook] = useState<LibraryBook | undefined>(initialBook);
+  const [book, setBook] = useState<ReadingBook | undefined>(initialBook);
 
   const [isReading, setIsReading] = useState(
     () =>
@@ -31,14 +32,15 @@ export default function ReadingPage() {
   const [isBookFinished, setIsBookFinished] = useState(false);
 
   useEffect(() => {
-    if (!bookId) return;
+    const id = bookId;
+
+    if (!id) return;
 
     let isCancelled = false;
 
-    async function loadBook() {
+    async function loadBook(id: string) {
       try {
-        const libraryBooks = await getLibraryBooks();
-        const currentBook = libraryBooks.find((item) => item._id === bookId);
+        const currentBook = await getBookById(id);
 
         if (!currentBook) {
           if (!isCancelled) {
@@ -61,7 +63,7 @@ export default function ReadingPage() {
       }
     }
 
-    void loadBook();
+    void loadBook(id);
 
     return () => {
       isCancelled = true;

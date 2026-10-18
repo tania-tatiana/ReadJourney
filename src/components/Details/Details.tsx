@@ -2,11 +2,11 @@ import { useState } from 'react';
 import Descr from '../Descr/Descr.js';
 import Diary from '../Diary/Diary.js';
 import Statistics from '../Statistics/Statistics.js';
-import type { LibraryBook } from '../../services/api.js';
+import type { ReadingBook } from '../../services/api.js';
 
 type DetailsType = {
   isReading: boolean;
-  book: LibraryBook;
+  book: ReadingBook;
   onDeleteReading: (readingId: string) => Promise<void>;
 };
 

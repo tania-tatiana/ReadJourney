@@ -1,10 +1,10 @@
-import type { LibraryBook } from '../../services/api.js';
+import type { ReadingBook } from '../../services/api.js';
 import css from './MyBook.module.css';
 
 type MyBookType = {
   isReading: boolean;
   onQuickStart: () => void;
-  book: LibraryBook;
+  book: ReadingBook;
 };
 
 export default function MyBook({ isReading, onQuickStart, book }: MyBookType) {

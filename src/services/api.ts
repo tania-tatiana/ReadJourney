@@ -86,6 +86,15 @@ export type LibraryBook = GetBook & {
   progress: ReadingProgress[];
 };
 
+export type ReadingBook = Omit<LibraryBook, 'recommend'> & {
+  recommend?: boolean;
+  timeLeftToRead?: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+};
+
 export type LibraryBooks = LibraryBook[];
 
 export type AddBookData = {
@@ -103,14 +112,6 @@ export type AddLibraryBookResponse = {
   owner: string;
   _id: string;
   progress: ReadingProgress[];
-};
-
-export type BookDetailsResponse = Omit<LibraryBook, 'recommend'> & {
-  timeLeftToRoad: {
-    hours: number;
-    minutes: number;
-    seconds: number;
-  };
 };
 
 const baseURL = 'https://readjourney.b.goit.study/api';
@@ -353,7 +354,7 @@ export async function deleteReading(
   }
 }
 
-export async function getBookId(id: string): Promise<BookDetailsResponse> {
+export async function getBookById(id: string): Promise<ReadingBook> {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/books/${id}`, {
@@ -368,22 +369,22 @@ export async function getBookId(id: string): Promise<BookDetailsResponse> {
     throw Error(error.message);
   }
 
-  const result = (await response.json()) as BookDetailsResponse;
+  const result = (await response.json()) as ReadingBook;
   return result;
 }
 
 export async function refreshTokens(): Promise<
   Pick<AuthResponse, 'token' | 'refreshToken'>
 > {
-  const resfreshToken = localStorage.getItem('refreshToken');
+  const refreshToken = localStorage.getItem('refreshToken');
 
-  if (!resfreshToken) {
+  if (!refreshToken) {
     throw Error('Refresh token not found');
   }
 
   const response = await fetch(`${baseURL}/users/current/refresh`, {
     method: 'GET',
-    headers: { Autorization: `Bearer ${refreshTokens}` },
+    headers: { Authorization: `Bearer ${refreshToken}` },
   });
 
   if (!response.ok) {
