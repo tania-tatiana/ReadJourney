@@ -105,6 +105,14 @@ export type AddLibraryBookResponse = {
   progress: ReadingProgress[];
 };
 
+export type BookDetailsResponse = Omit<LibraryBook, 'recommend'> & {
+  timeLeftToRoad: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+};
+
 const baseURL = 'https://readjourney.b.goit.study/api';
 
 export default async function signUp(data: SignUpData) {
@@ -345,7 +353,7 @@ export async function deleteReading(
   }
 }
 
-export async function getBookId(id: string): Promise<LibraryBook> {
+export async function getBookId(id: string): Promise<BookDetailsResponse> {
   const token = localStorage.getItem('token');
 
   const response = await fetch(`${baseURL}/books/${id}`, {
@@ -360,7 +368,7 @@ export async function getBookId(id: string): Promise<LibraryBook> {
     throw Error(error.message);
   }
 
-  const result = (await response.json()) as LibraryBook;
+  const result = (await response.json()) as BookDetailsResponse;
   return result;
 }
 
