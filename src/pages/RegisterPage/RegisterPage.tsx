@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import RegisterForm from '../../components/RegisterForm/RegisterForm.js';
 import css from './RegisterPage.module.css';
 

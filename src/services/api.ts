@@ -397,5 +397,8 @@ export async function refreshTokens(): Promise<
     'token' | 'refreshToken'
   >;
 
+  localStorage.setItem('token', result.token);
+  localStorage.setItem('refreshToken', result.refreshToken);
+
   return result;
 }
