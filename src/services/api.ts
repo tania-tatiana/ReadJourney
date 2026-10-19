@@ -180,6 +180,23 @@ export async function getCurrentUser() {
   return result;
 }
 
+export async function authorizedFetch(
+  url: string,
+  options: RequestInit = {},
+): Promise<Response> {
+  const token = localStorage.getItem('token');
+
+  const headers = new Headers(options.headers);
+
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  const response = await fetch(url, { ...options, headers });
+
+  return response;
+}
+
 export async function getBooks(data: GetBooksParams) {
   const token = localStorage.getItem('token');
 
