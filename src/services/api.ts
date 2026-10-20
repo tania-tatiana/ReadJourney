@@ -184,17 +184,37 @@ export async function authorizedFetch(
   url: string,
   options: RequestInit = {},
 ): Promise<Response> {
+  const makeRequest = (token: string | null) => {
+    const headers = new Headers(options.headers);
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return fetch(url, { ...options, headers });
+  };
+
   const token = localStorage.getItem('token');
+  let response = await makeRequest(token);
 
-  const headers = new Headers(options.headers);
-
-  if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
+  if (response.status !== 401) {
+    return response;
   }
 
-  const response = await fetch(url, { ...options, headers });
+  if (!localStorage.getItem('refreshToken')) {
+    return response;
+  }
 
-  return response;
+  try {
+    const tokens = await refreshTokens();
+
+    response = await makeRequest(tokens.token);
+    return response;
+  } catch (error) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+
+    throw new Error('Сесію завершено. Увійдіть у свій акаунт повторно.');
+  }
 }
 
 export async function getBooks(data: GetBooksParams) {
