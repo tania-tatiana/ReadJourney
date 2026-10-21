@@ -147,12 +147,14 @@ export async function signIn(data: SignInData) {
 }
 
 export async function signOut() {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/users/signout`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const response = await fetch(`${baseURL}/users/signout`, {
+  //   method: 'POST',
+  //   headers: { Authorization: `Bearer ${token}` },
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/users/signout`);
 
   if (!response.ok) {
     const error = await response.json();
@@ -164,12 +166,14 @@ export async function signOut() {
 }
 
 export async function getCurrentUser() {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/users/current`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const response = await fetch(`${baseURL}/users/current`, {
+  //   method: 'GET',
+  //   headers: { Authorization: `Bearer ${token}` },
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/users/current`);
 
   if (!response.ok) {
     const error = await response.json();
@@ -209,7 +213,7 @@ export async function authorizedFetch(
 
     response = await makeRequest(tokens.token);
     return response;
-  } catch (error) {
+  } catch {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
 
@@ -218,7 +222,7 @@ export async function authorizedFetch(
 }
 
 export async function getBooks(data: GetBooksParams) {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
   const params = new URLSearchParams();
 
@@ -233,12 +237,16 @@ export async function getBooks(data: GetBooksParams) {
 
   params.set('limit', data.limit.toString());
 
-  const response = await fetch(
+  // const response = await fetch(
+  //   `${baseURL}/books/recommend?${params.toString()}`,
+  //   {
+  //     method: 'GET',
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   },
+  // );
+
+  const response = await authorizedFetch(
     `${baseURL}/books/recommend?${params.toString()}`,
-    {
-      method: 'GET',
-      headers: { Authorization: `Bearer ${token}` },
-    },
   );
 
   if (!response.ok) {
@@ -251,11 +259,15 @@ export async function getBooks(data: GetBooksParams) {
 }
 
 export async function addBook(id: string) {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/add/${id}`, {
+  // const response = await fetch(`${baseURL}/books/add/${id}`, {
+  //   method: 'POST',
+  //   headers: { Authorization: `Bearer ${token}` },
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/add/${id}`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${token}` },
   });
 
   if (!response.ok) {
@@ -269,7 +281,7 @@ export async function addBook(id: string) {
 }
 
 export async function getLibraryBooks(status?: Status) {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
   const params = new URLSearchParams();
 
@@ -277,10 +289,17 @@ export async function getLibraryBooks(status?: Status) {
     params.set('status', status);
   }
 
-  const response = await fetch(`${baseURL}/books/own?${params.toString()}`, {
-    method: 'GET',
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const response = await fetch(
+  //   `${baseURL}/books/own?${params.toString()}`,
+  //   {
+  //     method: 'GET',
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   },
+  // );
+
+  const response = await authorizedFetch(
+    `${baseURL}/books/own?${params.toString()}`,
+  );
 
   if (!response.ok) {
     const error = await response.json();
@@ -291,12 +310,20 @@ export async function getLibraryBooks(status?: Status) {
 }
 
 export async function addLibraryBook(data: AddBookData) {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/add`, {
+  // const response = await fetch(`${baseURL}/books/add`, {
+  //   method: 'POST',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(data),
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/add`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
@@ -312,12 +339,14 @@ export async function addLibraryBook(data: AddBookData) {
 }
 
 export async function deleteLibraryBook(id: string) {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/remove/${id}`, {
-    method: 'DELETE',
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const response = await fetch(`${baseURL}/books/remove/${id}`, {
+  //   method: 'DELETE',
+  //   headers: { Authorization: `Bearer ${token}` },
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/remove/${id}`);
 
   if (!response.ok) {
     const error = await response.json();
@@ -331,12 +360,20 @@ export async function startReading(
   id: string,
   page: number,
 ): Promise<LibraryBook> {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/reading/start`, {
+  // const response = await authorizedFetch(`${baseURL}/books/reading/start`, {
+  //   method: 'POST',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ id, page }),
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/reading/start`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ id, page }),
@@ -354,12 +391,20 @@ export async function finishReading(
   id: string,
   page: number,
 ): Promise<LibraryBook> {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/reading/finish`, {
+  // const response = await authorizedFetch(`${baseURL}/books/reading/finish`, {
+  //   method: 'POST',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ id, page }),
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/reading/finish`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ id, page }),
@@ -376,13 +421,18 @@ export async function deleteReading(
   bookId: string,
   readingId: string,
 ): Promise<void> {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
   const params = new URLSearchParams({ bookId, readingId });
 
-  const response = await fetch(
+  // const response = await fetch(
+  //   `${baseURL}/books/reading?${params.toString()}`,
+  //   { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } },
+  // );
+
+  const response = await authorizedFetch(
     `${baseURL}/books/reading?${params.toString()}`,
-    { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } },
+    { method: 'DELETE' },
   );
 
   if (!response.ok) {
@@ -392,14 +442,16 @@ export async function deleteReading(
 }
 
 export async function getBookById(id: string): Promise<ReadingBook> {
-  const token = localStorage.getItem('token');
+  // const token = localStorage.getItem('token');
 
-  const response = await fetch(`${baseURL}/books/${id}`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  // const response = await authorizedFetch(`${baseURL}/books/${id}`, {
+  //   method: 'GET',
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // });
+
+  const response = await authorizedFetch(`${baseURL}/books/${id}`);
 
   if (!response.ok) {
     const error = await response.json();
