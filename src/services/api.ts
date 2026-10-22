@@ -116,6 +116,10 @@ export type AddLibraryBookResponse = {
 
 const baseURL = 'https://readjourney.b.goit.study/api';
 
+let refreshPromise: Promise<
+  Pick<AuthResponse, 'token' | 'refreshToken'>
+> | null = null;
+
 export default async function signUp(data: SignUpData) {
   const response = await fetch(`${baseURL}/users/signup`, {
     method: 'POST',
@@ -154,7 +158,9 @@ export async function signOut() {
   //   headers: { Authorization: `Bearer ${token}` },
   // });
 
-  const response = await authorizedFetch(`${baseURL}/users/signout`);
+  const response = await authorizedFetch(`${baseURL}/users/signout`, {
+    method: 'POST',
+  });
 
   if (!response.ok) {
     const error = await response.json();
@@ -209,7 +215,12 @@ export async function authorizedFetch(
   }
 
   try {
-    const tokens = await refreshTokens();
+    if (!refreshPromise) {
+      refreshPromise = refreshTokens().finally(() => {
+        refreshPromise = null;
+      });
+    }
+    const tokens = await refreshPromise;
 
     response = await makeRequest(tokens.token);
     return response;
