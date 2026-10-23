@@ -357,7 +357,9 @@ export async function deleteLibraryBook(id: string) {
   //   headers: { Authorization: `Bearer ${token}` },
   // });
 
-  const response = await authorizedFetch(`${baseURL}/books/remove/${id}`);
+  const response = await authorizedFetch(`${baseURL}/books/remove/${id}`, {
+    method: 'DELETE',
+  });
 
   if (!response.ok) {
     const error = await response.json();
