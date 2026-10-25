@@ -15,8 +15,18 @@ type RecommendedBooksProps = {
   filters: GetBooksFilters;
 };
 
+function getBooksPerPage() {
+  if (window.innerWidth >= 1440) {
+    return 10;
+  }
+  if (window.innerWidth >= 768) {
+    return 8;
+  }
+  return 2;
+}
+
 export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
-  const [booksPerPage, setBooksPerPage] = useState(2);
+  const [booksPerPage, setBooksPerPage] = useState(getBooksPerPage);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
 
