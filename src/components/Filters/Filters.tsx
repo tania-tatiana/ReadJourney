@@ -1,11 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import css from './Filters.module.css';
-import type { GetBooksParams } from '../../services/api.js';
 import { useForm } from 'react-hook-form';
+import type { GetBooksFilters } from '../../services/api.js';
 
 type FiltersProps = {
-  onSearch: (data: GetBooksParams) => void;
+  onSearch: (data: GetBooksFilters) => void;
 };
 
 export default function Filters({ onSearch }: FiltersProps) {
@@ -14,12 +14,12 @@ export default function Filters({ onSearch }: FiltersProps) {
     author: yup.string().defined(),
   });
 
-  const { register, handleSubmit } = useForm<GetBooksParams>({
+  const { register, handleSubmit } = useForm<GetBooksFilters>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: GetBooksParams) => {
+  const onSubmit = (data: GetBooksFilters) => {
     onSearch(data);
   };
 
