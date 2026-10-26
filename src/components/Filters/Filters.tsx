@@ -3,6 +3,7 @@ import * as yup from 'yup';
 import css from './Filters.module.css';
 import { useForm } from 'react-hook-form';
 import type { GetBooksFilters } from '../../services/api.js';
+import { useEffect, useRef } from 'react';
 
 type FiltersProps = {
   onSearch: (data: GetBooksFilters) => void;
@@ -14,10 +15,34 @@ export default function Filters({ onSearch }: FiltersProps) {
     author: yup.string().defined(),
   });
 
-  const { register, handleSubmit } = useForm<GetBooksFilters>({
+  const { register, handleSubmit, watch } = useForm<GetBooksFilters>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
+    defaultValues: {
+      title: '',
+      author: '',
+    },
   });
+
+  const title = watch('title');
+  const author = watch('author');
+
+  const previousValues = useRef({ title, author });
+
+  useEffect(() => {
+    const previous = previousValues.current;
+    previousValues.current = { title, author };
+
+    const titleCleared = previous.title && !title;
+    const authorCleared = previous.author && !author;
+
+    if (titleCleared || authorCleared) {
+      onSearch({
+        title: title ?? '',
+        author: author ?? '',
+      });
+    }
+  }, [title, author, onSearch]);
 
   const onSubmit = (data: GetBooksFilters) => {
     onSearch(data);
