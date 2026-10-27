@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import BookCard from '../BookCard/BookCard.js';
 import css from './RecommendedBooks.module.css';
 import BookModal from '../BookModal/BookModal.js';
@@ -10,6 +10,7 @@ import {
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 import AddBookModal from '../AddBookModal/AddBookModal.js';
+import { toast } from 'react-hot-toast';
 
 type RecommendedBooksProps = {
   filters: GetBooksFilters;
@@ -38,19 +39,63 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
 
   const [books, setBooks] = useState<GetBook[]>([]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
+  const previousFilters = useRef(filters);
 
   useEffect(() => {
-    async function getRecommendedBooks() {
-      const params = { ...filters, page: currentPage, limit: booksPerPage };
-      const result = await getBooks(params);
-      setBooks(result.results);
-      setTotalPages(result.totalPages);
+    const filtersChenged =
+      previousFilters.current.title !== filters.title ||
+      previousFilters.current.author !== filters.author;
+
+    previousFilters.current = filters;
+
+    if (filtersChenged && currentPage !== 1) {
+      setCurrentPage(1);
+      return;
     }
-    getRecommendedBooks();
-  }, [filters, currentPage, booksPerPage]);
+
+    let isCancelled = false;
+
+    async function getRecommendedBooks() {
+      try {
+        const params = {
+          title: filters.title.trim(),
+          author: filters.author.trim(),
+          page: currentPage,
+          limit: booksPerPage,
+        };
+
+        const result = await getBooks(params);
+
+        if (result.results.length === 0) {
+          toast('No books found for your search.');
+        }
+        if (isCancelled) return;
+
+        setBooks(result.results);
+        setTotalPages(result.totalPages ?? 1);
+      } catch (error) {
+        if (!isCancelled) {
+          toast.error('Failed to load books. Please try again.');
+        }
+      }
+    }
+
+    void getRecommendedBooks();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [filters.title, filters.author, currentPage, booksPerPage]);
+
+  // useEffect(() => {
+  //   async function getRecommendedBooks() {
+  //     const params = { ...filters, page: currentPage, limit: booksPerPage };
+  //     const result = await getBooks(params);
+  //     setBooks(result.results);
+  //     setTotalPages(result.totalPages);
+  //   }
+  //   getRecommendedBooks();
+  // }, [filters, currentPage, booksPerPage]);
 
   useEffect(() => {
     const updateBooksCount = () => {
