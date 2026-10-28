@@ -7,19 +7,6 @@ type StatisticsType = {
 };
 
 export default function Statistics({ setActiveButton, book }: StatisticsType) {
-  console.table(
-    book.progress.map((item, index) => ({
-      index,
-      status: item.status,
-      startPage: item.startPage,
-      finishPage: item.finishPage,
-      countedPages:
-        item.status === 'active'
-          ? 0
-          : Math.max(0, item.finishPage - item.startPage + 1),
-    })),
-  );
-
   // const pagesRead = book.progress.reduce((total, item) => {
   //   if (item.status === 'active') {
   //     return total;
@@ -30,7 +17,7 @@ export default function Statistics({ setActiveButton, book }: StatisticsType) {
 
   const lastReadPage = Math.max(
     0,
-    ...book.progress.map((item) => item.finishPage),
+    ...book.progress.map((item) => item.finishPage ?? 0),
   );
 
   const progress =

@@ -60,9 +60,9 @@ export type ReadingProgress = {
   _id: string;
   startPage: number;
   startReading: string;
-  finishPage: number;
+  finishPage?: number;
   finishReading: string;
-  speed: number;
+  speed?: number;
   status: string;
 };
 

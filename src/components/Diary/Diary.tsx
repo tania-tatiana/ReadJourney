@@ -131,15 +131,19 @@ export default function Diary({
                   <p className={css.date}>{formDate(item.startReading)}</p>
                 </div>
                 <p className={css.pages}>
-                  {item.finishPage - item.startPage} pages
+                  {item.finishPage !== undefined
+                    ? item.finishPage - item.startPage + 1
+                    : 0}{' '}
+                  pages
                 </p>
               </div>
               <div className={css.dairySecondLine}>
                 <div className={css.percentAndTime}>
                   <p className={css.percent}>
-                    {(
-                      ((item.finishPage - item.startPage) / totalPages) *
-                      100
+                    {(totalPages > 0 && item.finishPage !== undefined
+                      ? ((item.finishPage - item.startPage + 1) / totalPages) *
+                        100
+                      : 0
                     ).toFixed(1)}
                     %
                   </p>
