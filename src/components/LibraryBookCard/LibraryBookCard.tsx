@@ -18,7 +18,13 @@ export default function LibraryBookCard({
 }: LibraryBookType) {
   return (
     <div className={css.wrapper}>
-      <img src={imageUrl} alt={title} onClick={onClick} className={css.image} />
+      <img
+        src={imageUrl}
+        alt={title}
+        onClick={onClick}
+        className={css.image}
+        loading="lazy"
+      />
       <div className={css.secondLine}>
         <div className={css.text}>
           <p className={css.title}>{title}</p>
