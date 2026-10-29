@@ -32,7 +32,7 @@ export default function MyBook({ isReading, onQuickStart, book }: MyBookType) {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle cx="20" cy="20" r="19" stroke="#F9F9F9" strokeWidth="2" />
+            <circle cx="20" cy="20" r="19" stroke="#F9F9F9" strokeWidth={2} />
             <rect x="12" y="13" width="15" height="15" rx="3" fill="#E90516" />
           </svg>
         ) : (
@@ -44,7 +44,7 @@ export default function MyBook({ isReading, onQuickStart, book }: MyBookType) {
             xmlns="http://www.w3.org/2000/svg"
           >
             <circle cx="20" cy="20" r="15" fill="#E90516" />
-            <circle cx="20" cy="20" r="19" stroke="#F9F9F9" stroke-width="2" />
+            <circle cx="20" cy="20" r="19" stroke="#F9F9F9" strokeWidth={2} />
           </svg>
         )}
       </button>
