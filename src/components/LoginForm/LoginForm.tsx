@@ -5,9 +5,12 @@ import { useForm } from 'react-hook-form';
 import { signIn, type SignInData } from '../../services/api.js';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
 export default function LoginForm() {
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const schema = yup.object({
     email: yup
@@ -58,10 +61,26 @@ export default function LoginForm() {
           <label className={css.field}>
             <span className={css.label}>Password:</span>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               className={css.input}
               {...register('password')}
             />
+            <button
+              type="button"
+              className={css.passwordToggle}
+              onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            >
+              <svg width={20} height={20}>
+                <use
+                  href={
+                    showPassword
+                      ? '/public/icons.svg#eye-off'
+                      : '/public/icons.svg#eye'
+                  }
+                />
+              </svg>
+            </button>
             {errors.password && (
               <p className={css.error}>{errors.password.message}</p>
             )}
