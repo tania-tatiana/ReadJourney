@@ -11,9 +11,9 @@ export default function RegisterPage() {
         </div>
 
         <div className={css.titleForm}>
-          <h2 className={css.title}>
+          <h1 className={css.title}>
             Expand your mind, reading <span className={css.span}>a book</span>
-          </h2>
+          </h1>
           <RegisterForm />
         </div>
       </div>

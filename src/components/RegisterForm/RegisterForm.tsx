@@ -27,7 +27,8 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    watch,
+    formState: { errors, touchedFields },
   } = useForm<SignUpData>({
     mode: 'onBlur',
     resolver: yupResolver(schema),
@@ -48,6 +49,13 @@ export default function RegisterForm() {
     }
   };
 
+  const passwordValue = watch('password');
+  const passwordStatus =
+    !touchedFields.password || !passwordValue
+      ? null
+      : errors.password
+        ? 'error'
+        : 'success';
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -64,13 +72,32 @@ export default function RegisterForm() {
               <p className={css.error}>{errors.email.message}</p>
             )}
           </label>
-          <label className={css.field}>
+          <label
+            className={`${css.field} ${
+              passwordStatus === 'error'
+                ? css.fieldError
+                : passwordStatus === 'success'
+                  ? css.fieldSuccess
+                  : ''
+            }`}
+          >
             <span className={css.label}>Password:</span>
             <input
               type={showPassword ? 'text' : 'password'}
               className={css.input}
               {...register('password')}
             />
+            {passwordStatus && (
+              <svg width={20} height={20} className={css.statusIcon}>
+                <use
+                  href={
+                    passwordStatus === 'error'
+                      ? '/public/icons.svg#pajamas-error'
+                      : '/public/icons.svg#gg-check-o'
+                  }
+                />
+              </svg>
+            )}
             <button
               type="button"
               className={css.passwordToggle}
@@ -87,9 +114,15 @@ export default function RegisterForm() {
                 />
               </svg>
             </button>
-            {errors.password && (
-              <p className={css.error}>{errors.password.message}</p>
+            {passwordStatus === 'error' && (
+              <p className={css.error}>Enter a valid Password*</p>
             )}
+            {passwordStatus === 'success' && (
+              <p className={css.success}>Password is secure</p>
+            )}
+            {/* {errors.password && (
+              <p className={css.error}>{errors.password.message}</p>
+            )} */}
           </label>
         </div>
 
