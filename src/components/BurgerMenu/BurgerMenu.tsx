@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import UserNav from '../UserNav/UserNav.js';
 import css from './BurgerMenu.module.css';
-import { signOut } from '../../services/api.js';
-import { toast } from 'react-hot-toast';
 
 type BurgerMenuProps = {
   onClose: () => void;

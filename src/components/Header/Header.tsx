@@ -15,8 +15,6 @@ export default function Header() {
   const onClick = async () => {
     try {
       await signOut();
-
-      navigate('/');
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -24,6 +22,7 @@ export default function Header() {
     } finally {
       localStorage.removeItem('token');
       localStorage.removeItem('refreshToken');
+      navigate('/');
     }
   };
 
