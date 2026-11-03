@@ -48,7 +48,9 @@ export default function Header() {
           <img src="/burger.svg" alt="Burger" className={css.burger} />
         </button>
       </div>
-      {isBurgerOpen && <BurgerMenu onClose={() => setIsBurgerOpen(false)} />}
+      {isBurgerOpen && (
+        <BurgerMenu onClose={() => setIsBurgerOpen(false)} onLogOut={onClick} />
+      )}
     </header>
   );
 }
