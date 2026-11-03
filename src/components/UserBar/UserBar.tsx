@@ -6,8 +6,14 @@ export default function UserBar() {
   const [user, setUser] = useState<GetCurrentUser | null>(null);
   useEffect(() => {
     async function getUser() {
-      const result = await getCurrentUser();
-      setUser(result);
+      try {
+        const result = await getCurrentUser();
+        setUser(result);
+      } catch (error) {
+        if (error instanceof Error) {
+          throw Error(error.message);
+        }
+      }
     }
     getUser();
   }, []);
