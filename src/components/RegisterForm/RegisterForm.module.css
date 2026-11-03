@@ -40,6 +40,14 @@
   border: 1px solid transparent;
 }
 
+.field:has(.error) {
+  margin-bottom: 14px;
+}
+
+.field:hover {
+  border: 1px solid rgba(249, 249, 249, 0.1);
+}
+
 @media (min-width: 768px) {
   .field {
     padding: 16px 14px;
