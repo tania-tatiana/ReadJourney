@@ -104,7 +104,7 @@ export default function LoginForm() {
               </svg>
             </button>
             {passwordStatus === 'error' && (
-              <p className={css.error}>Enter a valid Password*</p>
+              <p className={css.error}>{errors.password?.message}</p>
             )}
             {passwordStatus === 'success' && (
               <p className={css.success}>Password is secure</p>
