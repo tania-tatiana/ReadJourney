@@ -66,13 +66,14 @@ export default function RecommendedBooks({ filters }: RecommendedBooksProps) {
 
         const result = await getBooks(params);
 
+        if (isCancelled) return;
+
         if (result.results.length === 0) {
           toast('No books found for your search.');
         }
-        if (isCancelled) return;
 
         setBooks(result.results);
-        setTotalPages(result.totalPages ?? 1);
+        setTotalPages(Math.max(result.totalPages ?? 1, 1));
       } catch (error) {
         if (!isCancelled) {
           toast.error('Failed to load books. Please try again.');
