@@ -128,27 +128,39 @@ export default function ReadingPage() {
       return;
     }
 
-    const libraryBooks = await getLibraryBooks();
+    try {
+      const libraryBooks = await getLibraryBooks();
 
-    const currentBook = libraryBooks.find((item) => item._id === book._id);
+      const currentBook = libraryBooks.find((item) => item._id === book._id);
 
-    if (!currentBook) {
-      toast.error('Book not found in your library');
-      return;
-    }
+      if (!currentBook) {
+        toast.error('Book not found in your library');
+        return;
+      }
 
-    const lastProgress = currentBook.progress
-      .filter(
-        (item) =>
+      const lastFinishPage = currentBook.progress.reduce((maxPage, item) => {
+        if (
           item.status !== 'active' &&
           item.finishPage !== undefined &&
-          item.finishPage > 0,
-      )
-      .at(-1);
-    const startPage =
-      lastProgress?.finishPage !== undefined ? lastProgress.finishPage + 1 : 1;
+          item.finishPage > 0
+        ) {
+          return Math.max(maxPage, item.finishPage);
+        }
+        return maxPage;
+      }, 0);
+      const startPage = lastFinishPage + 1;
 
-    await handleStartReading(startPage);
+      if (startPage > book.totalPages) {
+        toast.error('This book has already been completed');
+        return;
+      }
+
+      await handleStartReading(startPage);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   }
 
   function handleReadingFinished(isFinished: boolean) {
