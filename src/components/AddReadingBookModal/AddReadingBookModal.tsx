@@ -16,14 +16,11 @@ export default function AddReadingBookModal({
   isOpen,
   onClose,
   onStartReading,
-  id,
   title,
   author,
   image,
   totalPages,
 }: AddReadingBookModalProps) {
-  const [isStarting, setIsStarting] = useState(false);
-
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -43,7 +40,7 @@ export default function AddReadingBookModal({
     <>
       <div className={css.backdrop} onClick={onClose}>
         <div className={css.modal} onClick={(event) => event.stopPropagation()}>
-          <button className={css.closeButton} onClick={onClose}>
+          <button type="button" className={css.closeButton} onClick={onClose}>
             ✕
           </button>
           <img src={image} alt={title} className={css.cover} />
@@ -52,12 +49,7 @@ export default function AddReadingBookModal({
             <p className={css.author}>{author}</p>
           </div>
           <p className={css.totalPages}>{totalPages} pages</p>
-          <button
-            type="submit"
-            className={css.button}
-            onClick={onStartReading}
-            disabled={isStarting}
-          >
+          <button type="button" className={css.button} onClick={onStartReading}>
             Start reading
           </button>
         </div>

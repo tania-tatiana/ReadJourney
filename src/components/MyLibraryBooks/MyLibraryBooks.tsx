@@ -20,11 +20,22 @@ export default function MyLibraryBooks() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let isCancelled = false;
     async function fetchBooks() {
-      const result = await getLibraryBooks(status);
-      setBooks(result);
+      try {
+        const result = await getLibraryBooks(status);
+        setBooks(result);
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message);
+        }
+      }
     }
     fetchBooks();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [status]);
 
   async function handleDelete(id: string) {
