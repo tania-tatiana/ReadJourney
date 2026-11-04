@@ -70,8 +70,8 @@ export default function ReadingPage() {
     };
   }, [bookId]);
 
-  async function handleStartReading(pageNumber: number): Promise<void> {
-    if (!book) return;
+  async function handleStartReading(pageNumber: number): Promise<boolean> {
+    if (!book) return false;
 
     try {
       const updatedBook = await startReading(book._id, pageNumber);
@@ -82,15 +82,17 @@ export default function ReadingPage() {
         updatedBook.progress.some((item) => item.status === 'active'),
       );
       toast.success('Reading started!');
+      return true;
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       }
+      return false;
     }
   }
 
-  async function handleStopReading(pageNumber: number): Promise<void> {
-    if (!book) return;
+  async function handleStopReading(pageNumber: number): Promise<boolean> {
+    if (!book) return false;
 
     try {
       const updatedBook = await finishReading(book._id, pageNumber);
@@ -102,10 +104,12 @@ export default function ReadingPage() {
       );
       handleReadingFinished(pageNumber === book.totalPages);
       toast.success('Reading stopped!');
+      return true;
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
       }
+      return false;
     }
   }
 

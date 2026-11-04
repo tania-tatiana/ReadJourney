@@ -5,8 +5,8 @@ import { toast } from 'react-hot-toast';
 type AddReadingProps = {
   totalPages: number | undefined;
   bookId: string | undefined;
-  onStartReading: (pageNumber: number) => Promise<void>;
-  onStopReading: (pageNumber: number) => Promise<void>;
+  onStartReading: (pageNumber: number) => Promise<boolean>;
+  onStopReading: (pageNumber: number) => Promise<boolean>;
   isReading: boolean;
   onPageChange: (page: string) => void;
 };
@@ -38,10 +38,13 @@ export default function AddReading({
       return;
     }
 
-    if (!isReading) {
-      await onStartReading(pageNumber);
-    } else {
-      await onStopReading(pageNumber);
+    const success = !isReading
+      ? await onStartReading(pageNumber)
+      : await onStopReading(pageNumber);
+
+    if (success) {
+      setPage('');
+      onPageChange('');
     }
   }
   return (
