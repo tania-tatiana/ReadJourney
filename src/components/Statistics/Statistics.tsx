@@ -123,7 +123,7 @@ export default function Statistics({ setActiveButton, book }: StatisticsType) {
               }}
             />
           </svg>
-          <div className={css.percents}>100%</div>
+          <div className={css.percents}>{progress.toFixed(1)}%</div>
         </div>
         <div className={css.wrapperSecondLine}>
           <div className={css.point}></div>
