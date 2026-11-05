@@ -45,7 +45,10 @@ export default function Diary({
             className={css.buttonSVG}
             onClick={() => setActiveButton('diary')}
           >
-            <svg
+            <svg className={css.timeIcon} width={20} height={20}>
+              <use href="/public/icons.svg#time" />
+            </svg>
+            {/* <svg
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -66,13 +69,16 @@ export default function Diary({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
+            </svg> */}
           </button>
           <button
             className={css.buttonSVG}
             onClick={() => setActiveButton('statistics')}
           >
-            <svg
+            <svg className={css.sectorIcon} width={20} height={20}>
+              <use href="/public/icons.svg#sector" />
+            </svg>
+            {/* <svg
               width="16"
               height="16"
               viewBox="0 0 16 16"
@@ -101,7 +107,7 @@ export default function Diary({
                   <rect width="16" height="16" fill="white" />
                 </clipPath>
               </defs>
-            </svg>
+            </svg> */}
           </button>
         </div>
       </div>
@@ -111,7 +117,10 @@ export default function Diary({
             <li className={css.item} key={item._id}>
               <div className={css.dairyFirstLine}>
                 <div className={css.dateLine}>
-                  <svg
+                  <svg className={css.dateIcon} width={20} height={20}>
+                    <use href="/public/icons.svg#date" />
+                  </svg>
+                  {/* <svg
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
@@ -127,7 +136,7 @@ export default function Diary({
                       rx="2"
                       fill="#1F1F1F"
                     />
-                  </svg>
+                  </svg> */}
                   <p className={css.date}>{formDate(item.startReading)}</p>
                 </div>
                 <p className={css.pages}>
@@ -183,7 +192,10 @@ export default function Diary({
                     className={css.deleteButton}
                     onClick={() => onDeleteReading(item._id)}
                   >
-                    <svg
+                    <svg className={css.deleteIcon} width={14} height={14}>
+                      <use href="/public/icons.svg#delete" />
+                    </svg>
+                    {/* <svg
                       width="14"
                       height="14"
                       viewBox="0 0 14 14"
@@ -214,7 +226,7 @@ export default function Diary({
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                    </svg>
+                    </svg> */}
                   </button>
                 </div>
               </div>
